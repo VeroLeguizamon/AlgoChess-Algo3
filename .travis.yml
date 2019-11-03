@@ -21,4 +21,5 @@ notifications:
   email:
     recipients:
       - juanpablofresia@gmail.com
+      - veronicaleguizamon@outlook.es
     on_failure: always
