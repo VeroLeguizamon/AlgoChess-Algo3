@@ -16,6 +16,13 @@ public class Coordenada {
 	public int getCoordy() {
 		return coordy;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		Coordenada coordenada = (Coordenada)obj;
+		
+		return ((this.coordx == coordenada.getCoordx()) && 
+				(this.coordy == coordenada.getCoordy()));
+		
+	}
 
 }

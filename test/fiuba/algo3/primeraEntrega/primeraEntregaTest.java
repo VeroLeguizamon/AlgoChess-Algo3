@@ -96,8 +96,7 @@ public class primeraEntregaTest {
 		Assert.assertEquals(true, true);
 	}
 	
-	// Pruebas Jugador 
-	
+	// Pruebas Jugador 	
 	@Test
 	public void test00JugadorNoPuedeTomarMasEntidadesDeLoQuesusPuntosLePermiteExitosamente() {
 
