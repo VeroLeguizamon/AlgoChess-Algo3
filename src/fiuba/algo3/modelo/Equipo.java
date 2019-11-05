@@ -6,6 +6,7 @@ import java.util.Iterator;
 import fiuba.algo3.mock.interfaces.IUnidad;
 
 public class Equipo {
+	
 	ArrayList<IUnidad> unidades; 
 	
 	public Equipo() {
@@ -15,6 +16,7 @@ public class Equipo {
 	public void agregar(IUnidad unidad) {
 		this.unidades.add(unidad);
 	}
+	
 	public boolean hayUnidadesConVida() {
 		Iterator<IUnidad> actual = unidades.iterator();
 		
@@ -23,11 +25,11 @@ public class Equipo {
 			if(unidadActual.tieneVida()) {
 				return true;
 			}
-		}
-		
+		}	
 		return false;
 	}
-	public boolean estaVacio() {
+	
+	public boolean noTieneUnidades() {
 		return this.unidades.isEmpty();
 	}
 	

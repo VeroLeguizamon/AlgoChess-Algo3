@@ -5,15 +5,16 @@ import fiuba.algo3.modelo.excepciones.PuntosInsuficientes;
 
 
 public class Jugador {
-	
+	@SuppressWarnings("unused")
+	private String nombre = "";
 	private int puntos = 20;
 	private Equipo equipo;
 	
-	public Jugador() {
+	public Jugador(String nombreNuevo) {
 		this.equipo = new Equipo();
+		this.nombre = nombreNuevo;
 	}
 	
-	//Solo para pruebas, quitar luego. Buscar mejor manera para testearlo.
 	public int getPuntos() {
 		return this.puntos;
 	}
@@ -29,9 +30,9 @@ public class Jugador {
 		this.setPuntos(unidad.restarPuntos(this.puntos));
 		this.equipo.agregar(unidad);
 	}
+	
 	public boolean esPerdedor() {
-		if(this.equipo.estaVacio()) return false;
-		if(this.equipo.hayUnidadesConVida()) return false;
+		if(this.equipo.noTieneUnidades() || this.equipo.hayUnidadesConVida()) return false;
 		return true;
 	}
 	
