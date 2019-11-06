@@ -1,5 +1,7 @@
 package tp2java_v1.tablero;
 
+
+
 public class Coordenada {
 	private int coordx;
 	private int coordy;
@@ -16,13 +18,26 @@ public class Coordenada {
 	public int getCoordy() {
 		return coordy;
 	}
+	
 	@Override
-	public boolean equals(Object obj) {
-		Coordenada coordenada = (Coordenada)obj;
-		
-		return ((this.coordx == coordenada.getCoordx()) && 
-				(this.coordy == coordenada.getCoordy()));
-		
+	public boolean equals(Object other) {
+	    if (!(other instanceof Coordenada)) {
+	        return false;
+	    }
+	    Coordenada that = (Coordenada) other;
+	    return this.coordx == that.coordx
+	        && this.coordy == that.coordy;
 	}
+	@Override
+    public int hashCode() {
+        
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + coordx;
+        result = prime * result + coordy;
+        return result;
+    }
+
+	
 
 }

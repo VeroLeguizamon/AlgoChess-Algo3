@@ -23,7 +23,7 @@ public class Celda {
 		this.sector=2;
 	}
 	public int sectorEs() {
-		return sector;
+		return this.sector;
 	}
 	public void ocupada() {
 		this.ocupada=true;
@@ -34,7 +34,7 @@ public class Celda {
 		
 	}
 	public boolean estaOcupada() {
-		return ocupada;
+		return this.ocupada;
 	}
 	
 
