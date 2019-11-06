@@ -10,7 +10,10 @@ public class Unidad {
 	// Puntos de vida de la Unidad.
 	private int penalizador; 
 	// Porcentaje de penalizacion al recibir daño.
-	private Coordenada coordenadas;
+	private int jugador;
+	// Jugador al que pertenece. 1 = Jugador1, 2 = Jugador2.
+	private Coordenada ubicacion;
+	// Ubicación en el tablero.
 	
 	public Unidad() {
 		
@@ -18,10 +21,11 @@ public class Unidad {
 		
 	}
 	
-	public Unidad(int vida, int costo) {
+	public Unidad(int vida, int costo, int jugador) {
 		
 		this.vida = vida;
 		this.costo = costo;
+		this.jugador = jugador;
 		this.penalizador = 0;
 		
 	}
@@ -36,15 +40,14 @@ public class Unidad {
 
 	}
 	
-	public Coordenada getCoordenadas() {
-		return coordenadas;
+	public void setUbicacion(Coordenada coordenadas){
+		this.ubicacion = coordenadas;
 	}
 	
-	public void setCoordenadas(Coordenada coordenadas){
-		
-		this.coordenadas = coordenadas;
-		
+	public Coordenada getUbicacion(){
+		return ubicacion;
 	}
+	
 	
 	public boolean tieneVida() {
 		return (vida > 0);
@@ -56,6 +59,10 @@ public class Unidad {
 
 	public int getCosto() {		
 		return costo;
+	}
+	
+	public int getJugador() {
+		return jugador;
 	}
 	
 	public int restarPuntos(int puntosDelJugador) {

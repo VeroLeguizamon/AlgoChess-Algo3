@@ -7,12 +7,12 @@ import org.junit.Test;
 import org.junit.Before;
 
 public class UnidadTest {
-
+	
 	private Unidad unidad;
 	
 	@Before
 	public void setUp() {
-		unidad = new Unidad(20,5);
+		unidad = new Unidad(20,5,1);
 	}
 	
 	@Test
@@ -20,6 +20,7 @@ public class UnidadTest {
 		
 		assertEquals(unidad.getVida(), 20);
 		assertEquals(unidad.getCosto(), 5);
+		assertEquals(unidad.getJugador(), 1);
 		
 	}
 	

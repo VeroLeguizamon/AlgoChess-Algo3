@@ -3,7 +3,9 @@ package tp2java_v1.tablero;
 //import java.util.ArrayList;
 import java.util.Hashtable;
 import tp2java_v1.tablero.Celda;
-import tp2java_v1.tablero.Coordenada;;
+import tp2java_v1.tablero.Coordenada;
+import fiuba.algo3.modelo.unidades.*;
+import fiuba.algo3.modelo.excepciones.*;
 
 
 public class Tablero {
@@ -25,10 +27,12 @@ public class Tablero {
 				this.celdas.put(coordenadas,celda);				
 			}			
 		}
-		
-		
+			
 	}
-
+	
+	public void moverUnidad(UnidadMovible unidadM, Coordenada coord) throws MovimientoInvalido {
+	
+	}
 	
 
 }
