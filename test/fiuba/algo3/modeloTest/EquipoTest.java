@@ -1,50 +1,57 @@
 package fiuba.algo3.modeloTest;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
-import fiuba.algo3.mock.interfaces.IUnidad;
+import fiuba.algo3.interfaces.IUnidad;
 import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.mock.MockUnidad;
 
 public class EquipoTest {
 
 	@Test
 	public void test00EquipoTieneUnidadesConVida() {
-		IUnidad unidad1 = new MockUnidad();
-		IUnidad unidad2 = new MockUnidad();
+		IUnidad mockUnidad1 = mock(IUnidad.class);
+		when(mockUnidad1.tieneVida()).thenReturn(true);
+		IUnidad mockUnidad2 = mock(IUnidad.class);
+		when(mockUnidad2.tieneVida()).thenReturn(true);
+		
 		Equipo equipo = new Equipo();
 		
-		equipo.agregar(unidad1);
-		equipo.agregar(unidad2);
+		equipo.agregar(mockUnidad1);
+		equipo.agregar(mockUnidad2);
 		
 		assertTrue(equipo.hayUnidadesConVida());
 	}
 	@Test
 	public void test01EquipoNoTieneNingunaUnidadConVida() {
-		IUnidad unidad1 = new MockUnidad();
-		IUnidad unidad2 = new MockUnidad();
+		IUnidad mockUnidad1 = mock(IUnidad.class);
+		when(mockUnidad1.tieneVida()).thenReturn(false);
+		
+		IUnidad mockUnidad2 = mock(IUnidad.class);
+		when(mockUnidad2.tieneVida()).thenReturn(false);
+		
 		Equipo equipo = new Equipo();
 		
-		unidad1.matar();
-		unidad2.matar();
-		
-		equipo.agregar(unidad1);
-		equipo.agregar(unidad2);
+		equipo.agregar(mockUnidad1);
+		equipo.agregar(mockUnidad2);
 		
 		assertFalse(equipo.hayUnidadesConVida());
 	}
 	@Test
 	public void test02EquipoTieneUnaUnidadConVidaYOtraNo() {
-		IUnidad unidad1 = new MockUnidad();
-		IUnidad unidad2 = new MockUnidad();
+		IUnidad mockUnidad1 = mock(IUnidad.class);
+		when(mockUnidad1.tieneVida()).thenReturn(false);
+		
+		IUnidad mockUnidad2 = mock(IUnidad.class);
+		when(mockUnidad2.tieneVida()).thenReturn(true);
+		
 		Equipo equipo = new Equipo();
 		
-		unidad1.matar();
-		
-		equipo.agregar(unidad1);
-		equipo.agregar(unidad2);
+		equipo.agregar(mockUnidad1);
+		equipo.agregar(mockUnidad2);
 		
 		assertTrue(equipo.hayUnidadesConVida());
 	}

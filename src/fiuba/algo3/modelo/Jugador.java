@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.mock.interfaces.IUnidad;
+import fiuba.algo3.interfaces.IUnidad;
 import fiuba.algo3.modelo.excepciones.PuntosInsuficientes;
 
 

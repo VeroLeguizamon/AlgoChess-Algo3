@@ -3,7 +3,7 @@ package fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import fiuba.algo3.mock.interfaces.IUnidad;
+import fiuba.algo3.interfaces.IUnidad;
 
 public class Equipo {
 	

@@ -1,4 +1,4 @@
-package fiuba.algo3.mock.interfaces;
+package fiuba.algo3.interfaces;
 
 public interface IUnidad {
 	
