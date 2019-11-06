@@ -1,6 +1,6 @@
 package tp2java.modelo;
 
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 import tp2java.excepciones.PuntosInsuficientes;
 
 
@@ -23,7 +23,7 @@ public class Jugador {
 		this.puntos = puntosNuevos;
 	}
 	
-	public void comprarUnidad(IEntidad unidad) {
+	public void comprarUnidad(IUnidad unidad) {
 		if(unidad.restarPuntos(this.puntos)<0) {
 			throw new PuntosInsuficientes();
 		}

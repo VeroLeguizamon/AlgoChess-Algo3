@@ -3,25 +3,25 @@ package tp2java.modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 
 public class Equipo {
 	
-	ArrayList<IEntidad> unidades; 
+	ArrayList<IUnidad> unidades; 
 	
 	public Equipo() {
-		this.unidades = new ArrayList<IEntidad>();
+		this.unidades = new ArrayList<IUnidad>();
 	}
 	
-	public void agregar(IEntidad unidad) {
+	public void agregar(IUnidad unidad) {
 		this.unidades.add(unidad);
 	}
 	
 	public boolean hayUnidadesConVida() {
-		Iterator<IEntidad> actual = unidades.iterator();
+		Iterator<IUnidad> actual = unidades.iterator();
 		
 		while(actual.hasNext()) {
-			IEntidad unidadActual = actual.next();
+			IUnidad unidadActual = actual.next();
 			if(unidadActual.tieneVida()) {
 				return true;
 			}

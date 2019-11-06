@@ -8,18 +8,18 @@ import tp2java.excepciones.CeldaEstaOcupadaExcepcion;
 import tp2java.excepciones.CeldaNoExisteExcepcion;
 import tp2java.excepciones.CeldaNoPerteneceAlSector;
 import tp2java.excepciones.EntidadNoExisteExcepcion;
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Celda;
 import tp2java.modelo.tablero.Coordenada;;
 
 
 public class Tablero{
 	private Hashtable<Coordenada, Celda> celdas;
-	private ArrayList<IEntidad> entidades;
+	private ArrayList<IUnidad> entidades;
 
 	public Tablero() {
 		this.celdas=new Hashtable<Coordenada,Celda>();
-		this.entidades=new ArrayList<IEntidad>();
+		this.entidades=new ArrayList<IUnidad>();
 		
 		//cargamos las celdas como desocupadas
 		for (int i = 0; i < 20 ; i++) {
@@ -38,17 +38,17 @@ public class Tablero{
 		
 	}
 
-	public void agregarEntidad(IEntidad entidad){
+	public void agregarEntidad(IUnidad unidad){
 		//obtengo la celda donde quiero agregar la entidad.
 		
-		Celda celda=celdas.get(entidad.getUbicacion());
+		Celda celda=celdas.get(unidad.getUbicacion());
 		//verifico si la celda existe y si esta ocupada
 		
 		if(celda!=null){
-			if(entidad.getSector()==celda.sectorEs()) {
+			if(unidad.getSector()==celda.sectorEs()) {
 				if(!celda.estaOcupada()){
 					celda.ocupada();
-					this.entidades.add(entidad);
+					this.entidades.add(unidad);
 				}else {
 					throw new CeldaEstaOcupadaExcepcion();
 				}
@@ -66,17 +66,17 @@ public class Tablero{
 	}
 	
 	
-	public void moverEntidad(IEntidad entidad, Coordenada nuevaCoordenada) {
+	public void moverEntidad(IUnidad unidad, Coordenada nuevaCoordenada) {
 		
 		//verificamos que la entidad que desean mover este en el tablero
-		if(entidades.contains(entidad)) {
+		if(entidades.contains(unidad)) {
 			//verificamos la celda donde quiere moverse
 			Celda celda=celdas.get(nuevaCoordenada);
 			if(celda!=null){
-				if(entidad.getSector()==celda.sectorEs()) {
+				if(unidad.getSector()==celda.sectorEs()) {
 					if(!celda.estaOcupada()){
 						celda.ocupada();
-						entidad.setUbicacion(nuevaCoordenada);
+						unidad.setUbicacion(nuevaCoordenada);
 					}else {
 						throw new CeldaEstaOcupadaExcepcion();
 					}

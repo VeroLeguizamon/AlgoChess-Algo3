@@ -1,9 +1,9 @@
 package tp2java.modelo.unidades;
 
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Coordenada;
 
-public class Unidad implements IEntidad{
+public class Unidad implements IUnidad{
 	
 	private int costo; 
 	// Costo al comprar la Unidad.

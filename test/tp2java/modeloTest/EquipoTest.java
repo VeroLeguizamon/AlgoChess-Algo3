@@ -7,15 +7,15 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import tp2java.modelo.Equipo;
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 
 public class EquipoTest {
 
 	@Test
 	public void test00EquipoTieneUnidadesConVida() {
-		IEntidad mockUnidad1 = mock(IEntidad.class);
+		IUnidad mockUnidad1 = mock(IUnidad.class);
 		when(mockUnidad1.tieneVida()).thenReturn(true);
-		IEntidad mockUnidad2 = mock(IEntidad.class);
+		IUnidad mockUnidad2 = mock(IUnidad.class);
 		when(mockUnidad2.tieneVida()).thenReturn(true);
 		
 		Equipo equipo = new Equipo();
@@ -27,10 +27,10 @@ public class EquipoTest {
 	}
 	@Test
 	public void test01EquipoNoTieneNingunaUnidadConVida() {
-		IEntidad mockUnidad1 = mock(IEntidad.class);
+		IUnidad mockUnidad1 = mock(IUnidad.class);
 		when(mockUnidad1.tieneVida()).thenReturn(false);
 		
-		IEntidad mockUnidad2 = mock(IEntidad.class);
+		IUnidad mockUnidad2 = mock(IUnidad.class);
 		when(mockUnidad2.tieneVida()).thenReturn(false);
 		
 		Equipo equipo = new Equipo();
@@ -42,10 +42,10 @@ public class EquipoTest {
 	}
 	@Test
 	public void test02EquipoTieneUnaUnidadConVidaYOtraNo() {
-		IEntidad mockUnidad1 = mock(IEntidad.class);
+		IUnidad mockUnidad1 = mock(IUnidad.class);
 		when(mockUnidad1.tieneVida()).thenReturn(false);
 		
-		IEntidad mockUnidad2 = mock(IEntidad.class);
+		IUnidad mockUnidad2 = mock(IUnidad.class);
 		when(mockUnidad2.tieneVida()).thenReturn(true);
 		
 		Equipo equipo = new Equipo();

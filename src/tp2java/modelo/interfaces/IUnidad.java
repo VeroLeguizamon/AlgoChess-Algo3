@@ -2,7 +2,7 @@ package tp2java.modelo.interfaces;
 
 import tp2java.modelo.tablero.Coordenada;
 
-public interface IEntidad {
+public interface IUnidad {
 	
 	public int restarPuntos(int puntos);
 	

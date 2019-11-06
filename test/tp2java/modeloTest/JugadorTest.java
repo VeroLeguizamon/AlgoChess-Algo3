@@ -2,7 +2,7 @@ package tp2java.modeloTest;
 
 import tp2java.modelo.Jugador;
 import tp2java.excepciones.PuntosInsuficientes;
-import tp2java.modelo.interfaces.IEntidad;
+import tp2java.modelo.interfaces.IUnidad;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +20,7 @@ public class JugadorTest {
 	@Test
 	public void test01JugadorCompraUnaUnidadCorrectamente() {
 		Jugador jugador = new Jugador ("Rocio");
-		IEntidad mockUnidad = mock(IEntidad.class);
+		IUnidad mockUnidad = mock(IUnidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		
 		jugador.comprarUnidad(mockUnidad);
@@ -31,7 +31,7 @@ public class JugadorTest {
 	public void test02JugadorCompraYSeQuedaEnCero() {
 		Jugador jugador = new Jugador("Agustina");
 		
-		IEntidad mockUnidad = mock(IEntidad.class);
+		IUnidad mockUnidad = mock(IUnidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 	
 		
@@ -47,7 +47,7 @@ public class JugadorTest {
 	public void test03JugadorNoPuedeComprarMasSiNoTieneSaldo() {
 		Jugador jugador = new Jugador("Pedro");
 		
-		IEntidad mockUnidad = mock(IEntidad.class);
+		IUnidad mockUnidad = mock(IUnidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		
 		boolean lanzoExcepcion = false;
@@ -77,7 +77,7 @@ public class JugadorTest {
 	public void test05JugadorConUnidadesVivasDeberiaNoSerPerdedor() {
 		Jugador jugador = new Jugador("Federico");
 
-		IEntidad mockUnidad = mock(IEntidad.class);
+		IUnidad mockUnidad = mock(IUnidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad.tieneVida()).thenReturn(true);
 		
@@ -90,7 +90,7 @@ public class JugadorTest {
 	public void test06JugadorConUnidadesMuertasEsPerdedor() {
 		Jugador jugador = new Jugador("Diego");
 		
-		IEntidad mockUnidad = mock(IEntidad.class);
+		IUnidad mockUnidad = mock(IUnidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad.tieneVida()).thenReturn(false);
 		
@@ -103,11 +103,11 @@ public class JugadorTest {
 	public void test07JugadorConUnaUnidadVivaYOtraMuertaNoEsPerdedor() {
 		Jugador jugador = new Jugador("Lucia");
 		
-		IEntidad mockUnidad1 = mock(IEntidad.class);
+		IUnidad mockUnidad1 = mock(IUnidad.class);
 		when(mockUnidad1.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad1.tieneVida()).thenReturn(false);
 		
-		IEntidad mockUnidad2 = mock(IEntidad.class);
+		IUnidad mockUnidad2 = mock(IUnidad.class);
 		when(mockUnidad2.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad2.tieneVida()).thenReturn(true);
 		
