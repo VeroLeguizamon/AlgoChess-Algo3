@@ -164,36 +164,77 @@ public class primeraEntregaTest {
 	// Pruebas Tablero
 	@Test
 	public void test13TableroColocaPiezaAliadaEnZonaAliadaVaciaExitosamente() {
+		Tablero tablero = new Tablero();
 		
-		Assert.assertEquals(true, true);
-	}
-	@Test
-	public void test14TableroNoPuedeColocarPiezaAliadaEnCasilleroAliadoExitosamente() {
+		Jinete jinete = new Jinete(1,new Coordenada(0,0),tablero);
 		
-		Assert.assertEquals(true, true);
+		tablero.agregarEntidad(jinete);
+		
+		Assert.assertEquals(tablero.cantEntidades(), 1);
+		
 	}
-	@Test
+	@Test (expected = CeldaEstaOcupadaExcepcion.class)
+	public void test14TableroNoPuedeColocarPiezaAliadaEnCasilleroAliadoOcupadoExitosamente() {
+		Tablero tablero = new Tablero();
+		
+		Jinete jinete = new Jinete(1,new Coordenada(0,0),tablero);
+		tablero.agregarEntidad(jinete);
+		
+		Catapulta catapulta = new Catapulta(1,new Coordenada(0,0));
+		tablero.agregarEntidad(catapulta);
+	}
+	
+	@Test(expected = CeldaNoPerteneceAlSector.class)
 	public void test15TableroNoPuedeColocarPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
+		Tablero tablero = new Tablero();
 		
-		Assert.assertEquals(true, true);
+		Jinete jinete = new Jinete(1,new Coordenada(0,15),tablero);
+		tablero.agregarEntidad(jinete);
 	}
+	
 	@Test
 	public void test16TableroSeCreaEIniciaCorrectamente () {
-		
-		Assert.assertEquals(true, true);
+		Tablero tablero = new Tablero();
+		Assert.assertEquals(tablero.cantEntidades(), 0);
 	}
 	
 	// Pruebas Jugador 	
-	@Test
+	@Test(expected = PuntosInsuficientes.class)
 	public void test17JugadorNoPuedeTomarMasEntidadesDeLoQuesusPuntosLePermiteExitosamente() {
 
+		Tablero tablero = new Tablero();
+		Jinete jinete = new Jinete(1,new Coordenada(0,0),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(1,new Coordenada(0,1),tablero);
+		Catapulta catapulta = new Catapulta(1,new Coordenada(0,2));
 		
-		Assert.assertEquals(true, true);
+		jugador1.comprarUnidad(jinete);//17
+		jugador1.comprarUnidad(soldado);//16
+		jugador1.comprarUnidad(soldado);//15
+		jugador1.comprarUnidad(catapulta);//10
+		jugador1.comprarUnidad(catapulta);//5
+		jugador1.comprarUnidad(catapulta);//0
+		jugador1.comprarUnidad(jinete);
 	}
 	@Test
 	public void test18JugadorSinEntidadesResultaSerPerdedor() {
 		
-		Assert.assertEquals(true, true);
+		Jinete jinete = new Jinete (1,new Coordenada(0,0),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria (2,new Coordenada(0,1), tablero);
+		
+		jugador1.comprarUnidad(jinete);
+		
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		soldado.atacar(jinete);
+		
+		Assert.assertTrue(jugador1.esPerdedor());
 	}
 
 }
