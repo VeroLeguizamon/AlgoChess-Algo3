@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 import tp2java.excepciones.CeldaEstaOcupadaExcepcion;
 import tp2java.excepciones.CeldaNoExisteExcepcion;
-import tp2java.excepciones.CeldaNoPerteneceAlSector;
+import tp2java.excepciones.UnidadNoPerteneceAlSector;
 import tp2java.excepciones.EntidadNoExisteExcepcion;
 import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Celda;
@@ -54,7 +54,7 @@ public class Tablero{
 				}
 				
 			}else {
-				throw new CeldaNoPerteneceAlSector();
+				throw new UnidadNoPerteneceAlSector();
 			}
 			
 			

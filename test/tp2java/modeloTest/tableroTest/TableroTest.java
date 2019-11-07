@@ -3,7 +3,7 @@ package tp2java.modeloTest.tableroTest;
 import org.junit.Test;
 
 import tp2java.excepciones.CeldaEstaOcupadaExcepcion;
-import tp2java.excepciones.CeldaNoPerteneceAlSector;
+import tp2java.excepciones.UnidadNoPerteneceAlSector;
 import tp2java.modelo.tablero.Celda;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
@@ -42,7 +42,7 @@ public class TableroTest {
 		tablero.agregarEntidad(jinete);
 		
 	}
-	@Test (expected = CeldaNoPerteneceAlSector.class)
+	@Test (expected = UnidadNoPerteneceAlSector.class)
 	public void test03SeVerificaQueNoSePuedeColocarUnaPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
 		Tablero tablero=new Tablero();
 		//soldado pertenece a sector 1 y lo queremos colocar en la coordenada (3,11) que es sector 

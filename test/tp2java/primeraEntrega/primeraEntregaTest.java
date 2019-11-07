@@ -14,14 +14,12 @@ public class primeraEntregaTest {
 	
 	private Tablero tablero;
 	private Jugador jugador1;
-	private Jugador jugador2;
 	
 	@Before
 	public void setUp() {
 		
 		tablero = new Tablero();
 		jugador1 = new Jugador("player1");
-		jugador2 = new Jugador("player2");
 		
 	}
 	
@@ -184,7 +182,7 @@ public class primeraEntregaTest {
 		tablero.agregarEntidad(catapulta);
 	}
 	
-	@Test(expected = CeldaNoPerteneceAlSector.class)
+	@Test(expected = UnidadNoPerteneceAlSector.class)
 	public void test15TableroNoPuedeColocarPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
 		Tablero tablero = new Tablero();
 		

@@ -1,6 +1,6 @@
 package tp2java.excepciones;
 
-public class CeldaNoPerteneceAlSector extends MovimientoInvalido {
+public class UnidadNoPerteneceAlSector extends RuntimeException{
 
 	@Override
 	public String getMessage() {
