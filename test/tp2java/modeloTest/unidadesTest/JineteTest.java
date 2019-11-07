@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import tp2java.excepciones.ObjetivoAliado;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Jinete;
@@ -13,6 +14,7 @@ public class JineteTest {
 	
 	private Jinete jinete1;
 	private Jinete jinete2;
+	private Jinete jinete3;
 	private Tablero mockTablero;
 	
 	@Before
@@ -21,6 +23,7 @@ public class JineteTest {
 		mockTablero = mock(Tablero.class);
 		jinete1 = new Jinete(1,new Coordenada(2,2),mockTablero);
 		jinete2 = new Jinete(2,new Coordenada(4,2),mockTablero);
+		jinete3 = new Jinete(1,new Coordenada(3,2),mockTablero);
 		
 	}
 	
@@ -29,6 +32,13 @@ public class JineteTest {
 		
 		jinete1.ataqueCuerpoACuerpo(jinete2);
 		assertEquals(jinete2.getVida(),95);
+		
+	}
+	
+	@Test(expected = ObjetivoAliado.class)
+	public void testJinete1IntentaAtacarAJinete3CuerpoACuerpoPeroEsAliado() {
+		
+		jinete1.ataqueCuerpoACuerpo(jinete3);
 		
 	}
 	
@@ -46,6 +56,13 @@ public class JineteTest {
 		
 		jinete1.ataqueADistancia(jinete2);
 		assertEquals(jinete2.getVida(),85);
+		
+	}
+	
+	@Test(expected = ObjetivoAliado.class)
+	public void testJinete1IntentaAtacarAJinete3ADistanciaPeroEsAliado() {
+		
+		jinete1.ataqueADistancia(jinete3);
 		
 	}
 	

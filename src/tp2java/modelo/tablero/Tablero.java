@@ -73,23 +73,15 @@ public class Tablero{
 			//verificamos la celda donde quiere moverse
 			Celda celda=celdas.get(nuevaCoordenada);
 			if(celda!=null){
-				if(unidad.getSector()==celda.sectorEs()) {
-					if(!celda.estaOcupada()){
-						celda.ocupada();
-						unidad.setUbicacion(nuevaCoordenada);
-					}else {
-						throw new CeldaEstaOcupadaExcepcion();
-					}
-					
+				if(!celda.estaOcupada()){
+					celda.ocupada();
+					unidad.setUbicacion(nuevaCoordenada);
 				}else {
-					throw new CeldaNoPerteneceAlSector();
+					throw new CeldaEstaOcupadaExcepcion();
 				}
-				
-				
 			}else {
 				throw new CeldaNoExisteExcepcion();
-			}
-			
+			}	
 		}else {
 			throw new EntidadNoExisteExcepcion();
 		}

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import tp2java.excepciones.ObjetivoAliado;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.unidades.Catapulta;
 
@@ -17,7 +18,7 @@ public class CatapultaTest {
 	public void setUp() {
 		
 		catapulta1 = new Catapulta(1,new Coordenada(2,2));
-		catapulta2 = new Catapulta(2,new Coordenada(3,2));
+		catapulta2 = new Catapulta(2,new Coordenada(12,5));
 		
 	}
 	
@@ -26,6 +27,14 @@ public class CatapultaTest {
 		
 		catapulta1.atacar(catapulta2);
 		assertEquals(catapulta2.getVida(),30);
+		
+	}
+	
+	@Test(expected = ObjetivoAliado.class)
+	public void testCatapulta1IntentaAtacarACatapulta2PeroEsAliada() {
+		
+		Catapulta catapulta3 = new Catapulta(1,new Coordenada(10,14));
+		catapulta1.atacar(catapulta3);
 		
 	}
 	

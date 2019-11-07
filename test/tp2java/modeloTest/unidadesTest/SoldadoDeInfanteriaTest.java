@@ -8,6 +8,7 @@ import org.junit.Before;
 import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
+import tp2java.excepciones.*;
 
 
 public class SoldadoDeInfanteriaTest {
@@ -39,6 +40,14 @@ public class SoldadoDeInfanteriaTest {
 		for(int i = 0; i < 10; i++)
 			soldado1.atacar(soldado2);
 		assertFalse(soldado2.tieneVida());
+		
+	}
+	
+	@Test(expected = ObjetivoAliado.class)
+	public void testSoldado1IntentaAtacarASoldado3PeroEsAliado() {
+		
+		SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria(1,new Coordenada(1,2),mockTablero);
+		soldado1.atacar(soldado3);
 		
 	}
 	
