@@ -1,11 +1,9 @@
 package tp2java.modelo;
 
 import tp2java.modelo.interfaces.IUnidad;
-import tp2java.excepciones.PuntosInsuficientes;
 
 
 public class Jugador {
-	@SuppressWarnings("unused")
 	private String nombre = "";
 	private int puntos = 20;
 	private Equipo equipo;
@@ -18,13 +16,15 @@ public class Jugador {
 	public int getPuntos() {
 		return this.puntos;
 	}
-	
+	public String getNombre() {
+		return this.nombre;
+	}
 	private void setPuntos(int puntosNuevos) {
 		this.puntos = puntosNuevos;
 	}
 	
 	public void comprarUnidad(IUnidad unidad) {
-		if(unidad.restarPuntos(this.puntos)<0) { return ;} // Como debe tratarse puntos insuficientes?
+		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
 		this.setPuntos(unidad.restarPuntos(this.puntos));
 		// unidad.setJugador(this); // Para que recién cuando se lo compre se lo agregue. 
 		this.equipo.agregar(unidad);
@@ -35,5 +35,7 @@ public class Jugador {
 		return true;
 	}
 	
-
+	public boolean noTienePuntosSuficientesParaComprar(IUnidad unidad) {
+		return (unidad.restarPuntos(this.puntos)<0);
+	}
 }

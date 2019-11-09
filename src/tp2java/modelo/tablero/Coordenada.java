@@ -1,7 +1,5 @@
 package tp2java.modelo.tablero;
 
-
-
 public class Coordenada {
 	private int coordx;
 	private int coordy;
@@ -10,7 +8,7 @@ public class Coordenada {
 		this.coordx=coordx;
 		this.coordy=coordy;			
 	}
-
+	
 	public int getCoordx() {
 		return coordx;
 	}
@@ -37,7 +35,31 @@ public class Coordenada {
         result = prime * result + coordy;
         return result;
     }
-
-	
-
+	private Coordenada calcularCoordenada (int i, int j) {
+		return new Coordenada(this.coordx + i, this.coordy + j);
+	}
+	public Coordenada getCoordenadaArriba() {
+		return this.calcularCoordenada(0, 1);
+	}
+	public Coordenada getCoordenadaAbajo() {
+		return this.calcularCoordenada(0, -1);
+	}
+	public Coordenada getCoordenadaDerecha() {
+		return this.calcularCoordenada(1, 0);
+	}
+	public Coordenada getCoordenadaIzquierda() {
+		return this.calcularCoordenada(-1, 0);
+	}
+	public Coordenada getCoordenadaDiagonalArribaDerecha() {
+		return this.calcularCoordenada(1,1);
+	}
+	public Coordenada getCoordenadaDiagonalArribaIzquierda() {
+		return this.calcularCoordenada(-1, 1);
+	}
+	public Coordenada getCoordenadaDiagonalAbajoDerecha() {
+		return this.calcularCoordenada(1, -1);
+	}
+	public Coordenada getCoordenadaDiagonalAbajoIzquierda() {
+		return this.calcularCoordenada(-1, -1);
+	}
 }
