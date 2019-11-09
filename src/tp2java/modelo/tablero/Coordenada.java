@@ -8,15 +8,12 @@ public class Coordenada {
 		this.coordx=coordx;
 		this.coordy=coordy;			
 	}
-	
 	public int getCoordx() {
 		return coordx;
 	}
-
 	public int getCoordy() {
 		return coordy;
 	}
-	
 	@Override
 	public boolean equals(Object other) {
 	    if (!(other instanceof Coordenada)) {
@@ -35,9 +32,12 @@ public class Coordenada {
         result = prime * result + coordy;
         return result;
     }
+	
 	private Coordenada calcularCoordenada (int i, int j) {
 		return new Coordenada(this.coordx + i, this.coordy + j);
 	}
+	
+	//Coordenadas Adyacentes
 	public Coordenada getCoordenadaArriba() {
 		return this.calcularCoordenada(0, 1);
 	}
@@ -61,5 +61,14 @@ public class Coordenada {
 	}
 	public Coordenada getCoordenadaDiagonalAbajoIzquierda() {
 		return this.calcularCoordenada(-1, -1);
+	}
+	
+	public int calcularDistancia(Coordenada coordenada) {
+		int distanciaX = Math.abs(coordenada.getCoordx() - this.coordx);
+		int distanciaY = Math.abs(coordenada.getCoordy() - this.coordy);
+		
+		int distanciaMaxima = Math.max(distanciaX, distanciaY);
+		
+		return distanciaMaxima;
 	}
 }
