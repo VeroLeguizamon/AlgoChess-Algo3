@@ -45,7 +45,7 @@ public class JugadorTest {
 	}
 	@Test
 	public void test03JugadorNoPuedeComprarMasSiNoTieneSaldo() {
-		//DETERMINAR como tratar puntos insuficientes sin lanzar excepción
+		//DETERMINAR como tratar puntos insuficientes sin lanzar excepcion
 		
 		Jugador jugador = new Jugador("Pedro");
 		
