@@ -26,7 +26,7 @@ public class Jugador {
 	public void comprarUnidad(IUnidad unidad) {
 		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
 		this.setPuntos(unidad.restarPuntos(this.puntos));
-		// unidad.setJugador(this); // Para que recién cuando se lo compre se lo agregue. 
+		// unidad.setJugador(this); // Para que recien cuando se lo compre se lo agregue. 
 		this.equipo.agregar(unidad);
 	}
 	
