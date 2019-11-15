@@ -1,18 +1,27 @@
 package tp2java.modelo;
 
-import tp2java.modelo.interfaces.IUnidad;
+import tp2java.modelo.tablero.Coordenada;
+import tp2java.modelo.tablero.Sector;
+import tp2java.modelo.unidades.Unidad;
 
 
 public class Jugador {
 	private String nombre = "";
 	private int puntos = 20;
 	private Equipo equipo;
+	private Sector sector;
 	
 	public Jugador(String nombreNuevo) {
 		this.equipo = new Equipo();
 		this.nombre = nombreNuevo;
 	}
 	
+	public Jugador(String nombreNuevo, int columnaLimiteInferior, int columnaLimiteSuperior) {
+		this.equipo = new Equipo();
+		this.nombre = nombreNuevo;
+		// Sector cuadrado.
+		this.sector = new Sector(new Coordenada(columnaLimiteInferior, columnaLimiteInferior), new Coordenada(columnaLimiteSuperior,columnaLimiteSuperior));
+	}
 	public int getPuntos() {
 		return this.puntos;
 	}
@@ -23,7 +32,7 @@ public class Jugador {
 		this.puntos = puntosNuevos;
 	}
 	
-	public void comprarUnidad(IUnidad unidad) {
+	public void comprarUnidad(Unidad unidad) {
 		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
 		this.setPuntos(unidad.restarPuntos(this.puntos));
 		// unidad.setJugador(this); // Para que recien cuando se lo compre se lo agregue. 
@@ -35,7 +44,10 @@ public class Jugador {
 		return true;
 	}
 	
-	public boolean noTienePuntosSuficientesParaComprar(IUnidad unidad) {
+	public boolean noTienePuntosSuficientesParaComprar(Unidad unidad) {
 		return (unidad.restarPuntos(this.puntos)<0);
+	}
+	public boolean perteneceAlSector(Unidad unidad) {
+		return (this.sector.perteneceAlSector(unidad.getUbicacion()));
 	}
 }

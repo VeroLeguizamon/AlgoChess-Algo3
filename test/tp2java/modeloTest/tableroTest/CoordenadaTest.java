@@ -16,7 +16,7 @@ public class CoordenadaTest {
 		assertEquals (distancia,6);
 	}
 	@Test
-	public void test00CalculaBienLaDistanciaEntreDosCoordeandasMismaYDistintaX() {
+	public void test01CalculaBienLaDistanciaEntreDosCoordeandasMismaYDistintaX() {
 		Coordenada c1 = new Coordenada(7,1);
 		Coordenada c2 = new Coordenada(1,1);
 		
@@ -26,12 +26,32 @@ public class CoordenadaTest {
 	}
 
 	@Test
-	public void test00CalculaBienLaDistanciaEntreDosCoordeandasDiagonal() {
+	public void test02CalculaBienLaDistanciaEntreDosCoordeandasDiagonal() {
 		Coordenada c1 = new Coordenada(7,7);
 		Coordenada c2 = new Coordenada(1,1);
 		
 		int distancia = c1.calcularDistancia(c2);
 		
 		assertEquals (distancia,6);
+	}
+	@Test 
+	public void test03DeberiaDevolverTrueCuandoLosCoeficientesSonMenores() {
+		Coordenada c1 = new Coordenada(7,7);
+		Coordenada c2 = new Coordenada(1,1);
+		
+		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(c1));
+	}
+	@Test
+	public void test04DeberiaDevolverTrueCuandoTieneCoeficientesIguales() {
+		Coordenada c1 = new Coordenada(7,7);
+		Coordenada c2 = new Coordenada(7,7);
+		
+		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(c1));
+	}
+	@Test
+	public void test05DeberiaDevolverTrueCuandoTieneCoeficientesMayores() {
+		Coordenada c1 = new Coordenada(7,7);
+		Coordenada c2 = new Coordenada(1,1);
+		assertTrue(c1.tieneCoeficientesMayoresOIgualesQue(c2));
 	}
 }

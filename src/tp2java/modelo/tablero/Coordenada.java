@@ -71,4 +71,11 @@ public class Coordenada {
 		
 		return distanciaMaxima;
 	}
+	public boolean tieneCoeficientesMenoresOIgualesQue(Coordenada coordenada) {
+		return ((this.coordx <= coordenada.getCoordx()) && this.coordy <= coordenada.getCoordy());
+	}
+
+	public boolean tieneCoeficientesMayoresOIgualesQue(Coordenada coordenada) {
+		return ((this.coordx >= coordenada.getCoordx()) && this.coordy >= coordenada.getCoordy()); 
+	}
 }

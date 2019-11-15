@@ -1,8 +1,8 @@
 package tp2java.modeloTest;
 
 import tp2java.modelo.Jugador;
-import tp2java.excepciones.PuntosInsuficientes;
-import tp2java.modelo.interfaces.IUnidad;
+import tp2java.modelo.tablero.Coordenada;
+import tp2java.modelo.unidades.Unidad;
 
 import static org.junit.Assert.*;
 
@@ -13,14 +13,14 @@ public class JugadorTest {
 	
 	@Test
 	public void test00JugadorSeCreaCon20Puntos() {
-		Jugador jugador = new Jugador("Martina");
+		Jugador jugador = new Jugador("Martina",0,9);
 		assertEquals(jugador.getPuntos(), 20);
 	}
 	
 	@Test
 	public void test01JugadorCompraUnaUnidadCorrectamente() {
-		Jugador jugador = new Jugador ("Rocio");
-		IUnidad mockUnidad = mock(IUnidad.class);
+		Jugador jugador = new Jugador ("Rocio",0,9);
+		Unidad mockUnidad = mock(Unidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		
 		jugador.comprarUnidad(mockUnidad);
@@ -29,9 +29,9 @@ public class JugadorTest {
 	}
 	@Test
 	public void test02JugadorCompraYSeQuedaEnCero() {
-		Jugador jugador = new Jugador("Agustina");
+		Jugador jugador = new Jugador("Agustina",0,9);
 		
-		IUnidad mockUnidad = mock(IUnidad.class);
+		Unidad mockUnidad = mock(Unidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 	
 		
@@ -47,9 +47,9 @@ public class JugadorTest {
 	public void test03JugadorNoPuedeComprarMasSiNoTieneSaldo() {
 		//DETERMINAR como tratar puntos insuficientes sin lanzar excepcion
 		
-		Jugador jugador = new Jugador("Pedro");
+		Jugador jugador = new Jugador("Pedro",0,9);
 		
-		IUnidad mockUnidad = mock(IUnidad.class);
+		Unidad mockUnidad = mock(Unidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		
 		//boolean lanzoExcepcion = false;
@@ -71,16 +71,16 @@ public class JugadorTest {
 	}
 	@Test
 	public void test04JugadorRecienCreadoNoDeberiaSerPerdedor() {
-		Jugador jugador = new Jugador("Miguel");
+		Jugador jugador = new Jugador("Miguel",0,9);
 		
 		assertFalse (jugador.esPerdedor());
 	}
 	
 	@Test
 	public void test05JugadorConUnidadesVivasDeberiaNoSerPerdedor() {
-		Jugador jugador = new Jugador("Federico");
+		Jugador jugador = new Jugador("Federico",0,9);
 
-		IUnidad mockUnidad = mock(IUnidad.class);
+		Unidad mockUnidad = mock(Unidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad.tieneVida()).thenReturn(true);
 		
@@ -91,9 +91,9 @@ public class JugadorTest {
 	
 	@Test 
 	public void test06JugadorConUnidadesMuertasEsPerdedor() {
-		Jugador jugador = new Jugador("Diego");
+		Jugador jugador = new Jugador("Diego",0,9);
 		
-		IUnidad mockUnidad = mock(IUnidad.class);
+		Unidad mockUnidad = mock(Unidad.class);
 		when(mockUnidad.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad.tieneVida()).thenReturn(false);
 		
@@ -104,13 +104,13 @@ public class JugadorTest {
 	
 	@Test
 	public void test07JugadorConUnaUnidadVivaYOtraMuertaNoEsPerdedor() {
-		Jugador jugador = new Jugador("Lucia");
+		Jugador jugador = new Jugador("Lucia",0,9);
 		
-		IUnidad mockUnidad1 = mock(IUnidad.class);
+		Unidad mockUnidad1 = mock(Unidad.class);
 		when(mockUnidad1.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad1.tieneVida()).thenReturn(false);
 		
-		IUnidad mockUnidad2 = mock(IUnidad.class);
+		Unidad mockUnidad2 = mock(Unidad.class);
 		when(mockUnidad2.restarPuntos(jugador.getPuntos())).thenReturn(jugador.getPuntos()-4);
 		when(mockUnidad2.tieneVida()).thenReturn(true);
 		
@@ -120,7 +120,23 @@ public class JugadorTest {
 		assertFalse(jugador.esPerdedor());
 		
 	}
-	
-	
+	@Test
+	public void test08DeberiaDarFalseAlTenerUnaUnidadQueNoPerteneceASuSector() {
+		Jugador jugador = new Jugador("Lucia",0,9);
+		
+		Unidad mockUnidad1 = mock(Unidad.class);
+		when(mockUnidad1.getUbicacion()).thenReturn(new Coordenada(10,10));
+		
+		assertFalse(jugador.perteneceAlSector(mockUnidad1));
+	}
+	@Test
+	public void test09DeberiaDarTrueAlTenerUnaUnidadQuePerteneceASuSector() {
+		Jugador jugador = new Jugador("Lucia",0,9);
+		
+		Unidad mockUnidad1 = mock(Unidad.class);
+		when(mockUnidad1.getUbicacion()).thenReturn(new Coordenada(0,5));
+		
+		assertTrue(jugador.perteneceAlSector(mockUnidad1));
+	}
 	
 }
