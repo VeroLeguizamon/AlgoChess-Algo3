@@ -5,21 +5,28 @@ import org.junit.Test;
 import org.junit.Before;
 
 import tp2java.excepciones.ObjetivoAliado;
+import tp2java.modelo.Jugador;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.unidades.Catapulta;
 
+import static org.mockito.Mockito.*;
 
 public class CatapultaTest {
 	
 	private Catapulta catapulta1;
 	private Catapulta catapulta2;
-	
+	private Jugador mockJugador1;
+	private Jugador mockJugador2;
 	@Before
 	public void setUp() {
 		
-		catapulta1 = new Catapulta(1,new Coordenada(2,2));
-		catapulta2 = new Catapulta(2,new Coordenada(12,5));
+		catapulta1 = new Catapulta(new Coordenada(2,2));
+		catapulta2 = new Catapulta(new Coordenada(12,5));
+		mockJugador1 = mock(Jugador.class);
+		mockJugador2 = mock(Jugador.class);
 		
+		catapulta1.setJugador(mockJugador1);
+		catapulta2.setJugador(mockJugador2);
 	}
 	
 	@Test
@@ -31,9 +38,10 @@ public class CatapultaTest {
 	}
 	
 	@Test(expected = ObjetivoAliado.class)
-	public void testCatapulta1IntentaAtacarACatapulta2PeroEsAliada() {
+	public void testCatapulta1IntentaAtacarACatapulta3PeroEsAliada() {
 		
-		Catapulta catapulta3 = new Catapulta(1,new Coordenada(10,14));
+		Catapulta catapulta3 = new Catapulta(new Coordenada(10,14));
+		catapulta3.setJugador(mockJugador1);
 		catapulta1.atacar(catapulta3);
 		
 	}

@@ -1,54 +1,65 @@
 package tp2java.modeloTest.tableroTest;
 
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-import tp2java.excepciones.CeldaEstaOcupadaExcepcion;
-import tp2java.excepciones.UnidadNoPerteneceAlSector;
-import tp2java.modelo.tablero.Celda;
+import tp2java.modelo.Jugador;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
-import tp2java.modelo.unidades.Jinete;
-import tp2java.modelo.unidades.SoldadoDeInfanteria;
+import tp2java.modelo.unidades.Catapulta;
+import tp2java.modelo.unidades.Unidad;
+
 
 public class TableroTest {
 	@Test
-	public void ocuparUnaCeldayVerificoQueEstaOcupada(){
-		Coordenada coordenada=new Coordenada(0,3);
-		Celda celda=new Celda(coordenada);
-		celda.ocupada();
-		org.junit.Assert.assertTrue(celda.estaOcupada());
-		org.junit.Assert.assertTrue(celda.sectorEs()==0);
-		
+	public void test00TableroSeCreaSinUnidades(){
+		Tablero tablero = new Tablero();
+		assertEquals(tablero.cantUnidades(),0);
 	}
 	@Test
-	public void test01SeColocaUnaEntidadAliadaEnUnSectorAliadoConExito(){
-		Tablero tablero=new Tablero();
-		//la entidad pertenece a un sector que en este caso lo pasamos por parametro y lo que hacemos es
-		//colocarlo en el primer parametro que son las coordenadas.
+	public void test01TableroDevuelveFalseConCoordenadaFueraDeSuLimite() {
+		Coordenada coordenada = new Coordenada(2,20);
+		Tablero tablero = new Tablero();
 		
-		SoldadoDeInfanteria soldado=new SoldadoDeInfanteria(1,new Coordenada(3, 3),tablero);
-		tablero.agregarEntidad(soldado);
-		org.junit.Assert.assertTrue(tablero.cantEntidades()==1);
+		assertFalse(tablero.existeLaCelda(coordenada));	
+	}
+	@Test
+	public void test02TableroDevuelveTrueConCoordenadaDentroDeSusLimites() {
+		Coordenada coordenada = new Coordenada(2,2);
+		Tablero tablero = new Tablero();
 		
+		assertTrue(tablero.existeLaCelda(coordenada));
 	}
-	@Test (expected=CeldaEstaOcupadaExcepcion.class)
-	public void test02SeVerificaQueNoSeColocaUnaPiezaAliadaEnUnCasilleroDelSectorAliadoOcupado() {
-		Tablero tablero=new Tablero();
-		//ocupamos un celda
-		SoldadoDeInfanteria soldado=new SoldadoDeInfanteria(2,new Coordenada(3,11),tablero);
-		tablero.agregarEntidad(soldado);
-		//ocupemos a jinete en la misma celda y nos mostrara la excepcion de celda ocupada
-		Jinete jinete=new Jinete(2, new Coordenada(3,11),tablero);
-		tablero.agregarEntidad(jinete);
+	//Test celda ocupada
+	@Test 
+	public void test03TableroDevuelveTrueSiLaCeldaEstaLibre() {
+		Coordenada coordenada = new Coordenada(2,20);
+		Tablero tablero = new Tablero();
+		assertTrue(tablero.laCeldaEstaLibre(coordenada));
+	}
+	@Test
+	public void test04TableroDevuelveFalseSiLaCeldaNoEstaLibre() {
+		Coordenada coordenada = new Coordenada(2,0);
+		Tablero tablero = new Tablero();
 		
+		Catapulta catapulta = new Catapulta(new Coordenada(2,0));
+		catapulta.setJugador(new Jugador("player",0,9));
+		tablero.colocarUnidad(catapulta);
+		
+		assertFalse(tablero.laCeldaEstaLibre(coordenada));
 	}
-	@Test (expected = UnidadNoPerteneceAlSector.class)
-	public void test03SeVerificaQueNoSePuedeColocarUnaPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
-		Tablero tablero=new Tablero();
-		//soldado pertenece a sector 1 y lo queremos colocar en la coordenada (3,11) que es sector 
-		//lanza la excepcion.
-		SoldadoDeInfanteria soldado=new SoldadoDeInfanteria(1,new Coordenada(3,11),tablero);
-		tablero.agregarEntidad(soldado);
+	//Test puede moverse
+	@Test
+	public void test05DevuelveTrueSiLaUnidadSePuedeMover() {
+		Tablero tablero = new Tablero();
+		
+		Catapulta catapulta = new Catapulta(new Coordenada(2,2));
+		catapulta.setJugador(new Jugador("player",0,9));
+		tablero.colocarUnidad(catapulta);
+		
+		assertTrue(tablero.sePuedeMoverUnidad(new Coordenada(2,1)));
 	}
-
 }

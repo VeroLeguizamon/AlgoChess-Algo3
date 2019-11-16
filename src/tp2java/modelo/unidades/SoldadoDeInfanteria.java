@@ -8,9 +8,9 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	
 	private int poderDeAtaque;
 	
-	public SoldadoDeInfanteria(int jugador, Coordenada ubicacion, Tablero tablero) {
+	public SoldadoDeInfanteria(Coordenada ubicacion, Tablero tablero) {
 		
-		super(100,1,jugador,ubicacion,tablero);
+		super(100,1,ubicacion,tablero);
 		this.poderDeAtaque = 10;
 		
 	}
@@ -18,7 +18,7 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
 		
-		if(this.getSector() != unidad.getSector())
+		if(!this.mismoEquipo(unidad))
 			unidad.perderVida(poderDeAtaque);
 		else 
 			throw (new ObjetivoAliado());

@@ -19,8 +19,8 @@ public class CuranderoTest {
 	public void setUp() {
 		
 		mockTablero = mock(Tablero.class);
-		curandero1 = new Curandero(1,new Coordenada(2,2),mockTablero);
-		curandero2 = new Curandero(1,new Coordenada(3,2),mockTablero);
+		curandero1 = new Curandero(new Coordenada(2,2),mockTablero);
+		curandero2 = new Curandero(new Coordenada(3,2),mockTablero);
 		
 	}
 	

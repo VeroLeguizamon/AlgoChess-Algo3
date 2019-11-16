@@ -7,9 +7,9 @@ public class Curandero extends UnidadMovible implements Curable {
 	
 	private int poderDeCuracion;
 	
-	public Curandero(int jugador, Coordenada ubicacion, Tablero tablero) {
+	public Curandero(Coordenada ubicacion, Tablero tablero) {
 		
-		super(75,2,jugador,ubicacion,tablero);
+		super(75,2,ubicacion,tablero);
 		this.poderDeCuracion = 15;
 		
 	}

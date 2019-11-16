@@ -4,8 +4,6 @@ import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.UnidadMovible;
 
-import tp2java.excepciones.*;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.junit.Test;
@@ -18,24 +16,24 @@ public class UnidadMovibleTest {
 	
 	@Before
 	public void setUp() {
-		
 		mockTablero = mock(Tablero.class);
 		unidadM = new UnidadMovible();
-		doNothing().when(mockTablero).moverEntidad(anyObject(), anyObject());
 		unidadM.setTablero(mockTablero);
-		
 	}
 	
 	@Test
 	public void testUnidadMovibleSeMueveHaciaCoordenadaIndicadaEnCeldaLibre(){
 	
 		unidadM.setUbicacion(new Coordenada(5,5));
+
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverA(new Coordenada(5,6));
+		
 		assertEquals(new Coordenada(5,6), unidadM.getUbicacion());
 		
 	}
 	
-	@Test(expected = CeldaNoAdyacenteExcepcion.class)
+/*	@Test(expected = CeldaNoAdyacenteExcepcion.class)
 	public void testUnidadMovibleTiraErrorAlMoverseACeldaNoAdyacente(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
@@ -43,29 +41,37 @@ public class UnidadMovibleTest {
 		unidadM.moverA(new Coordenada(8,8));
 		
 	}
+	*/
 	
-	@Test(expected = CeldaEstaOcupadaExcepcion.class)
-	public void testUnidadMovibleTiraErrorAlMoverseACeldaOcupada(){
+	@Test
+	public void testUnidadMovibleSeQuedaEnElMismoLugarSiEstaOcupadaLaCelda(){
 		
-		unidadM.setUbicacion(new Coordenada(5,5));
-		doThrow(new CeldaEstaOcupadaExcepcion()).when(mockTablero).moverEntidad(anyObject(), anyObject());
-		unidadM.moverA(new Coordenada(6,5));
+		unidadM.setUbicacion(new Coordenada(6,5));
+
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(false);
 		
+		unidadM.moverA(new Coordenada(6,4));
+		
+		assertEquals(new Coordenada(6,5), unidadM.getUbicacion());
 	}
 	
-	@Test(expected = CeldaNoExisteExcepcion.class)
-	public void testUnidadMovibleTiraErrorAlMoverseACeldaInvalida(){
+	@Test
+	public void testUnidadMovibleSeQuedaEnElMismoLugarSiLaCeldaNoExiste(){
 		
-		unidadM.setUbicacion(new Coordenada(5,5));
-		doThrow(new CeldaNoExisteExcepcion()).when(mockTablero).moverEntidad(anyObject(), anyObject());
-		unidadM.moverA(new Coordenada(8,8));
+		unidadM.setUbicacion(new Coordenada(4,2));
+
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(false);
 		
+		unidadM.moverA(new Coordenada(20,2));
+		
+		assertEquals(new Coordenada(4,2), unidadM.getUbicacion());
 	}
 	
 	@Test
 	public void testUnidadMovibleSeMueveHaciaArriba(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverHaciaArriba();
 		assertEquals(new Coordenada(5,6), unidadM.getUbicacion());
 		
@@ -75,6 +81,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveEnDiagonalArribaDerecha(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverEnDiagonalArribaDerecha();
 		assertEquals(new Coordenada(6,6), unidadM.getUbicacion());
 		
@@ -84,6 +91,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveHaciaLaDerecha(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverHaciaLaDerecha();
 		assertEquals(new Coordenada(6,5), unidadM.getUbicacion());
 		
@@ -93,6 +101,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveEnDiagonalAbajoDerecha(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverEnDiagonalAbajoDerecha();
 		assertEquals(new Coordenada(6,4), unidadM.getUbicacion());
 		
@@ -102,6 +111,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveHaciaAbajo(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverHaciaAbajo();
 		assertEquals(new Coordenada(5,4), unidadM.getUbicacion());
 		
@@ -111,6 +121,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveEnDiagonalAbajoIzquierda(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverEnDiagonalAbajoIzquierda();
 		assertEquals(new Coordenada(4,4), unidadM.getUbicacion());
 		
@@ -120,6 +131,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveHaciaLaIzquierda(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverHaciaLaIzquierda();
 		assertEquals(new Coordenada(4,5), unidadM.getUbicacion());
 		
@@ -129,6 +141,7 @@ public class UnidadMovibleTest {
 	public void testUnidadMovibleSeMueveEnDiagonalArribaIzquierda(){
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
+		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
 		unidadM.moverEnDiagonalArribaIzquierda();
 		assertEquals(new Coordenada(4,6), unidadM.getUbicacion());
 		

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import tp2java.modelo.unidades.Unidad;
+import tp2java.modelo.Jugador;
 import tp2java.modelo.tablero.Coordenada;
 
 import org.junit.Before;
@@ -14,7 +15,7 @@ public class UnidadTest {
 	
 	@Before
 	public void setUp() {
-		unidad = new Unidad(20,5,1, new Coordenada(5,5));
+		unidad = new Unidad(20,5,new Coordenada(5,5));
 	}
 	
 	@Test
@@ -22,7 +23,6 @@ public class UnidadTest {
 		
 		assertEquals(unidad.getVida(), 20);
 		assertEquals(unidad.getCosto(), 5);
-		assertEquals(unidad.getSector(), 1);
 		assertEquals(unidad.getUbicacion(), new Coordenada(5,5));
 		
 	}
@@ -81,11 +81,25 @@ public class UnidadTest {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void testUnidadDeberiaDevolverTrueSiPerteneceAlMismoEquipo() {
+		Unidad unidad2 = new Unidad(20,2,new Coordenada(5,4));
+		Jugador jugador1 = new Jugador("player",0,9);
+		
+		unidad.setJugador(jugador1);
+		unidad2.setJugador(jugador1);
+		
+		assertTrue(unidad.mismoEquipo(unidad2));
+	}
+	@Test
+	public void testUnidadDeberiaDevolverFalseSiNoPerteneceAlMismoEquipo() {
+		Unidad unidad2 = new Unidad(20,2,new Coordenada(5,4));
+		Jugador jugador1 = new Jugador("player",0,9);
+		Jugador jugador2 = new Jugador("play",10,19);
+		unidad.setJugador(jugador1);
+		unidad2.setJugador(jugador2);
+		
+		assertFalse(unidad.mismoEquipo(unidad2));
+	}
 	
 }

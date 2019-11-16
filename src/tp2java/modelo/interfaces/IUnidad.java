@@ -12,7 +12,7 @@ public interface IUnidad {
 	
 	public void setUbicacion(Coordenada ubicacion);
 	
-	public int getSector();
+	//public int getSector();
 	
 	public boolean tieneVida();
 	

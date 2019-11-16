@@ -8,9 +8,9 @@ public class Catapulta extends Unidad implements Atacante {
 	
 	private int poderDeAtaque;
 	
-	public Catapulta(int jugador, Coordenada ubicacion) {
+	public Catapulta(Coordenada ubicacion) {
 		
-		super(50,5,jugador,ubicacion);
+		super(50,5,ubicacion);
 		this.poderDeAtaque = 20;
 		
 	}
@@ -18,7 +18,7 @@ public class Catapulta extends Unidad implements Atacante {
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
 		
-		if(this.getSector() != unidad.getSector())
+		if(!this.mismoEquipo(unidad))
 			unidad.perderVida(poderDeAtaque);
 		else 
 			throw (new ObjetivoAliado());

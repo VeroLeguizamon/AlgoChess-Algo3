@@ -9,9 +9,9 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	private int poderDeAtaque;
 	private int poderDeAtaqueADistancia;
 	
-	public Jinete(int jugador, Coordenada ubicacion, Tablero tablero) {
+	public Jinete(Coordenada ubicacion, Tablero tablero) {
 		
-		super(100,3,jugador,ubicacion,tablero);
+		super(100,3,ubicacion,tablero);
 		this.poderDeAtaque = 5;
 		this.poderDeAtaqueADistancia = 15;
 		
@@ -25,18 +25,15 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	
 	public void ataqueCuerpoACuerpo(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar cuerpo a cuerpo.	
 		
-		if(this.getSector() != unidad.getSector())
+		if(!this.mismoEquipo(unidad))
 			unidad.perderVida(poderDeAtaque);
 		else 
 			throw (new ObjetivoAliado());
 	}
 	
-	public void ataqueADistancia(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar a distancia.	
-		
-		if(this.getSector() != unidad.getSector())
-			unidad.perderVida(poderDeAtaqueADistancia);
-		else 
-			throw (new ObjetivoAliado());
+	public void ataqueADistancia(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar a distancia.
+		if(this.mismoEquipo(unidad)) throw (new ObjetivoAliado());
+		unidad.perderVida(poderDeAtaqueADistancia);
 	}
 	
 	@Override

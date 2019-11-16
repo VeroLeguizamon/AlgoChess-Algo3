@@ -124,19 +124,13 @@ public class JugadorTest {
 	public void test08DeberiaDarFalseAlTenerUnaUnidadQueNoPerteneceASuSector() {
 		Jugador jugador = new Jugador("Lucia",0,9);
 		
-		Unidad mockUnidad1 = mock(Unidad.class);
-		when(mockUnidad1.getUbicacion()).thenReturn(new Coordenada(10,10));
-		
-		assertFalse(jugador.perteneceAlSector(mockUnidad1));
+		assertFalse(jugador.perteneceAlSector(new Coordenada(10,10)));
 	}
 	@Test
 	public void test09DeberiaDarTrueAlTenerUnaUnidadQuePerteneceASuSector() {
 		Jugador jugador = new Jugador("Lucia",0,9);
 		
-		Unidad mockUnidad1 = mock(Unidad.class);
-		when(mockUnidad1.getUbicacion()).thenReturn(new Coordenada(0,5));
-		
-		assertTrue(jugador.perteneceAlSector(mockUnidad1));
+		assertTrue(jugador.perteneceAlSector(new Coordenada(0,5)));
 	}
 	
 }

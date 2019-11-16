@@ -35,7 +35,7 @@ public class Jugador {
 	public void comprarUnidad(Unidad unidad) {
 		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
 		this.setPuntos(unidad.restarPuntos(this.puntos));
-		// unidad.setJugador(this); // Para que recien cuando se lo compre se lo agregue. 
+		unidad.setJugador(this);
 		this.equipo.agregar(unidad);
 	}
 	
@@ -47,7 +47,10 @@ public class Jugador {
 	public boolean noTienePuntosSuficientesParaComprar(Unidad unidad) {
 		return (unidad.restarPuntos(this.puntos)<0);
 	}
-	public boolean perteneceAlSector(Unidad unidad) {
-		return (this.sector.perteneceAlSector(unidad.getUbicacion()));
+	public boolean perteneceAlSector(Coordenada coordenada) {
+		return (this.sector.perteneceAlSector(coordenada));
+	}
+	public boolean equals(Jugador jugador) {
+		return (this.nombre == jugador.getNombre());
 	}
 }

@@ -1,20 +1,16 @@
 package tp2java.modelo.unidades;
 
+import tp2java.modelo.Jugador;
 import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Coordenada;
 
 public class Unidad implements IUnidad{
 	
 	private int costo; 
-	// Costo al comprar la Unidad.
 	private int vida; 
-	// Puntos de vida de la Unidad.
 	private int penalizador; 
-	// Porcentaje de penalizacion al recibir daño.
-	private int jugador;
-	// Jugador al que pertenece. 1 = Jugador1, 2 = Jugador2.
+	private Jugador jugador;
 	private Coordenada ubicacion;
-	// Ubicación en el tablero.
 	
 	public Unidad() {
 		
@@ -22,11 +18,10 @@ public class Unidad implements IUnidad{
 		
 	}
 	
-	public Unidad(int vida, int costo, int jugador, Coordenada ubicacion) {
+	public Unidad(int vida, int costo, Coordenada ubicacion) {
 		
 		this.vida = vida;
 		this.costo = costo;
-		this.jugador = jugador;
 		this.penalizador = 0;
 		this.ubicacion = ubicacion;
 		
@@ -67,17 +62,25 @@ public class Unidad implements IUnidad{
 	public int getCosto() {		
 		return costo;
 	}
-		
-	@Override
-	public int getSector() {
-		return jugador;
-	}
 	
 	public int restarPuntos(int puntosDelJugador) {
 		return (puntosDelJugador - this.costo);
 	}
 	
-	
-	
+	public boolean tieneMismaUbicacion(Coordenada coordenada) {
+		return (this.ubicacion.equals(coordenada));
+	}
+	public void setJugador(Jugador nuevo) {
+		this.jugador = nuevo;
+	}
+	public Jugador getJugador() {
+		return this.jugador;
+	}
+	public boolean mismoEquipo(Unidad unidad) {
+		return (this.jugador == unidad.getJugador());
+	}
+	public boolean perteneceASuSector() {
+		return this.jugador.perteneceAlSector(this.ubicacion);
+	}
 }
 	
