@@ -33,7 +33,7 @@ public class Coordenada {
         return result;
     }
 	
-	private Coordenada calcularCoordenada (int i, int j) {
+	public Coordenada calcularCoordenada (int i, int j) {
 		return new Coordenada(this.coordx + i, this.coordy + j);
 	}
 	
