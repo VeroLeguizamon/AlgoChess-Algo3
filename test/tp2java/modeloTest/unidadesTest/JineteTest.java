@@ -24,18 +24,17 @@ public class JineteTest {
 	public void setUp() {
 		
 		mockTablero = mock(Tablero.class);
-		jinete1 = new Jinete(new Coordenada(2,2),mockTablero);
-		jinete1.setJugador(jugador1);
-		jinete2 = new Jinete(new Coordenada(4,2),mockTablero);
-		jinete2.setJugador(jugador2);
-		jinete3 = new Jinete(new Coordenada(3,2),mockTablero);
-		jinete3.setJugador(jugador1);
+		jinete1 = new Jinete(jugador1,new Coordenada(2,2),mockTablero);
+		jinete2 = new Jinete(jugador2,new Coordenada(4,2),mockTablero);
+		jinete3 = new Jinete(jugador1,new Coordenada(3,2),mockTablero);
 	}
 	
 	@Test
-	public void testJinete1AtacaAJinete2CuerpoACuerpoYEsteUltimoPierdeVida() {
+	public void testJinete1AtacaAJinete2CuerpoACuerpoPorTenerEnemigoCercanoYNingunSoldadoAliado() {
 		
-		jinete1.ataqueCuerpoACuerpo(jinete2);
+		when(mockTablero.tieneEnemigosCercanos(jinete1)).thenReturn(true);
+		when(mockTablero.tieneSoldadoAliadoCercano(jinete1)).thenReturn(false);
+		jinete1.atacar(jinete2);
 		assertEquals(jinete2.getVida(),95);
 		
 	}
@@ -43,7 +42,7 @@ public class JineteTest {
 	@Test(expected = ObjetivoAliado.class)
 	public void testJinete1IntentaAtacarAJinete3CuerpoACuerpoPeroEsAliado() {
 		
-		jinete1.ataqueCuerpoACuerpo(jinete3);
+		jinete1.atacar(jinete3);
 		
 	}
 	
@@ -51,15 +50,29 @@ public class JineteTest {
 	public void testJinete1AtacaAJinete2CuerpoACuerpoVeinteVecesYEsteUltimoMuere() {
 		
 		for(int i = 0; i < 20; i++)
-			jinete1.ataqueCuerpoACuerpo(jinete2);
+			jinete1.atacar(jinete2);
 		assertFalse(jinete2.tieneVida());
 		
 	}
 	
+	
 	@Test
-	public void testJinete1AtacaAJinete2ADistanciaYEsteUltimoPierdeVida() {
+	public void testJinete1AtacaJinete2ADistanciaPorNoTenerEnemigosCercanos() {
 		
-		jinete1.ataqueADistancia(jinete2);
+		when(mockTablero.tieneEnemigosCercanos(jinete1)).thenReturn(false);
+		when(mockTablero.tieneSoldadoAliadoCercano(jinete1)).thenReturn(false);
+		jinete2.setUbicacion(new Coordenada(5,2));
+		jinete1.atacar(jinete2);
+		assertEquals(jinete2.getVida(),85);
+		
+	}
+	
+	public void testJinete1AtacaJinete2ADistanciaPorTenerEnemigosCercanosPeroContarConUnSoldadoAliado() {
+		
+		when(mockTablero.tieneEnemigosCercanos(jinete1)).thenReturn(true);
+		when(mockTablero.tieneSoldadoAliadoCercano(jinete1)).thenReturn(true);
+		jinete2.setUbicacion(new Coordenada(5,2));
+		jinete1.atacar(jinete2);
 		assertEquals(jinete2.getVida(),85);
 		
 	}
@@ -67,15 +80,21 @@ public class JineteTest {
 	@Test(expected = ObjetivoAliado.class)
 	public void testJinete1IntentaAtacarAJinete3ADistanciaPeroEsAliado() {
 		
-		jinete1.ataqueADistancia(jinete3);
+		when(mockTablero.tieneEnemigosCercanos(jinete1)).thenReturn(false);
+		when(mockTablero.tieneSoldadoAliadoCercano(jinete1)).thenReturn(true);
+		jinete3.setUbicacion(new Coordenada(5,2));
+		jinete1.atacar(jinete3);
 		
 	}
 	
 	@Test
 	public void testJinete1AtacaAJinete2ADistanciaSieteVecesYEsteUltimoMuere() {
 		
+		when(mockTablero.tieneEnemigosCercanos(jinete1)).thenReturn(false);
+		when(mockTablero.tieneSoldadoAliadoCercano(jinete1)).thenReturn(true);
+		jinete2.setUbicacion(new Coordenada(5,2));
 		for(int i = 0; i < 7; i++)
-			jinete1.ataqueADistancia(jinete2);
+			jinete1.atacar(jinete2);
 		assertFalse(jinete2.tieneVida());
 		
 	}

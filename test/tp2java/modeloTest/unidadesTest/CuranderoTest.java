@@ -7,6 +7,7 @@ import org.junit.Before;
 
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
+import tp2java.modelo.Jugador;
 import tp2java.modelo.unidades.Curandero;
 
 public class CuranderoTest {
@@ -14,13 +15,15 @@ public class CuranderoTest {
 	private Curandero curandero1;
 	private Curandero curandero2;
 	private Tablero mockTablero;
+	private Jugador mockJugador;
 	
 	@Before
 	public void setUp() {
 		
 		mockTablero = mock(Tablero.class);
-		curandero1 = new Curandero(new Coordenada(2,2),mockTablero);
-		curandero2 = new Curandero(new Coordenada(3,2),mockTablero);
+		mockJugador = mock(Jugador.class);
+		curandero1 = new Curandero(mockJugador,new Coordenada(2,2),mockTablero);
+		curandero2 = new Curandero(mockJugador,new Coordenada(3,2),mockTablero);
 		
 	}
 	

@@ -1,6 +1,7 @@
 package tp2java.modelo.interfaces;
 
 import tp2java.modelo.tablero.Coordenada;
+import tp2java.modelo.Jugador;
 
 public interface IUnidad {
 	
@@ -12,7 +13,7 @@ public interface IUnidad {
 	
 	public void setUbicacion(Coordenada ubicacion);
 	
-	//public int getSector();
+	public Jugador getJugador();
 	
 	public boolean tieneVida();
 	

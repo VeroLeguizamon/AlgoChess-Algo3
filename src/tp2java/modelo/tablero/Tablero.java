@@ -38,5 +38,11 @@ public class Tablero{
 	public int cantUnidades() {
 		return this.unidades.size();
 	}
+	public boolean tieneEnemigosCercanos(Unidad unidad) {
+		return false; //Implementar bien
+	}
+	public boolean tieneSoldadoAliadoCercano(Unidad unidad) {
+		return false; //Implementar bien
+	}
 
 }

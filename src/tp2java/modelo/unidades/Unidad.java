@@ -1,39 +1,38 @@
 package tp2java.modelo.unidades;
 
-import tp2java.modelo.Jugador;
 import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Coordenada;
+import tp2java.modelo.tablero.Tablero;
+import tp2java.modelo.Jugador;
 
 public class Unidad implements IUnidad{
 	
 	private int costo; 
+	// Costo al comprar la Unidad.
 	private int vida; 
-	private int penalizador; 
+	// Puntos de vida de la Unidad.
 	private Jugador jugador;
 	private Coordenada ubicacion;
+	// Ubicación en el tablero.
+	private Tablero tablero;
 	
 	public Unidad() {
 		
-		this.penalizador = 0;
-		
 	}
 	
-	public Unidad(int vida, int costo, Coordenada ubicacion) {
+	public Unidad(int vida, int costo, Jugador jugador, Coordenada ubicacion, Tablero tablero) {
 		
 		this.vida = vida;
 		this.costo = costo;
-		this.penalizador = 0;
+		this.jugador = jugador;
 		this.ubicacion = ubicacion;
+		this.tablero = tablero;
 		
-	}
-	
-	public void setPenalizador(int pen) {
-		penalizador = pen;
 	}
 	
 	public void perderVida(int puntosAPerder) {
 		
-		this.vida -= (puntosAPerder + (((puntosAPerder * penalizador) / 100)));
+		this.vida -= puntosAPerder;
 
 	}
 	
@@ -62,25 +61,56 @@ public class Unidad implements IUnidad{
 	public int getCosto() {		
 		return costo;
 	}
+		
+	@Override
+	public Jugador getJugador() {
+		return jugador;
+	}
+	
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+	
+	public Tablero getTablero() {
+		return tablero;
+	}
+	
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
+	}
 	
 	public int restarPuntos(int puntosDelJugador) {
 		return (puntosDelJugador - this.costo);
+	}
+
+	public boolean mismoEquipo(Unidad unidad) {
+		return (this.jugador == unidad.getJugador());
+	}
+	
+	public boolean perteneceASuSector() {
+		return this.jugador.perteneceAlSector(this.ubicacion);
+	}
+	
+	public boolean tienePenalizador() {
+		return !(perteneceASuSector());
 	}
 	
 	public boolean tieneMismaUbicacion(Coordenada coordenada) {
 		return (this.ubicacion.equals(coordenada));
 	}
-	public void setJugador(Jugador nuevo) {
-		this.jugador = nuevo;
+	
+	public boolean esEnemiga(Unidad unidad) {
+		return (this.jugador != unidad.getJugador());
 	}
-	public Jugador getJugador() {
-		return this.jugador;
+	
+	public int distanciaA(Unidad unidad) {
+		return this.ubicacion.calcularDistancia(unidad.getUbicacion());
 	}
-	public boolean mismoEquipo(Unidad unidad) {
-		return (this.jugador == unidad.getJugador());
+	
+	public boolean ayudaAJinete() {
+		return false;
 	}
-	public boolean perteneceASuSector() {
-		return this.jugador.perteneceAlSector(this.ubicacion);
-	}
+	
+	
 }
 	

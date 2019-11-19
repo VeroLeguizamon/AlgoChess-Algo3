@@ -1,25 +1,26 @@
-package tp2java.primeraEntrega;
+package tp2java.primeraEntregaTest;
 
 import static org.junit.Assert.*;
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.Before;
 
 import tp2java.modelo.tablero.*;
 import tp2java.modelo.*;
 import tp2java.modelo.unidades.*;
-import tp2java.excepciones.*;
 
-public class primeraEntregaTest {
+public class PrimeraEntregaTest {
 	
 	private Tablero tablero;
 	private Jugador jugador1;
+	private Jugador jugador2;
 	
 	@Before
 	public void setUp() {
 		
 		tablero = new Tablero();
 		jugador1 = new Jugador("player1",0,9);
+		jugador2 = new Jugador("player2",10,19);
 		
 	}
 	
@@ -27,7 +28,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test00UnidadMovibleSeMueveHaciaAbajoUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverHaciaAbajo();
@@ -37,7 +38,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test01UnidadMovibleSeMueveHaciaArribaUnCasilleroExitosamente() {
 			
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverHaciaArriba();
@@ -47,7 +48,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test02UnidadMovibleSeMueveHaciaLaDerechaUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverHaciaLaDerecha();
@@ -57,7 +58,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test03UnidadMovibleSeMueveHaciaLaIzquierdaUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverHaciaLaIzquierda();
@@ -67,7 +68,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test04UnidadMovibleSeMueveEnDiagonalArribaDerechaUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverEnDiagonalArribaDerecha();
@@ -77,7 +78,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test05UnidadMovibleSeMueveHaciaDiagonalArribaIzquierdaUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverEnDiagonalArribaIzquierda();
@@ -87,7 +88,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test06UnidadMovibleSeMueveHaciaDiagonalAbajoDerechoUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverEnDiagonalAbajoDerecha();
@@ -97,7 +98,7 @@ public class primeraEntregaTest {
 	@Test
 	public void test07UnidadMovibleSeMueveHaciaDiagonalAbajoIzquierdoUnCasilleroExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jinete.moverEnDiagonalAbajoIzquierda();
@@ -107,8 +108,8 @@ public class primeraEntregaTest {
 	@Test
 	public void test08UnidadMovibleNoPuedeMoverseACasilleroOcupadoExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
-		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(new Coordenada(6,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(jugador1, new Coordenada(6,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		jugador1.comprarUnidad(soldado);
@@ -121,10 +122,10 @@ public class primeraEntregaTest {
 	@Test
 	public void test09SoldadoDeInfanteriaAliadoAtacaAPiezaEnemigaYRestaPuntosExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1,new Coordenada(5,5),tablero);
 		jinete.setJugador(new Jugador("player1",0,9));
 		
-		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(new Coordenada(6,5),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(jugador2,new Coordenada(6,5),tablero);
 		soldado.setJugador(new Jugador("player2",10,19));
 		
 		soldado.atacar(jinete);
@@ -134,26 +135,19 @@ public class primeraEntregaTest {
 	@Test
 	public void test10JineteAliadoAtacaAPiezaEnemigaYRestaPuntosExitosamente() {
 		
-		Jinete jinete = new Jinete(new Coordenada(5,5),tablero);
-		jinete.setJugador(new Jugador("player1",0,9));
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);		
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(jugador2, new Coordenada(6,5),tablero);
 		
-		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(new Coordenada(6,5),tablero);
-		soldado.setJugador(new Jugador("player2",10,19));
-		
-		jinete.ataqueCuerpoACuerpo(soldado);
+		jinete.atacar(soldado);
 		assertEquals(soldado.getVida(), 95);
-		jinete.ataqueADistancia(soldado);
-		assertEquals(soldado.getVida(), 80);
 		
 	}
 	@Test
 	public void test11CatapultaAliadaAtacaAPiezaEnemigaYRestaPuntosExitosamente() {
 		
-		Catapulta catapulta = new Catapulta(new Coordenada(5,15));
-		catapulta.setJugador(new Jugador("player1",0,9));
+		Catapulta catapulta = new Catapulta(jugador1, new Coordenada(5,5),tablero);
 		
-		Curandero curandero = new Curandero(new Coordenada(5,5),tablero);
-		curandero.setJugador(new Jugador("player2",10,19));
+		Curandero curandero = new Curandero(jugador2, new Coordenada(15,15),tablero);
 		
 		catapulta.atacar(curandero);
 		assertEquals(curandero.getVida(), 55);
@@ -162,8 +156,8 @@ public class primeraEntregaTest {
 	@Test
 	public void test12CuranderoAliadoCuraAPiezaAliadaYSumaPuntosExitosamente() {
 		
-		Curandero curandero = new Curandero(new Coordenada(5,5),tablero);
-		Jinete jinete = new Jinete(new Coordenada(5,6),tablero);
+		Curandero curandero = new Curandero(jugador1, new Coordenada(5,5),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(5,6),tablero);
 		
 		curandero.curar(jinete);
 		assertEquals(jinete.getVida(), 115);
@@ -175,7 +169,7 @@ public class primeraEntregaTest {
 	public void test13TableroColocaPiezaAliadaEnZonaAliadaVaciaExitosamente() {
 		Tablero tablero = new Tablero();
 		
-		Jinete jinete = new Jinete(new Coordenada(0,0),tablero);
+		Jinete jinete = new Jinete(jugador1, new Coordenada(0,0), tablero);
 		jugador1.comprarUnidad(jinete);
 		
 		tablero.colocarUnidad(jinete);
@@ -187,11 +181,11 @@ public class primeraEntregaTest {
 	public void test14TableroNoPuedeColocarPiezaAliadaEnCasilleroAliadoOcupadoExitosamente() {
 		Tablero tablero = new Tablero();
 		
-		Jinete jinete = new Jinete(new Coordenada(0,0),tablero);
+		Jinete jinete = new Jinete(jugador1,new Coordenada(0,0),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
 		
-		Catapulta catapulta = new Catapulta(new Coordenada(0,0));
+		Catapulta catapulta = new Catapulta(jugador2,new Coordenada(0,0),tablero);
 		tablero.colocarUnidad(catapulta);
 		
 		assertEquals(tablero.cantUnidades(),1);
@@ -201,7 +195,7 @@ public class primeraEntregaTest {
 	public void test15TableroNoPuedeColocarPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
 		Tablero tablero = new Tablero();
 		
-		Jinete jinete = new Jinete(new Coordenada(0,15),tablero);
+		Jinete jinete = new Jinete(jugador1,new Coordenada(0,15),tablero);
 		jugador1.comprarUnidad(jinete);
 		
 		tablero.colocarUnidad(jinete);
@@ -237,8 +231,8 @@ public class primeraEntregaTest {
 	@Test
 	public void test18JugadorSinEntidadesResultaSerPerdedor() {
 		
-		Jinete jinete = new Jinete (new Coordenada(0,0),tablero);
-		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria (new Coordenada(0,1), tablero);
+		Jinete jinete = new Jinete (jugador1,new Coordenada(0,0),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria (jugador2,new Coordenada(0,1), tablero);
 		
 		jugador1.comprarUnidad(jinete);
 		
