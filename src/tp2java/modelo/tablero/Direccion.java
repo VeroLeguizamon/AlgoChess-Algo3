@@ -22,3 +22,4 @@ public enum Direccion {
 		return (coordenada.calcularCoordenada(this.coordenadaX, this.coordenadaY));
 	}
 }
+

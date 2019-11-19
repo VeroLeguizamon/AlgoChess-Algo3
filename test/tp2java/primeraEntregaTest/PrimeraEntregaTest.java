@@ -31,7 +31,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverHaciaAbajo();
+		jinete.mover(Direccion.ABAJO);
 		assertEquals(jinete.getUbicacion(), new Coordenada(5,4));	
 		
 	}
@@ -41,7 +41,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverHaciaArriba();
+		jinete.mover(Direccion.ARRIBA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(5,6));	
 		
 	}
@@ -51,7 +51,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverHaciaLaDerecha();
+		jinete.mover(Direccion.DERECHA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(6,5));	
 		
 	}
@@ -61,7 +61,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverHaciaLaIzquierda();
+		jinete.mover(Direccion.IZQUIERDA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(4,5));
 		
 	}
@@ -71,7 +71,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverEnDiagonalArribaDerecha();
+		jinete.mover(Direccion.ARRIBA_DERECHA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(6,6));
 		
 	}
@@ -81,7 +81,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverEnDiagonalArribaIzquierda();
+		jinete.mover(Direccion.ARRIBA_IZQUIERDA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(4,6));
 		
 	}
@@ -91,7 +91,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverEnDiagonalAbajoDerecha();
+		jinete.mover(Direccion.ABAJO_DERECHA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(6,4));
 		
 	}
@@ -101,7 +101,7 @@ public class PrimeraEntregaTest {
 		Jinete jinete = new Jinete(jugador1, new Coordenada(5,5),tablero);
 		jugador1.comprarUnidad(jinete);
 		tablero.colocarUnidad(jinete);
-		jinete.moverEnDiagonalAbajoIzquierda();
+		jinete.mover(Direccion.ABAJO_IZQUIERDA);
 		assertEquals(jinete.getUbicacion(), new Coordenada(4,4));
 		
 	}
@@ -114,7 +114,7 @@ public class PrimeraEntregaTest {
 		tablero.colocarUnidad(jinete);
 		jugador1.comprarUnidad(soldado);
 		tablero.colocarUnidad(soldado);
-		jinete.moverHaciaLaDerecha();
+		jinete.mover(Direccion.DERECHA);
 		
 		assertTrue(true);
 		

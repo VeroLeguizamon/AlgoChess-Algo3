@@ -20,8 +20,11 @@ public class Catapulta extends Unidad implements Atacante {
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
 		
+		
+		
 		if(distanciaA(unidad) > 6)
 			ataque.a(unidad);
+		
 		
 		//Implementar daño en cadena.
 		

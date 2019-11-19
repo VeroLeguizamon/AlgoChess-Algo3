@@ -2,6 +2,7 @@ package tp2java.modelo.tablero;
 
 import java.util.ArrayList;
 import tp2java.modelo.tablero.Coordenada;
+import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.unidades.Unidad;
 
 
@@ -44,5 +45,18 @@ public class Tablero{
 	public boolean tieneSoldadoAliadoCercano(Unidad unidad) {
 		return false; //Implementar bien
 	}
-
+	// int distancia?
+	public ArrayList<Unidad> unidadesCercanas(Unidad unidadActual, int distancia){
+		ArrayList<Unidad> unidades  = new ArrayList<Unidad>();
+		// actual, si no me envian la coordenada bien puedo tirar una expeccion en distanciaA
+		
+		for(Unidad unidad : this.unidades) {
+			// tiene misma ubicacion mandarle una unidad, no una ubicacion, como distancia A
+			if(!unidad.tieneMismaUbicacion(unidadActual.getUbicacion()) && (unidad.distanciaA(unidadActual) == distancia)) {
+				unidades.add(unidad);
+			}
+		}
+		return unidades;
+	}
+	
 }
