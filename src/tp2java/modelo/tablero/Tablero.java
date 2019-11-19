@@ -58,5 +58,21 @@ public class Tablero{
 		}
 		return unidades;
 	}
+	private ArrayList<SoldadoDeInfanteria> existeBatallon(SoldadoDeInfanteria unidadCentral) {
+		
+		ArrayList<Unidad>list=new ArrayList<Unidad>(this.unidadesCercanas(unidadCentral,1));
+		ArrayList<SoldadoDeInfanteria>listSalida=new ArrayList<SoldadoDeInfanteria>();
+		
+		listSalida.add(unidadCentral);
+		for(Unidad unidadAdy: list) {
+			if(unidadAdy instanceof SoldadoDeInfanteria) {
+				listSalida.add((SoldadoDeInfanteria)unidadAdy);
+				
+			}
+		}
+		
+		return (listSalida);
+	}
+
 	
 }
