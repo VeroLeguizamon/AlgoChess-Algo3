@@ -39,12 +39,6 @@ public class Tablero{
 	public int cantUnidades() {
 		return this.unidades.size();
 	}
-	public boolean tieneEnemigosCercanos(Unidad unidad) {
-		return false; //Implementar bien
-	}
-	public boolean tieneSoldadoAliadoCercano(Unidad unidad) {
-		return false; //Implementar bien
-	}
 	// int distancia?
 	public ArrayList<Unidad> unidadesCercanas(Unidad unidadActual, int distancia){
 		ArrayList<Unidad> unidades  = new ArrayList<Unidad>();
@@ -52,7 +46,7 @@ public class Tablero{
 		
 		for(Unidad unidad : this.unidades) {
 			// tiene misma ubicacion mandarle una unidad, no una ubicacion, como distancia A
-			if(!unidad.tieneMismaUbicacion(unidadActual.getUbicacion()) && (unidad.distanciaA(unidadActual) == distancia)) {
+			if(!unidad.tieneMismaUbicacion(unidadActual.getUbicacion()) && (unidad.distanciaA(unidadActual) <= distancia)) {
 				unidades.add(unidad);
 			}
 		}

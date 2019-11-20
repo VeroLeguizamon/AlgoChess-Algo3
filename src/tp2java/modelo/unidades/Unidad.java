@@ -108,11 +108,7 @@ public class Unidad implements IUnidad{
 	}
 	public int distanciaA(Coordenada coordenada) {
 		return this.ubicacion.calcularDistancia(coordenada);
-	}
-	public boolean ayudaAJinete() {
-		return false;
-	}
-	
+	}	
 	
 }
 	

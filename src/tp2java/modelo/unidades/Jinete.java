@@ -1,5 +1,8 @@
 package tp2java.modelo.unidades;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import tp2java.excepciones.ObjetivoAliado;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
@@ -30,15 +33,39 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 		
 	}
 	
-	//Por ahora tablero devuelve un boolean, podría utilizarse otro método que devuelva
-	//las unidades cercanas y luego se verifique si se cumple la condición.
-	private boolean tieneEnemigoCercano() {
-		return getTablero().tieneEnemigosCercanos(this);
+	public boolean tieneEnemigoCercano() {
+		
+		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
+		Iterator<Unidad> actual = unidadesCercanas.iterator();
+		boolean contieneUnidadEnemiga = false;
+		
+		while(actual.hasNext() && contieneUnidadEnemiga == false) {
+			Unidad unidadActual = actual.next();
+			if(unidadActual.esEnemiga(this)) {
+				contieneUnidadEnemiga = true;
+			}
+		}
+		
+		return contieneUnidadEnemiga;
+		
 	}
 	
-	//Idem al comentario anterior.
-	private boolean tieneSoldadoAliadoCercano() {
-		return getTablero().tieneSoldadoAliadoCercano(this);
+	
+	public boolean tieneSoldadoAliadoCercano() {
+		
+		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
+		Iterator<Unidad> actual = unidadesCercanas.iterator();
+		boolean contieneSoldadoAliado = false;
+		
+		while(actual.hasNext() && contieneSoldadoAliado == false) {
+			Unidad unidadActual = actual.next();
+			if(unidadActual.mismoEquipo(this) && unidadActual instanceof SoldadoDeInfanteria) {
+				contieneSoldadoAliado = true;
+			}
+		}
+		
+		return contieneSoldadoAliado;
+		
 	}
 	
 	@Override

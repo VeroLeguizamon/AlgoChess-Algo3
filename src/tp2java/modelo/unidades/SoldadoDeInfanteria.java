@@ -33,8 +33,4 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 		return distanciaA(curandero);
 	}
 	
-	@Override
-	public boolean ayudaAJinete() {
-		return true;
-	}
 }

@@ -1,5 +1,7 @@
 package tp2java.modelo.unidades;
 
+import java.util.ArrayList;
+
 import tp2java.excepciones.ObjetivoAliado;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.unidades.Atacante;
@@ -19,14 +21,36 @@ public class Catapulta extends Unidad implements Atacante {
 	
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
+				
+		if(distanciaA(unidad) > 6) {
+			ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
+			for(Unidad unidadAfectada : unidadesAfectadas) {
+				ataque.a(unidadAfectada);
+			}
+		}
 		
+	}
+	
+	public ArrayList<Unidad> recorrerUnidadesAfectadas(Unidad unidad){
 		
+		ArrayList<Unidad> unidadesAfectadas = new ArrayList<Unidad>();
+				
+		agregarEnCadena(unidad, unidadesAfectadas);
 		
-		if(distanciaA(unidad) > 6)
-			ataque.a(unidad);
+		return unidadesAfectadas;	
 		
+	}
+	
+	private void agregarEnCadena(Unidad unidad, ArrayList<Unidad> unidadesAfectadas) {
 		
-		//Implementar daño en cadena.
+		if(!unidadesAfectadas.contains(unidad)) {
+			unidadesAfectadas.add(unidad);
+			ArrayList<Unidad> unidadesAdyacentes = unidad.getTablero().unidadesCercanas(unidad, 1);
+			for(Unidad unidadAdyacente : unidadesAdyacentes) {
+				agregarEnCadena(unidadAdyacente, unidadesAfectadas);
+			}
+		}
+		
 		
 	}
 	

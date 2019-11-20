@@ -1,4 +1,4 @@
-package tp2java.primeraEntregaTest;
+package tp2java.entregasTest;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
