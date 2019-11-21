@@ -48,20 +48,27 @@ public class Tablero{
 		}
 		return unidades;
 	}
-	private ArrayList<SoldadoDeInfanteria> existeBatallon(SoldadoDeInfanteria unidadCentral) {
+	public boolean existeBatallon(SoldadoDeInfanteria unidadCentral) {
+		
+		return(this.obtenerBatallon(unidadCentral).size()==3);
+		
+	}
+	public ArrayList<SoldadoDeInfanteria> obtenerBatallon(SoldadoDeInfanteria unidadCentral) {
 		
 		ArrayList<Unidad>list=new ArrayList<Unidad>(this.unidadesCercanas(unidadCentral,1));
 		ArrayList<SoldadoDeInfanteria>listSalida=new ArrayList<SoldadoDeInfanteria>();
 		
-		listSalida.add(unidadCentral);
+		listSalida.add((SoldadoDeInfanteria)unidadCentral);
 		for(Unidad unidadAdy: list) {
-			if(unidadAdy instanceof SoldadoDeInfanteria) {
-				listSalida.add((SoldadoDeInfanteria)unidadAdy);
+			if((unidadAdy instanceof SoldadoDeInfanteria) & (listSalida.size()<=2)) {
+				listSalida.add((SoldadoDeInfanteria) unidadAdy);
 				
 			}
 		}
 		
 		return (listSalida);
+		
+		
 	}
 
 	
