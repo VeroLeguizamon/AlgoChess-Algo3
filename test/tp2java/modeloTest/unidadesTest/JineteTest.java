@@ -45,7 +45,7 @@ public class JineteTest {
 		
 		unidadesCercanas.add(jinete2);
 		unidadesCercanas.add(jinete3);
-		assertTrue(jinete1.tieneEnemigoCercano());
+		assertTrue(jinete1.tieneEnemigoCercano(unidadesCercanas));
 		
 	}
 	
@@ -54,7 +54,7 @@ public class JineteTest {
 		
 		jinete2.setUbicacion(new Coordenada(5,5));
 		unidadesCercanas.add(jinete3);
-		assertFalse(jinete1.tieneEnemigoCercano());
+		assertFalse(jinete1.tieneEnemigoCercano(unidadesCercanas));
 		
 	}
 	

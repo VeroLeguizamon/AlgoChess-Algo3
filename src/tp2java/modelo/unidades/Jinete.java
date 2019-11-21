@@ -25,18 +25,19 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
 		
 		int distancia = distanciaA(unidad);
+
+		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
 		
-		if((distancia > 2 && distancia < 6) && (!tieneEnemigoCercano() || tieneSoldadoAliadoCercano()))
+		if((distancia > 2 && distancia < 6) && (!tieneEnemigoCercano(unidadesCercanas) || tieneSoldadoAliadoCercano(unidadesCercanas)))
 			ataqueConArco.a(unidad);
 		else if(distancia < 3)
 			ataqueConEspada.a(unidad);
 		
 	}
 	
-	public boolean tieneEnemigoCercano() {
-		
-		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
-		Iterator<Unidad> actual = unidadesCercanas.iterator();
+	public boolean tieneEnemigoCercano(ArrayList<Unidad> unidadesCercanas) {		
+
+		Iterator<Unidad> actual = unidadesCercanas.iterator();		
 		boolean contieneUnidadEnemiga = false;
 		
 		while(actual.hasNext() && contieneUnidadEnemiga == false) {
@@ -51,9 +52,8 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	}
 	
 	
-	public boolean tieneSoldadoAliadoCercano() {
+	public boolean tieneSoldadoAliadoCercano(ArrayList<Unidad> unidadesCercanas) {
 		
-		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
 		Iterator<Unidad> actual = unidadesCercanas.iterator();
 		boolean contieneSoldadoAliado = false;
 		
