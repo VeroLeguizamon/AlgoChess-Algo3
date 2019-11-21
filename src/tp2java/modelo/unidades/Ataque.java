@@ -15,12 +15,8 @@ public class Ataque {
 
 	public void a(Unidad unidad) throws ObjetivoAliado{
 		
-		int penalizador = 0;
-		
 		if(atacante.esEnemiga(unidad)) {
-			if(unidad.tienePenalizador())
-				penalizador = 5;
-			unidad.perderVida(poderDeAtaque + ((penalizador * poderDeAtaque) / 100));
+			sinDistincionDeEquipoA(unidad);
 		}
 		else {
 			throw new ObjetivoAliado();
@@ -28,4 +24,14 @@ public class Ataque {
 		
 	}
 	
+	public void sinDistincionDeEquipoA(Unidad unidad) {
+		
+		int penalizador = 0;
+		
+		if(unidad.tienePenalizador())
+			penalizador = 5;
+		unidad.perderVida(poderDeAtaque + ((penalizador * poderDeAtaque) / 100));
+	
+	
+	}
 }

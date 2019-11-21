@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import tp2java.excepciones.*;
 import tp2java.modelo.tablero.*;
 import tp2java.modelo.*;
 import tp2java.modelo.unidades.*;
@@ -33,9 +34,9 @@ public class SegundaEntregaCatapultaTest {
 		
 		jinete1 = new Jinete(jugador2,new Coordenada(12,12),tablero);
 		jinete2 = new Jinete(jugador2,new Coordenada(13,13),tablero);
-		soldado1 = new SoldadoDeInfanteria(jugador2,new Coordenada(14,14),tablero);
+		soldado1 = new SoldadoDeInfanteria(jugador1,new Coordenada(1,1),tablero);
 		soldado2 = new SoldadoDeInfanteria(jugador2,new Coordenada(14,15),tablero);
-		curandero = new Curandero(jugador2,new Coordenada(14,16),tablero);
+		curandero = new Curandero(jugador1,new Coordenada(2,3),tablero);
 		catapulta2 = new Catapulta(jugador2,new Coordenada(15,15),tablero);
 		
 	}
@@ -51,21 +52,24 @@ public class SegundaEntregaCatapultaTest {
 		tablero.colocarUnidad(curandero);
 		tablero.colocarUnidad(catapulta2);
 		
+		// Cambio de lugar las piezas aliadas, dado que no pueden ser colocadas directamente
+		// en territorio enemigo.
+		soldado1.setUbicacion(new Coordenada(14,14));
+		curandero.setUbicacion(new Coordenada(14,16));
+		
 		catapulta1.atacar(jinete2);
 		
 		assertEquals(jinete1.getVida(), 80);
 		assertEquals(jinete2.getVida(), 80);
-		assertEquals(soldado1.getVida(), 80);
+		assertEquals(soldado1.getVida(), 79); // Daño extra por penalizador.
 		assertEquals(soldado2.getVida(), 80);
-		assertEquals(curandero.getVida(), 55);
+		assertEquals(curandero.getVida(), 54); // Daño extra por penalizador.
 		assertEquals(catapulta2.getVida(), 30);
 		
 	}
 	
 	@Test
 	public void test02LaCadenaDeUnidadesAfectadasPorElAtaqueDeCatapultaSeCortaDondeNoHayMasAdyacentes() {
-		
-		soldado1.setUbicacion(new Coordenada(12,11)); // Cambio de lugar un soldado para que se corte la cadena del ataque.
 		
 		tablero.colocarUnidad(catapulta1);
 		tablero.colocarUnidad(jinete1);
@@ -75,11 +79,14 @@ public class SegundaEntregaCatapultaTest {
 		tablero.colocarUnidad(curandero);
 		tablero.colocarUnidad(catapulta2);
 		
+		soldado1.setUbicacion(new Coordenada(12,11)); // Cambio de lugar un soldado para que se corte la cadena del ataque.
+		curandero.setUbicacion(new Coordenada(14,16));
+		
 		catapulta1.atacar(jinete2);
 		
 		assertEquals(jinete1.getVida(), 80);
 		assertEquals(jinete2.getVida(), 80);
-		assertEquals(soldado1.getVida(), 80);
+		assertEquals(soldado1.getVida(), 79); // Daño extra por penalizador.
 		assertEquals(soldado2.getVida(), 100);
 		assertEquals(curandero.getVida(), 75);
 		assertEquals(catapulta2.getVida(), 50);

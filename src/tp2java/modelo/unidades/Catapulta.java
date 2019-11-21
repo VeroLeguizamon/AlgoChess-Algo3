@@ -22,12 +22,15 @@ public class Catapulta extends Unidad implements Atacante {
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
 				
-		if(distanciaA(unidad) > 6) {
-			ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
-			for(Unidad unidadAfectada : unidadesAfectadas) {
-				ataque.a(unidadAfectada);
+		if(esEnemiga(unidad)) {
+			if(distanciaA(unidad) > 6) {
+				ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
+				for(Unidad unidadAfectada : unidadesAfectadas) {
+					ataque.sinDistincionDeEquipoA(unidadAfectada);
+				}
 			}
 		}
+		else throw (new ObjetivoAliado());
 		
 	}
 	

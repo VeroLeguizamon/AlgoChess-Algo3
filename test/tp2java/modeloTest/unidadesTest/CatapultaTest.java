@@ -42,7 +42,7 @@ public class CatapultaTest {
 		ArrayList<Unidad> unidadesAdyacentesCatapulta2 = new ArrayList<Unidad>();		
 		catapulta3 = new Catapulta(mockJugador2, new Coordenada(13,13), mockTablero);
 		ArrayList<Unidad> unidadesAdyacentesCatapulta3 = new ArrayList<Unidad>();		
-		catapulta4 = new Catapulta(mockJugador2, new Coordenada(14,13), mockTablero);
+		catapulta4 = new Catapulta(mockJugador1, new Coordenada(14,13), mockTablero);
 		ArrayList<Unidad> unidadesAdyacentesCatapulta4 = new ArrayList<Unidad>();		
 		catapulta5 = new Catapulta(mockJugador2, new Coordenada(14,14), mockTablero);
 		ArrayList<Unidad> unidadesAdyacentesCatapulta5 = new ArrayList<Unidad>();		
