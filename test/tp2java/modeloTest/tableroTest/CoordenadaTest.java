@@ -36,22 +36,19 @@ public class CoordenadaTest {
 	}
 	@Test 
 	public void test03DeberiaDevolverTrueCuandoLosCoeficientesSonMenores() {
-		Coordenada c1 = new Coordenada(7,7);
 		Coordenada c2 = new Coordenada(1,1);
 		
-		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(c1));
+		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(7,7));
 	}
 	@Test
 	public void test04DeberiaDevolverTrueCuandoTieneCoeficientesIguales() {
-		Coordenada c1 = new Coordenada(7,7);
 		Coordenada c2 = new Coordenada(7,7);
 		
-		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(c1));
+		assertTrue(c2.tieneCoeficientesMenoresOIgualesQue(7,7));
 	}
 	@Test
 	public void test05DeberiaDevolverTrueCuandoTieneCoeficientesMayores() {
 		Coordenada c1 = new Coordenada(7,7);
-		Coordenada c2 = new Coordenada(1,1);
-		assertTrue(c1.tieneCoeficientesMayoresOIgualesQue(c2));
+		assertTrue(c1.tieneCoeficientesMayoresOIgualesQue(1,1));
 	}
 }

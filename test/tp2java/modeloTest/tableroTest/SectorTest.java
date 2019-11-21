@@ -11,9 +11,7 @@ public class SectorTest {
 
 	@Test
 	public void test00SectorDeberiaDevolverTrueCuandoUnaCoordenadaEstaDentroDelRango() {
-		Coordenada max = new Coordenada(5,5);
-		Coordenada min = new Coordenada(0,0);
-		Sector sector = new Sector(min,max);
+		Sector sector = new Sector(0,0,5,5);
 		
 		Coordenada prueba = new Coordenada(3,4);
 		
@@ -21,9 +19,7 @@ public class SectorTest {
 	}
 	@Test
 	public void test01SectorDeberiaDevolverFalseCuandoNoPerteneceLaCoordenada() {
-		Coordenada max = new Coordenada(5,5);
-		Coordenada min = new Coordenada(0,0);
-		Sector sector = new Sector(min,max);
+		Sector sector = new Sector(0,0,5,5);
 		
 		Coordenada prueba = new Coordenada(3,6);
 		
@@ -31,9 +27,7 @@ public class SectorTest {
 	}
 	@Test
 	public void test02SectorDevuelveTrueCasoLimiteMaximo() {
-		Coordenada max = new Coordenada(5,5);
-		Coordenada min = new Coordenada(0,0);
-		Sector sector = new Sector(min,max);
+		Sector sector = new Sector(0,0,5,5);
 		
 		Coordenada prueba = new Coordenada(5,5);
 		
@@ -41,9 +35,7 @@ public class SectorTest {
 	}
 	@Test
 	public void test03SectorDeberiaDevolverTrueCasoLimiteMinimo() {
-		Coordenada max = new Coordenada(5,5);
-		Coordenada min = new Coordenada(0,0);
-		Sector sector = new Sector(min,max);
+		Sector sector = new Sector(0,0,5,5);
 		
 		Coordenada prueba = new Coordenada(0,0);
 		
@@ -51,9 +43,7 @@ public class SectorTest {
 	}
 	@Test
 	public void test04SectorDeberiaDevolverFalseCoeficienteNegativo() {
-		Coordenada max = new Coordenada(5,5);
-		Coordenada min = new Coordenada(0,0);
-		Sector sector = new Sector(min,max);
+		Sector sector = new Sector(0,0,5,5);
 		
 		Coordenada prueba = new Coordenada(-2,0);
 		

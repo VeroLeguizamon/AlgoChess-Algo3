@@ -16,11 +16,11 @@ public class Jugador {
 		this.nombre = nombreNuevo;
 	}
 	
-	public Jugador(String nombreNuevo, int columnaLimiteInferior, int columnaLimiteSuperior) {
+	public Jugador(String nombreNuevo, int columnaInferior, int columnaSuperior) {
 		this.equipo = new Equipo();
 		this.nombre = nombreNuevo;
 		// Sector cuadrado.
-		this.sector = new Sector(new Coordenada(columnaLimiteInferior, columnaLimiteInferior), new Coordenada(columnaLimiteSuperior,columnaLimiteSuperior));
+		this.sector = new Sector(columnaInferior, columnaInferior, columnaSuperior,columnaSuperior);
 	}
 	public int getPuntos() {
 		return this.puntos;

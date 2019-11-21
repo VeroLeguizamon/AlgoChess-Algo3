@@ -37,31 +37,6 @@ public class Coordenada {
 		return new Coordenada(this.coordx + i, this.coordy + j);
 	}
 	
-	//Coordenadas Adyacentes
-	public Coordenada getCoordenadaArriba() {
-		return this.calcularCoordenada(0, 1);
-	}
-	public Coordenada getCoordenadaAbajo() {
-		return this.calcularCoordenada(0, -1);
-	}
-	public Coordenada getCoordenadaDerecha() {
-		return this.calcularCoordenada(1, 0);
-	}
-	public Coordenada getCoordenadaIzquierda() {
-		return this.calcularCoordenada(-1, 0);
-	}
-	public Coordenada getCoordenadaDiagonalArribaDerecha() {
-		return this.calcularCoordenada(1,1);
-	}
-	public Coordenada getCoordenadaDiagonalArribaIzquierda() {
-		return this.calcularCoordenada(-1, 1);
-	}
-	public Coordenada getCoordenadaDiagonalAbajoDerecha() {
-		return this.calcularCoordenada(1, -1);
-	}
-	public Coordenada getCoordenadaDiagonalAbajoIzquierda() {
-		return this.calcularCoordenada(-1, -1);
-	}
 	
 	public int calcularDistancia(Coordenada coordenada) {
 		int distanciaX = Math.abs(coordenada.getCoordx() - this.coordx);
@@ -71,11 +46,11 @@ public class Coordenada {
 		
 		return distanciaMaxima;
 	}
-	public boolean tieneCoeficientesMenoresOIgualesQue(Coordenada coordenada) {
-		return ((this.coordx <= coordenada.getCoordx()) && this.coordy <= coordenada.getCoordy());
+	public boolean tieneCoeficientesMenoresOIgualesQue(int columna, int fila) {
+		return ((this.coordx <= columna) && this.coordy <= fila);
 	}
 
-	public boolean tieneCoeficientesMayoresOIgualesQue(Coordenada coordenada) {
-		return ((this.coordx >= coordenada.getCoordx()) && this.coordy >= coordenada.getCoordy()); 
+	public boolean tieneCoeficientesMayoresOIgualesQue(int columna, int fila) {
+		return ((this.coordx >= columna) && this.coordy >= fila); 
 	}
 }
