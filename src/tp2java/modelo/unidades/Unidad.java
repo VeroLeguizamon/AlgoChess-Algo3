@@ -108,6 +108,12 @@ public class Unidad implements IUnidad{
 	}
 	public int distanciaA(Coordenada coordenada) {
 		return this.ubicacion.calcularDistancia(coordenada);
+	}
+
+	@Override
+	public boolean esSoldadoDeInfanteria() {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 	
 }

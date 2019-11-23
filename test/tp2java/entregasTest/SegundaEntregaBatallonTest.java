@@ -30,7 +30,8 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 	@Test
 	public void test01SeFormaBatallonSiHayTresSoldadosYSeMuevenTodosJuntos() {
 		jugador1 = new Jugador("Player1",0,9);
-		Batallon batallon = null;
+		Batallon batallon = new Batallon();
+
 		tablero=new Tablero();
 		soldado1 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,2),tablero);
 		soldado2 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,3),tablero);
@@ -41,15 +42,13 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		tablero.colocarUnidad(soldado2);
 		tablero.colocarUnidad(soldado3);
 		
-		if(tablero.existeBatallon(soldado2)) {
-			ArrayList<SoldadoDeInfanteria>soldados=new ArrayList<SoldadoDeInfanteria>();
-			soldados=tablero.obtenerBatallon(soldado2);
-			batallon=new Batallon(soldados);
+		if(batallon.existeBatallon(soldado2)) {
+			
+			batallon.mover(Direccion.ABAJO);		
+			
 		}	
 		
 		
-        
-		batallon.mover(Direccion.ABAJO);
 		
 		
     	assertEquals(Direccion.ABAJO.calcularCoordenada(new Coordenada(2,2)), soldado1.getUbicacion());
@@ -61,7 +60,8 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 	public void test02DosSoldadosSeMuevenYUnoSeQuedaQuietoPorObstruccion() {
 		jugador1 = new Jugador("Player1",0,9);
 		tablero=new Tablero();
-		Batallon batallon=null;
+		Batallon batallon=new Batallon();
+		
 		soldado1 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,2),tablero);
 		soldado2 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,3),tablero);
 		soldado3 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,4),tablero);
@@ -73,14 +73,11 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		tablero.colocarUnidad(catapulta);
 		
 		
-		if(tablero.existeBatallon(soldado2)) {
-			ArrayList<SoldadoDeInfanteria>soldados=new ArrayList<SoldadoDeInfanteria>();
-			soldados=tablero.obtenerBatallon(soldado2);
-			batallon=new Batallon(soldados);
-		}
-		
-		batallon.mover(Direccion.IZQUIERDA);
-		
+		if(batallon.existeBatallon(soldado2)) {
+			
+			batallon.mover(Direccion.IZQUIERDA);		
+			
+		}	
 		
 		assertEquals(Direccion.IZQUIERDA.calcularCoordenada(new Coordenada(2,2)), soldado1.getUbicacion());
 		assertEquals(new Coordenada(2,3), soldado2.getUbicacion());
@@ -92,7 +89,8 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 	public void test03BatallonDejaDeExistirAnteObstruccion() {
 		jugador1 = new Jugador("Player1",0,9);
 		tablero=new Tablero();
-		Batallon batallon=null;
+		Batallon batallon=new Batallon();
+		
 		soldado1 = new SoldadoDeInfanteria(jugador1,new Coordenada(1,2),tablero);
 		soldado2 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,2),tablero);
 		soldado3 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,3),tablero);
@@ -104,24 +102,22 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		tablero.colocarUnidad(catapulta);
 		
 		
-		if(tablero.existeBatallon(soldado2)) {
-			ArrayList<SoldadoDeInfanteria>soldados=new ArrayList<SoldadoDeInfanteria>();
-			soldados=tablero.obtenerBatallon(soldado2);
-			batallon=new Batallon(soldados);
+		if(batallon.existeBatallon(soldado2)) {
+			
+			batallon.mover(Direccion.IZQUIERDA);		
+			
 		}
 			
 
-		batallon.mover(Direccion.IZQUIERDA);
 		
-		
-		assertEquals(tablero.existeBatallon(soldado3), false);
+		assertEquals(batallon.existeBatallon(soldado3), false);
 	}
 	
 	@Test
 	public void test04TeniendoCuatroOMasSoldadosSeFormaBatallonSoloConTres() {
 		jugador1 = new Jugador("Player1",0,9);
 		tablero=new Tablero();
-		Batallon batallon=null;
+		Batallon batallon=new Batallon();
 		soldado1 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,2),tablero);
 		soldado2 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,3),tablero);
 		soldado3 = new SoldadoDeInfanteria(jugador1,new Coordenada(2,4),tablero);
@@ -134,14 +130,11 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		tablero.colocarUnidad(soldado4);
 		
 		
-		if(tablero.existeBatallon(soldado2)) {
-			ArrayList<SoldadoDeInfanteria>soldados=new ArrayList<SoldadoDeInfanteria>();
-			soldados=tablero.obtenerBatallon(soldado2);
-			batallon=new Batallon(soldados);
-		}
+		if(batallon.existeBatallon(soldado2)) {
 			
-		
-		batallon.mover(Direccion.DERECHA);
+			batallon.mover(Direccion.DERECHA);		
+			
+		}
 		
 		
 		assertEquals(Direccion.DERECHA.calcularCoordenada(new Coordenada(2,2)), soldado1.getUbicacion());

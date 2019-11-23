@@ -8,23 +8,45 @@ import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Direccion;
 
 public class Batallon {
-	private ArrayList<SoldadoDeInfanteria> batallon=new ArrayList<SoldadoDeInfanteria>();
-	private ArrayList<SoldadoDeInfanteria> movidos =new ArrayList<SoldadoDeInfanteria>();
+	private ArrayList<Unidad> batallon= new ArrayList<Unidad>();
+	private ArrayList<Unidad> movidos =new ArrayList<Unidad>();
 	
-	public Batallon(ArrayList<SoldadoDeInfanteria>listBatallon) {
-		this.batallon=listBatallon;
+	public Batallon() {
+		
+	}
+	
+	public boolean existeBatallon(Unidad unidadCentral) {
+		
+		return(this.obtenerBatallon(unidadCentral).size()==3);
+		
+	}
+	public ArrayList<Unidad> obtenerBatallon(Unidad unidadCentral) {
+		ArrayList<Unidad> batallonAux= new ArrayList<Unidad>();
+		
+		if (unidadCentral.esSoldadoDeInfanteria()) {
+			ArrayList<Unidad>listAdyacentes=new ArrayList<Unidad>(unidadCentral.getTablero().unidadesCercanas(unidadCentral,1));
+			batallonAux.add(unidadCentral);
+			for(Unidad unidadAdyacente:listAdyacentes) {
+				if(unidadAdyacente.esSoldadoDeInfanteria()&(batallonAux.size()<=2)) {
+					batallonAux.add(unidadAdyacente);
+				}
+			}
+		}
+		this.batallon=batallonAux;
+		return(batallonAux);
+		
 	}
 	
 	public void mover(Direccion direccion){
-		Queue<SoldadoDeInfanteria> soldadosAMover = this.formarPila();
+		Queue<Unidad> soldadosAMover = this.formarPila();
 		
 		while(!soldadosAMover.isEmpty()) {
-			SoldadoDeInfanteria soldado = soldadosAMover.poll();
+			Unidad soldado = soldadosAMover.poll();
 			Coordenada coordenada = direccion.calcularCoordenada(soldado.getUbicacion());
 			
 			if(!this.coincideCoordenada(coordenada, movidos)) {
 				if(!this.coincideCoordenada(coordenada, batallon)) {
-					soldado.mover(direccion);
+					((UnidadMovible) soldado).mover(direccion);
 					this.movidos.add(soldado);
 				} else {
 					soldadosAMover.add(soldado);
@@ -34,17 +56,17 @@ public class Batallon {
 			}
 		}
 	}
-	private Queue<SoldadoDeInfanteria> formarPila(){
-		Queue<SoldadoDeInfanteria> soldados = new LinkedList<>();
+	private Queue<Unidad> formarPila(){
+		Queue<Unidad> soldados = new LinkedList<>();
 		
-		for(SoldadoDeInfanteria soldado : this.batallon) {
+		for(Unidad soldado : this.batallon) {
 			soldados.add(soldado);
 		}
 		return soldados;
 	}
-	private boolean coincideCoordenada(Coordenada coordenada,ArrayList<SoldadoDeInfanteria>lista) {
+	private boolean coincideCoordenada(Coordenada coordenada,ArrayList<Unidad>lista) {
 		if(!lista.isEmpty()) {
-			for(SoldadoDeInfanteria soldado : lista) {
+			for(Unidad soldado : lista) {
 				if(soldado.tieneMismaUbicacion(coordenada)) return true;
 			}
 		}
