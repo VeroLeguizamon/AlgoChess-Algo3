@@ -59,7 +59,7 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 		
 		while(actual.hasNext() && contieneSoldadoAliado == false) {
 			Unidad unidadActual = actual.next();
-			if(unidadActual.mismoEquipo(this) && unidadActual instanceof SoldadoDeInfanteria) {
+			if(unidadActual.mismoEquipo(this) && unidadActual.esSoldadoDeInfanteria()) {
 				contieneSoldadoAliado = true;
 			}
 		}

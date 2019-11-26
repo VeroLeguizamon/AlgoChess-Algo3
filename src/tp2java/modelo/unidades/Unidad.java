@@ -112,9 +112,13 @@ public class Unidad implements IUnidad{
 
 	@Override
 	public boolean esSoldadoDeInfanteria() {
-		// TODO Auto-generated method stub
 		return false;
 	}	
+	
+	@Override
+	public boolean sePuedeUnirAlBatallon() {
+		return false;
+	}
 	
 }
 	

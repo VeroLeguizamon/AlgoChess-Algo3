@@ -17,12 +17,8 @@ public interface IUnidad {
 	
 	public boolean tieneVida();
 	
-	
 	public boolean esSoldadoDeInfanteria();
 	
-	
-	//public boolean noAlcanzaParaComprar(int puntos);
-	
-	//public void matar();
+	public boolean sePuedeUnirAlBatallon();
 	
 }

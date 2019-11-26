@@ -23,11 +23,11 @@ public class Batallon {
 	public ArrayList<Unidad> obtenerBatallon(Unidad unidadCentral) {
 		ArrayList<Unidad> batallonAux= new ArrayList<Unidad>();
 		
-		if (unidadCentral.esSoldadoDeInfanteria()) {
+		if (unidadCentral.sePuedeUnirAlBatallon()) {
 			ArrayList<Unidad>listAdyacentes=new ArrayList<Unidad>(unidadCentral.getTablero().unidadesCercanas(unidadCentral,1));
 			batallonAux.add(unidadCentral);
 			for(Unidad unidadAdyacente:listAdyacentes) {
-				if(unidadAdyacente.esSoldadoDeInfanteria()&(batallonAux.size()<=2)) {
+				if(unidadAdyacente.sePuedeUnirAlBatallon()&(batallonAux.size()<=2)) {
 					batallonAux.add(unidadAdyacente);
 				}
 			}

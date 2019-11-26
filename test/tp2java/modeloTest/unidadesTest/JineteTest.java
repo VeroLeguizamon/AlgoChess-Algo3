@@ -37,7 +37,7 @@ public class JineteTest {
 		jinete3 = new Jinete(jugador1,new Coordenada(3,2),mockTablero);
 		when(mockTablero.unidadesCercanas(jinete1, 2)).thenReturn(unidadesCercanas);
 		when(mockSoldadoAliado.mismoEquipo(jinete1)).thenReturn(true);
-		
+		when(mockSoldadoAliado.esSoldadoDeInfanteria()).thenReturn(true);
 	}
 	
 	@Test
