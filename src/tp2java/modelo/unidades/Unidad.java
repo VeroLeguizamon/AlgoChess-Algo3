@@ -30,6 +30,12 @@ public class Unidad implements IUnidad{
 		
 	}
 	
+	public Unidad(int vida, int costo) {
+		
+		this.vida = vida;
+		this.costo = costo;
+		
+	}
 	public void perderVida(int puntosAPerder) {
 		
 		this.vida -= puntosAPerder;

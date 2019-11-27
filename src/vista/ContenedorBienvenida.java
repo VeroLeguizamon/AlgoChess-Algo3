@@ -21,10 +21,10 @@ import javafx.stage.Stage;
 
 public class ContenedorBienvenida extends VBox{
 	private final ArrayList<IngresoJugadores> jugadores;
-	private static final String RUTA_FONDOBIENVENIDA="file:src/vista/imagenes/fondo_bienvenida.jpg";
-	private static final String RUTA_TITULO="file:src/vista/imagenes/titulo2.png";
-	private static final String RUTA_JUGAR="file:src/vista/imagenes/jugar2.png";
-	private static final String RUTA_SALIR="file:src/vista/imagenes/salir2.png";
+	private static final String RUTA_FONDOBIENVENIDA="file:src/vista/imagenes/fondoBienvenida.png";
+	private static final String RUTA_TITULO="file:src/vista/imagenes/logo1.png";
+	private static final String RUTA_JUGAR="file:src/vista/imagenes/juga.png";
+	private static final String RUTA_SALIR="file:src/vista/imagenes/salir.png";
 	Stage stage;
 	
 	public ContenedorBienvenida(Stage stage) {
@@ -51,8 +51,8 @@ public class ContenedorBienvenida extends VBox{
         ImageView vistaTitulo=new ImageView(titulo);
         
         //para la imagen de fondo
-        Image fondoBienvenida= new Image(RUTA_FONDOBIENVENIDA,850,650,false,true);
-        BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.SPACE,BackgroundRepeat.SPACE,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        Image fondoBienvenida= new Image(RUTA_FONDOBIENVENIDA,1100,650,false,true);
+        BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         this.setBackground(new Background(mostrarFondoBienvenida));
         
         this.getChildren().addAll(vistaTitulo,vBox);

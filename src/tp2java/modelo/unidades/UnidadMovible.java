@@ -10,6 +10,9 @@ public class UnidadMovible extends Unidad {
 	public UnidadMovible() {
 		super();
 	}
+	public UnidadMovible(int vida, int costo) {
+		super(vida,costo);
+	}
 	
 	public UnidadMovible(int vida, int costo, Jugador jugador, Coordenada ubicacion, Tablero tablero) {
 		super(vida, costo, jugador, ubicacion, tablero);

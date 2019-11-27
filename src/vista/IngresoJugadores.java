@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 public class IngresoJugadores {
 	private final HBox hBox;
@@ -13,13 +14,17 @@ public class IngresoJugadores {
 	
 	public IngresoJugadores(String textomostrar) {
 		// TODO Auto-generated constructor stub
-	
-		
-		TextField textoInicio=new TextField(textomostrar);
+		TextField textoInicio=new TextField();
+		textoInicio.setPromptText(textomostrar);
+		textoInicio.setFont(Font.font("Arial",15));
+		textoInicio.setStyle("-fx-padding:10 10 10 10; -fx-border-style:solid;"
+				+ "-fx-border-size:3px; -fx-border-color:#888;");
 		textoInicio.setPrefColumnCount(30);
+		
 		HBox hbox=new HBox(textoInicio);
 		hbox.setSpacing(20);
 		hbox.setAlignment(Pos.CENTER);
+		
 		this.hBox=hbox;
 		this.texto=textoInicio;
 		

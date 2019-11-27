@@ -8,8 +8,7 @@ public class SalirEventHandler implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		Platform.exit();
-		
+		Platform.exit();	
 	}
 	
 	

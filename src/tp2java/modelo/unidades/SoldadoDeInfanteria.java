@@ -15,6 +15,10 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 		super(100,1,jugador,ubicacion,tablero);
 		ataque = new Ataque(this,10);
 	}
+	public SoldadoDeInfanteria() {
+		super(100,1);
+		ataque = new Ataque(this,10);
+	}
 	
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
