@@ -23,7 +23,7 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
  			// Manda una alerta
  			Alert alert = new Alert(AlertType.INFORMATION);
  			alert.setTitle("Puntos insuficientes");
- 			alert.setHeaderText("¡No puedes comprar más unidades!");
+ 			alert.setHeaderText("No puedes comprar mas unidades!");
  			alert.setContentText("Por favor, presiona siguiente.");
 
  			alert.showAndWait();
