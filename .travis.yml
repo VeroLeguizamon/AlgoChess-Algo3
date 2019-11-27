@@ -1,6 +1,6 @@
 language: java
 jdk:
-    - oraclejdk8
+    - openjdk8
     
 install: ant
 
@@ -9,13 +9,4 @@ script: ant test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   
-notifications:
-  email:
-    recipients:
-      - juanpablofresia@gmail.com
-      - veronicaleguizamon90@gmail.com
-      - sherfiuba@gmail.com
-      
-    on_failure: always
-    on_success: always
     
