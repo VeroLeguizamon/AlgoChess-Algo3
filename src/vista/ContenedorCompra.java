@@ -1,6 +1,8 @@
 package vista;
 import controladores.SiguienteJugadorEventHandler;
 import controladores.TerminarCompraEventHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -46,34 +48,24 @@ public class ContenedorCompra extends HBox{
 	}
 	
 	public void setBotonSiguiente() {
-		
-		HBox hb = new HBox();
-		Button botonSiguiente=new Button("");
-		SiguienteJugadorEventHandler evento = new SiguienteJugadorEventHandler(this.stage);
-		botonSiguiente.setOnAction(evento);
-		botonSiguiente.setBackground(Background.EMPTY);
-		Image imagenSiguiente=new Image(RUTA_SIGUIENTE,300,150,true,true);
-		botonSiguiente.setGraphic(new ImageView(imagenSiguiente));
-		this.boton = botonSiguiente;
-		
-		hb.getChildren().addAll(botonSiguiente);
-		hb.setAlignment(Pos.BOTTOM_CENTER);
-		this.box.getChildren().add(hb);
-
+		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorEventHandler(this.stage));
 	}
 	
 	public void setBotonTerminar() {
+		this.setBoton(RUTA_TERMINAR, new TerminarCompraEventHandler(this.stage));
+	}
+	
+	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
 		HBox hb = new HBox();
 		
-		Button botonSiguiente=new Button("");
-		TerminarCompraEventHandler evento = new TerminarCompraEventHandler(this.stage);
-		botonSiguiente.setOnAction(evento);
+		Button boton=new Button("");
+		boton.setOnAction(event);
 		
-		botonSiguiente.setBackground(Background.EMPTY);
-		Image imagenSiguiente=new Image(RUTA_TERMINAR,300,150,true,true);
-		botonSiguiente.setGraphic(new ImageView(imagenSiguiente));
+		boton.setBackground(Background.EMPTY);
+		Image image=new Image(ruta,300,150,true,true);
+		boton.setGraphic(new ImageView(image));
 		
-		hb.getChildren().addAll(botonSiguiente);
+		hb.getChildren().addAll(boton);
 		hb.setAlignment(Pos.BOTTOM_CENTER);
 		
 		this.box.getChildren().add(hb);
