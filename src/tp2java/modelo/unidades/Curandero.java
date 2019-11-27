@@ -15,6 +15,10 @@ public class Curandero extends UnidadMovible implements Curable {
 		
 	}
 	
+	public Curandero() {
+		super(75,2);
+		this.poderDeCuracion = 15;
+	}
 	// Parámetro es la unidad a curar. 
 	// Debe llamar al método recuperarVida de un Curable.
 	public void curar(Curable curable) { 
@@ -32,6 +36,10 @@ public class Curandero extends UnidadMovible implements Curable {
 	@Override	
 	public int distanciaACurandero(Curandero curandero) {
 		return distanciaA(curandero);
+	}
+	@Override
+	public Unidad crearUnidad() {
+		return new Curandero();
 	}
 	
 }

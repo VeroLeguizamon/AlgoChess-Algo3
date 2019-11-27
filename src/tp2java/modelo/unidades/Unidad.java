@@ -125,6 +125,8 @@ public class Unidad implements IUnidad{
 	public boolean sePuedeUnirAlBatallon() {
 		return false;
 	}
-	
+	public Unidad crearUnidad() {
+		return new Unidad();
+	}
 }
 	

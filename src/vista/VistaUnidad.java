@@ -7,7 +7,6 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.unidades.Unidad;
 
 public class VistaUnidad extends Button{
@@ -30,7 +29,7 @@ public class VistaUnidad extends Button{
         this.setMinWidth(150);
         
 	}
-	public Unidad getUnidad() {
-		return new SoldadoDeInfanteria();
+	public Unidad obtenerNuevaUnidad() {
+		return this.unidad.crearUnidad();
 	}
 }

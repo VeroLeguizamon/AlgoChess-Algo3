@@ -34,6 +34,7 @@ public class ContenedorCompra extends HBox{
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         
+        //Jugador no debe estar asi, debe venir por parametro, cambiarlo!!!
         Jugador jugador = new Jugador("player1");
         
         this.contenedorJugador(jugador.getNombre(),jugador.getPuntos());
@@ -89,6 +90,7 @@ public class ContenedorCompra extends HBox{
 		hb.setPadding(Insets.EMPTY);
 		hb.setAlignment(Pos.TOP_CENTER);
 
+		
 		this.box.getChildren().add(hb);
 		
 	}

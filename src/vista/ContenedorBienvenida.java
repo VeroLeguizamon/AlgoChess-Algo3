@@ -58,9 +58,9 @@ public class ContenedorBienvenida extends VBox{
         this.getChildren().addAll(vistaTitulo,vBox);
 	}
 	
-	public void setBotonesSalirJugar(Stage stage) {
+	public void setBotonesSalirJugar(Aplicacion app) {
 		
-		JugarEventHandler jugarEvent=new JugarEventHandler(stage, jugadores);
+		JugarEventHandler jugarEvent=new JugarEventHandler(app, jugadores);
 		SalirEventHandler salirEvent=new SalirEventHandler();
 		
 		Button botonJugar=new Button("");

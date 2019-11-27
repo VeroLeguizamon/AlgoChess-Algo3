@@ -53,4 +53,7 @@ public class Jugador {
 	public boolean equals(Jugador jugador) {
 		return (this.nombre == jugador.getNombre());
 	}
+	public int cantidadDeUnidades() {
+		return (this.equipo.cantidadUnidades());
+	}
 }
