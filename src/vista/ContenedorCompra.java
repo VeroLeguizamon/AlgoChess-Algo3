@@ -21,9 +21,11 @@ public class ContenedorCompra extends HBox{
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TITULO="file:src/vista/imagenes/TiendaTitulo.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
-	
+	private Jugador jugador = new Jugador("Player1");
 	public final Stage stage;
-	public VBox box = new VBox(70);
+	private VBox box = new VBox(70);
+	
+	private Button boton;
 	
 	public ContenedorCompra(Stage stage) {
 		this.stage = stage;
@@ -33,9 +35,6 @@ public class ContenedorCompra extends HBox{
 	        
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-        
-        //Jugador no debe estar asi, debe venir por parametro, cambiarlo!!!
-        Jugador jugador = new Jugador("player1");
         
         this.contenedorJugador(jugador.getNombre(),jugador.getPuntos());
         ContenedorUnidades unidades = new ContenedorUnidades(jugador);
@@ -47,27 +46,29 @@ public class ContenedorCompra extends HBox{
 	}
 	
 	public void setBotonSiguiente() {
+		
 		HBox hb = new HBox();
 		Button botonSiguiente=new Button("");
 		SiguienteJugadorEventHandler evento = new SiguienteJugadorEventHandler(this.stage);
-		
 		botonSiguiente.setOnAction(evento);
 		botonSiguiente.setBackground(Background.EMPTY);
 		Image imagenSiguiente=new Image(RUTA_SIGUIENTE,300,150,true,true);
 		botonSiguiente.setGraphic(new ImageView(imagenSiguiente));
+		this.boton = botonSiguiente;
 		
 		hb.getChildren().addAll(botonSiguiente);
 		hb.setAlignment(Pos.BOTTOM_CENTER);
-		
 		this.box.getChildren().add(hb);
+
 	}
 	
 	public void setBotonTerminar() {
 		HBox hb = new HBox();
+		
 		Button botonSiguiente=new Button("");
 		TerminarCompraEventHandler evento = new TerminarCompraEventHandler(this.stage);
-		
 		botonSiguiente.setOnAction(evento);
+		
 		botonSiguiente.setBackground(Background.EMPTY);
 		Image imagenSiguiente=new Image(RUTA_TERMINAR,300,150,true,true);
 		botonSiguiente.setGraphic(new ImageView(imagenSiguiente));
@@ -90,8 +91,16 @@ public class ContenedorCompra extends HBox{
 		hb.setPadding(Insets.EMPTY);
 		hb.setAlignment(Pos.TOP_CENTER);
 
-		
 		this.box.getChildren().add(hb);
 		
+	}
+	public void deshabilitarBoton(){
+
+		this.boton.setVisible(false);
+		this.boton.setDisable(true);
+	}
+	public void habilitarBoton() {
+		this.boton.setVisible(true);
+		this.boton.setDisable(false);
 	}
 }

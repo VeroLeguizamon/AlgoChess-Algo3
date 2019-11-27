@@ -6,19 +6,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.unidades.Unidad;
-import vista.VistaUnidad;
 
 public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
-	private VistaUnidad unidad;
+	private Unidad unidad;
 	private Jugador jugador;
 	
-	public ComprarUnidadEventHandler(Jugador jugador, VistaUnidad unidad){
+	public ComprarUnidadEventHandler(Jugador jugador, Unidad unidad){
 		this.unidad = unidad;
 		this.jugador = jugador;
 	}
 	@Override
 	public void handle(ActionEvent event) {
-		Unidad unidad = this.unidad.obtenerNuevaUnidad();
 		if(jugador.noTienePuntosSuficientesParaComprar(unidad)) {
  			// Manda una alerta
  			Alert alert = new Alert(AlertType.INFORMATION);

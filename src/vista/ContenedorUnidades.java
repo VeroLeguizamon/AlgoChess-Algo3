@@ -1,5 +1,8 @@
 package vista;
 
+import controladores.ComprarCatapultaEventHandler;
+import controladores.ComprarJineteEventHandler;
+import controladores.ComprarSoldadoEventHandler;
 import controladores.ComprarUnidadEventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
@@ -19,17 +22,17 @@ public class ContenedorUnidades extends HBox{
 		this.jugador = jugador;
 		this.setPadding(new Insets(10));
 		
-		VistaUnidad soldado = new VistaUnidad(RUTA_SOLDADO, new SoldadoDeInfanteria());
-		soldado.setOnAction(new ComprarUnidadEventHandler (this.jugador, soldado));
+		VistaUnidad soldado = new VistaUnidad(RUTA_SOLDADO);
+		soldado.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
 		
-		VistaUnidad catapulta = new VistaUnidad(RUTA_CATAPULTA, new Catapulta());
-		catapulta.setOnAction(new ComprarUnidadEventHandler (this.jugador, catapulta));
+		VistaUnidad catapulta = new VistaUnidad(RUTA_CATAPULTA);
+		catapulta.setOnAction(new ComprarCatapultaEventHandler (this.jugador));
 		
-		VistaUnidad jinete = new VistaUnidad(RUTA_JINETE, new Jinete());
-		jinete.setOnAction(new ComprarUnidadEventHandler (this.jugador, jinete));
+		VistaUnidad jinete = new VistaUnidad(RUTA_JINETE);
+		jinete.setOnAction(new ComprarJineteEventHandler (this.jugador));
 		
-		VistaUnidad soldado1 = new VistaUnidad(RUTA_SOLDADO, new SoldadoDeInfanteria());
-		soldado1.setOnAction(new ComprarUnidadEventHandler (this.jugador, soldado1));
+		VistaUnidad soldado1 = new VistaUnidad(RUTA_SOLDADO);
+		soldado1.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
 		
 		this.getChildren().add(soldado);
 		this.getChildren().add(catapulta);
