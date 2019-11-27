@@ -1,24 +1,10 @@
 language: java
 jdk:
-  - openjdk11
-  
-
-install: ant
-
+    - oraclejdk8
 addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - ant
-      - ant-optional
-      
-
-script:
-  - ant test
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+    apt:
+        packages:
+            - oracle-java8-installer
 notifications:
   email:
     recipients:
