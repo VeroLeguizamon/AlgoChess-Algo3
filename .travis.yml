@@ -17,4 +17,9 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   
-    
+notifications:
+   	recipients:
+      - juanpablofresia@gmail.com
+      - veronicaleguizamon90@gmail.com
+      - sherfiuba@gmail.com
+    on_failure: always
