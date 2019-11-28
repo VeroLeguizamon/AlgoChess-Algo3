@@ -24,7 +24,7 @@ public class Jugador extends Observable{
 		this.equipo = new Equipo();
 		this.nombre = nombreNuevo;
 		// Sector cuadrado.
-		this.sector = new Sector(columnaInferior, columnaInferior, columnaSuperior, columnaSuperior);
+		this.sector = new Sector(columnaInferior, columnaSuperior);
 	}
 	public int getPuntos() {
 		return this.puntos;

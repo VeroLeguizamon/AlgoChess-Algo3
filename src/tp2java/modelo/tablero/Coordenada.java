@@ -50,7 +50,7 @@ public class Coordenada {
 		return ((this.coordx <= columna) && this.coordy <= fila);
 	}
 
-	public boolean tieneCoeficientesMayoresOIgualesQue(int columna, int fila) {
+	public boolean tieneCoeficientesMayoresOIgualesQue(int fila, int columna) {
 		return ((this.coordx >= columna) && this.coordy >= fila); 
 	}
 }

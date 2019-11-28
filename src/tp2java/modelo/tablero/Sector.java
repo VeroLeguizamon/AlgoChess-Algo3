@@ -16,10 +16,10 @@ public class Sector {
 		return false;
 	}
 	
-	public Sector(int columnaInferior, int filaInferior, int columnaSuperior, int filaSuperior) {
+	public Sector(int columnaInferior, int columnaSuperior) {
 		this.columnaSuperior = columnaSuperior;
 		this.columnaInferior = columnaInferior;
-		this.filaInferior = filaInferior;
-		this.filaSuperior = filaSuperior;
+		this.filaInferior = 0;
+		this.filaSuperior = 19;
 	}
 }

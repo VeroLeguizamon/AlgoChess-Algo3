@@ -195,7 +195,7 @@ public class PrimeraEntregaTest {
 	public void test15TableroNoPuedeColocarPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
 		Tablero tablero = new Tablero();
 		
-		Jinete jinete = new Jinete(jugador1,new Coordenada(0,15),tablero);
+		Jinete jinete = new Jinete(jugador1,new Coordenada(15,0),tablero);
 		jugador1.comprarUnidad(jinete);
 		
 		tablero.colocarUnidad(jinete);

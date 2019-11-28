@@ -32,7 +32,7 @@ public class TableroTest {
 	}
 	@Test
 	public void test01TableroDevuelveFalseConCoordenadaFueraDeSuLimite() {
-		Coordenada coordenada = new Coordenada(2,20);
+		Coordenada coordenada = new Coordenada(5,20);
 		assertFalse(tablero.existeLaCelda(coordenada));	
 	}
 	@Test
@@ -43,7 +43,7 @@ public class TableroTest {
 	//Test celda ocupada
 	@Test 
 	public void test03TableroDevuelveTrueSiLaCeldaEstaLibre() {
-		Coordenada coordenada = new Coordenada(2,20);
+		Coordenada coordenada = new Coordenada(2,0);
 		assertTrue(tablero.laCeldaEstaLibre(coordenada));
 	}
 	@Test
