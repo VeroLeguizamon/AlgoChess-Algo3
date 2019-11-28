@@ -23,18 +23,22 @@ public class ContenedorCompra extends HBox{
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TITULO="file:src/vista/imagenes/TiendaTitulo.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
-	private VistaJugador jugador = new VistaJugador(new Jugador("player 1"));
+	
+	private VistaJugador jugador;
 	public final Stage stage;
+	
 	private VBox box = new VBox(20);
 	
 	private Button boton;
 	
-	public ContenedorCompra(Stage stage) {
+	public ContenedorCompra(Stage stage, Jugador jugador) {
 		this.stage = stage;
 		this.setAlignment(Pos.CENTER);
-		 this.setSpacing(20);
-	     this.setPadding(new Insets(25));
-	        
+		this.setSpacing(20);
+	    this.setPadding(new Insets(25));
+	    
+	    this.jugador = new VistaJugador(jugador);
+	    
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
 		
@@ -50,8 +54,8 @@ public class ContenedorCompra extends HBox{
 		
         this.box.getChildren().add(hb);
         
-        this.contenedorJugador(jugador);
-        ContenedorUnidades unidades = new ContenedorUnidades(jugador.getJugador());
+        this.contenedorJugador(this.jugador);
+        ContenedorUnidades unidades = new ContenedorUnidades(jugador);
         
         this.box.getChildren().add(unidades);
         this.getChildren().add(box);

@@ -18,7 +18,7 @@ public class SiguienteJugadorEventHandler implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		
-		ContenedorCompra compra =new ContenedorCompra(this.stage);
+		ContenedorCompra compra =new ContenedorCompra(this.stage, new Jugador("Player2"));
 		compra.setBotonTerminar();
 		Scene escenaCompra = new Scene(compra,1100,650);
 		this.stage.setScene(escenaCompra);
