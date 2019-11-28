@@ -27,8 +27,6 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
  			alert.showAndWait();
 		} else {
 			jugador.comprarUnidad(unidad);
-			// Esto... solo por inseguridada jaja Borrar luego
-			System.out.println(jugador.getPuntos());
 		}
 	}
 

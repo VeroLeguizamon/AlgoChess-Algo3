@@ -23,9 +23,9 @@ public class ContenedorCompra extends HBox{
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TITULO="file:src/vista/imagenes/TiendaTitulo.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
-	private Jugador jugador = new Jugador("Player1");
+	private VistaJugador jugador = new VistaJugador(new Jugador("player 1"));
 	public final Stage stage;
-	private VBox box = new VBox(70);
+	private VBox box = new VBox(20);
 	
 	private Button boton;
 	
@@ -37,9 +37,21 @@ public class ContenedorCompra extends HBox{
 	        
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+		
+        HBox hb = new HBox(25);
+        Image titulo=new Image(RUTA_TITULO,450,200,true,true);
+        ImageView vistaTitulo=new ImageView(titulo);
         
-        this.contenedorJugador(jugador.getNombre(),jugador.getPuntos());
-        ContenedorUnidades unidades = new ContenedorUnidades(jugador);
+        hb.getChildren().add(vistaTitulo);
+		hb.setMinHeight(100);
+		hb.setMinWidth(70);
+		hb.setPadding(Insets.EMPTY);
+		hb.setAlignment(Pos.TOP_CENTER);
+		
+        this.box.getChildren().add(hb);
+        
+        this.contenedorJugador(jugador);
+        ContenedorUnidades unidades = new ContenedorUnidades(jugador.getJugador());
         
         this.box.getChildren().add(unidades);
         this.getChildren().add(box);
@@ -70,20 +82,10 @@ public class ContenedorCompra extends HBox{
 		
 		this.box.getChildren().add(hb);
 	}
-
-	public void contenedorJugador(String nombre, int puntos) {
-		HBox hb = new HBox();
-		
-		Image titulo=new Image(RUTA_TITULO,450,200,true,true);
-        ImageView vistaTitulo=new ImageView(titulo);
-        
-        hb.getChildren().add(vistaTitulo);
-		hb.setMinHeight(100);
-		hb.setMinWidth(70);
-		hb.setPadding(Insets.EMPTY);
-		hb.setAlignment(Pos.TOP_CENTER);
-
-		this.box.getChildren().add(hb);
+	public void contenedorJugador(VistaJugador jugador) {
+		DatosJugador datos = new DatosJugador(jugador);
+		jugador.setContenedor(datos);
+		this.box.getChildren().add(datos);
 		
 	}
 	public void deshabilitarBoton(){

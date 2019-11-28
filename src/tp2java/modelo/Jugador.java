@@ -5,7 +5,7 @@ import tp2java.modelo.tablero.Sector;
 import tp2java.modelo.unidades.Unidad;
 
 
-public class Jugador {
+public class Jugador extends Observable{
 	private String nombre = "";
 	private int puntos = 20;
 	private Equipo equipo;
@@ -30,6 +30,8 @@ public class Jugador {
 	}
 	private void setPuntos(int puntosNuevos) {
 		this.puntos = puntosNuevos;
+
+		notifyObservers();
 	}
 	
 	public void comprarUnidad(Unidad unidad) {
@@ -56,4 +58,5 @@ public class Jugador {
 	public int cantidadDeUnidades() {
 		return (this.equipo.cantidadUnidades());
 	}
+
 }

@@ -32,8 +32,11 @@ public class Aplicacion extends Application{
 	public void cambiarEscenaCompra() {
 		//Se le deben pasar jugadores 
 		ContenedorCompra compra = new ContenedorCompra(this.stage);
+		
 		compra.setBotonSiguiente();
+		
 		Scene escenaCompra = new Scene(compra,1100,650);
+		
 		this.stage.setScene(escenaCompra);
 		this.stage.show();
 	}
