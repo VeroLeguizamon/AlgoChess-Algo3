@@ -17,6 +17,7 @@ public class Ataque {
 		
 		if(atacante.esEnemiga(unidad)) {
 			sinDistincionDeEquipoA(unidad);
+			this.atacante.getJugador().realizarAccion();
 		}
 		else {
 			throw new ObjetivoAliado();

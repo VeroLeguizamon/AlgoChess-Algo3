@@ -20,17 +20,25 @@ public class Juego {
 			this.jugadorActual = segundoJugador;
 			this.jugadorSiguiente = primerJugador;
 		}
+		this.resetearJugadores();
 	}
 	
 	public void siguienteTurno() {
 		Jugador aux = this.jugadorActual;
 		this.jugadorActual = this.jugadorSiguiente;
 		this.jugadorSiguiente = aux;
+		this.resetearJugadores();
 	}
 	
 	public Tablero getTablero(){
 		return this.tablero;
 	}
 	
-	
+	private void resetearJugadores() {
+		this.jugadorActual.resetearAccion();
+		this.jugadorSiguiente.resetearAccion();
+	}
+	public Jugador getjugadorEnTurno() {
+		return this.jugadorActual;
+	}
 }

@@ -32,6 +32,7 @@ public class Curandero extends UnidadMovible implements Curable {
 		
 		if(curable.distanciaACurandero(this) < 3)
 			curable.recuperarVida(poderDeCuracion);
+			this.getJugador().realizoAccion();
 		
 	}
 

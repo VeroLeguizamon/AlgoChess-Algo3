@@ -24,7 +24,10 @@ public class UnidadMovible extends Unidad {
 	
 	public void mover(Direccion direccion) {
 		Coordenada nueva = direccion.calcularCoordenada(this.getUbicacion());
-		if (this.getTablero().sePuedeMoverUnidad(nueva)) this.setUbicacion(nueva);
+		if (this.getTablero().sePuedeMoverUnidad(nueva)) {
+			this.setUbicacion(nueva);
+			this.getJugador().realizarAccion();
+		}
 	}
 	
 }

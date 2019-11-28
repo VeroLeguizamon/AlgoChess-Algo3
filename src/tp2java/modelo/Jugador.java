@@ -12,10 +12,12 @@ public class Jugador extends Observable{
 	private int puntos = 20;
 	private Equipo equipo;
 	private Sector sector;
+	private boolean accion;
 	
 	public Jugador(String nombreNuevo) {
 		this.equipo = new Equipo();
 		this.nombre = nombreNuevo;
+		this.accion = false;
 	}
 	
 	public Jugador(String nombreNuevo, int columnaInferior, int columnaSuperior) {
@@ -64,5 +66,13 @@ public class Jugador extends Observable{
 	public ArrayList<Unidad> getUnidades(){
 		return this.equipo.getUnidades();
 	}
-
+	public void resetearAccion() {
+		this.accion = false;
+	}
+	public void realizarAccion() {
+		this.accion = true;
+	}
+	public boolean realizoAccion() {
+		return this.accion;
+	}
 }

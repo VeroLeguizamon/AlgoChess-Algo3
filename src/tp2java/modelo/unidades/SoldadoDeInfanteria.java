@@ -29,6 +29,7 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 		
 		if(distanciaA(unidad) < 3)
 			ataque.a(unidad);
+			
 	}
 	
 	@Override

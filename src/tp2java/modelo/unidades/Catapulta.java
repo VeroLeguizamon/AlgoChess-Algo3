@@ -36,6 +36,7 @@ public class Catapulta extends Unidad implements Atacante {
 		if(esEnemiga(unidad)) {
 			if(distanciaA(unidad) > 6) {
 				ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
+				this.getJugador().realizarAccion();
 				for(Unidad unidadAfectada : unidadesAfectadas) {
 					ataque.sinDistincionDeEquipoA(unidadAfectada);
 				}

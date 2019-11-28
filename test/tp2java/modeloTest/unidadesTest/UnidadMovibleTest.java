@@ -1,5 +1,6 @@
 package tp2java.modeloTest.unidadesTest;
 
+import tp2java.modelo.Jugador;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Direccion;
 import tp2java.modelo.tablero.Tablero;
@@ -14,12 +15,17 @@ public class UnidadMovibleTest {
 	
 	private UnidadMovible unidadM;
 	private Tablero mockTablero;	
+	private Jugador mockJugador;
 	
 	@Before
 	public void setUp() {
 		mockTablero = mock(Tablero.class);
+		mockJugador = mock(Jugador.class);
 		unidadM = new UnidadMovible();
 		unidadM.setTablero(mockTablero);
+		unidadM.setJugador(mockJugador);
+		 
+		
 	}
 	
 	@Test
@@ -28,6 +34,7 @@ public class UnidadMovibleTest {
 		unidadM.setUbicacion(new Coordenada(5,5));
 
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ARRIBA);
 		
 		assertEquals(new Coordenada(5,6), unidadM.getUbicacion());
@@ -50,7 +57,7 @@ public class UnidadMovibleTest {
 		unidadM.setUbicacion(new Coordenada(6,5));
 
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(false);
-		
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ABAJO);
 		
 		assertEquals(new Coordenada(6,5), unidadM.getUbicacion());
@@ -62,7 +69,7 @@ public class UnidadMovibleTest {
 		unidadM.setUbicacion(new Coordenada(4,2));
 
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(false);
-		
+		doNothing().when(mockJugador).realizarAccion();
 		
 		assertEquals(true,true);
 	}
@@ -72,6 +79,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ARRIBA);
 		assertEquals(new Coordenada(5,6), unidadM.getUbicacion());
 		
@@ -82,6 +90,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ARRIBA_DERECHA);
 		assertEquals(new Coordenada(6,6), unidadM.getUbicacion());
 		
@@ -92,6 +101,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.DERECHA);
 		assertEquals(new Coordenada(6,5), unidadM.getUbicacion());
 		
@@ -102,6 +112,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ABAJO_DERECHA);
 		assertEquals(new Coordenada(6,4), unidadM.getUbicacion());
 		
@@ -112,6 +123,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ABAJO);
 		assertEquals(new Coordenada(5,4), unidadM.getUbicacion());
 		
@@ -122,6 +134,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ABAJO_IZQUIERDA);
 		assertEquals(new Coordenada(4,4), unidadM.getUbicacion());
 		
@@ -132,6 +145,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.IZQUIERDA);
 		assertEquals(new Coordenada(4,5), unidadM.getUbicacion());
 		
@@ -142,6 +156,7 @@ public class UnidadMovibleTest {
 		
 		unidadM.setUbicacion(new Coordenada(5,5));
 		when(mockTablero.sePuedeMoverUnidad(anyObject())).thenReturn(true);
+		doNothing().when(mockJugador).realizarAccion();
 		unidadM.mover(Direccion.ARRIBA_IZQUIERDA);
 		assertEquals(new Coordenada(4,6), unidadM.getUbicacion());
 		
