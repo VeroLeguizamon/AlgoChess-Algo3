@@ -30,10 +30,10 @@ public class Aplicacion extends Application{
 		primaryStage.show();
 		
 	}
+
 	public void cambiarEscenaCompra(Jugador jugador1, Jugador jugador2) {
 		
 		ContenedorCompra compra = new ContenedorCompra(this.stage, jugador1, jugador2);
-		
 		compra.setBotonSiguiente();
 		
 		Scene escenaCompra = new Scene(compra,1100,650);

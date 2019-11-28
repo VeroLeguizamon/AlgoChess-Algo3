@@ -27,6 +27,7 @@ public class ContenedorCompra extends HBox{
 	private Jugador jugador2;
 	private VistaJugador vistaJugador;
 	public final Stage stage;
+	
 	private VBox box = new VBox(20);
 	
 	private Button boton;
@@ -38,8 +39,8 @@ public class ContenedorCompra extends HBox{
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(20);
 	    this.setPadding(new Insets(25));
+
 	    vistaJugador = new VistaJugador(jugador1);
-	        
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
 		
@@ -54,7 +55,7 @@ public class ContenedorCompra extends HBox{
 		hb.setAlignment(Pos.TOP_CENTER);
 		
         this.box.getChildren().add(hb);
-        
+  
         this.contenedorJugador(vistaJugador);
         ContenedorUnidades unidades = new ContenedorUnidades(jugador1);
         
