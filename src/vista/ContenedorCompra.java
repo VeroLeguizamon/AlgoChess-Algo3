@@ -23,17 +23,22 @@ public class ContenedorCompra extends HBox{
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TITULO="file:src/vista/imagenes/TiendaTitulo.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
-	private VistaJugador jugador = new VistaJugador(new Jugador("player 1"));
+	private Jugador jugador1;
+	private Jugador jugador2;
+	private VistaJugador vistaJugador;
 	public final Stage stage;
 	private VBox box = new VBox(20);
 	
 	private Button boton;
 	
-	public ContenedorCompra(Stage stage) {
+	public ContenedorCompra(Stage stage, Jugador jugador1, Jugador jugador2) {
 		this.stage = stage;
+		this.jugador1 = jugador1;
+		this.jugador2 = jugador2;
 		this.setAlignment(Pos.CENTER);
-		 this.setSpacing(20);
-	     this.setPadding(new Insets(25));
+		this.setSpacing(20);
+	    this.setPadding(new Insets(25));
+	    vistaJugador = new VistaJugador(jugador1);
 	        
         Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
@@ -50,8 +55,8 @@ public class ContenedorCompra extends HBox{
 		
         this.box.getChildren().add(hb);
         
-        this.contenedorJugador(jugador);
-        ContenedorUnidades unidades = new ContenedorUnidades(jugador.getJugador());
+        this.contenedorJugador(vistaJugador);
+        ContenedorUnidades unidades = new ContenedorUnidades(jugador1);
         
         this.box.getChildren().add(unidades);
         this.getChildren().add(box);
@@ -60,11 +65,11 @@ public class ContenedorCompra extends HBox{
 	}
 	
 	public void setBotonSiguiente() {
-		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorEventHandler(this.stage));
+		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorEventHandler(this.stage, jugador1, jugador2));
 	}
 	
 	public void setBotonTerminar() {
-		this.setBoton(RUTA_TERMINAR, new TerminarCompraEventHandler(this.stage));
+		this.setBoton(RUTA_TERMINAR, new TerminarCompraEventHandler(this.stage, jugador2, jugador1));
 	}
 	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {

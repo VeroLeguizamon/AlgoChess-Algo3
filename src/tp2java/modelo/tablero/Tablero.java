@@ -25,10 +25,15 @@ public class Tablero{
 		}
 		return true;
 	}
-	public void colocarUnidad(Unidad unidad) {
+	public boolean colocarUnidad(Unidad unidad) {
 		if (this.existeLaCelda(unidad.getUbicacion()) && this.laCeldaEstaLibre(unidad.getUbicacion())) {
-			if(unidad.perteneceASuSector()) this.unidades.add(unidad);
+			if(unidad.perteneceASuSector()) {
+				this.unidades.add(unidad);
+				return true;
+			}
+			return false;
 		}
+		return false;
 	}
 	
 	public boolean sePuedeMoverUnidad(Coordenada coordenada) {

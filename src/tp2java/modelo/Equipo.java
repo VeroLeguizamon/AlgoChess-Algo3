@@ -36,4 +36,8 @@ public class Equipo {
 		return this.unidades.isEmpty();
 	}
 	
+	public ArrayList<Unidad> getUnidades(){
+		return unidades;
+	}
+	
 }

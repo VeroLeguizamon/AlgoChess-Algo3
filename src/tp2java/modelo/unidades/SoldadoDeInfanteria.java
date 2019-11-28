@@ -15,6 +15,10 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 		super(100,1,jugador,ubicacion,tablero);
 		ataque = new Ataque(this,10);
 	}
+	public SoldadoDeInfanteria(Jugador jugador) {
+		super(100,1,jugador);
+		ataque = new Ataque(this,10);
+	}
 	public SoldadoDeInfanteria() {
 		super(100,1);
 		ataque = new Ataque(this,10);
@@ -44,9 +48,5 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	@Override
 	public boolean sePuedeUnirAlBatallon() {
 		return true;
-	}
-	@Override
-	public Unidad crearUnidad() {
-		return new SoldadoDeInfanteria();
 	}
 }

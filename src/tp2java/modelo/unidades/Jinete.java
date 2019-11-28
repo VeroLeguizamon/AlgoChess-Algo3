@@ -20,11 +20,18 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 		ataqueConArco = new Ataque(this,15);
 		
 	}
+	public Jinete(Jugador jugador) {
+		super(10,3,jugador);
+		ataqueConEspada = new Ataque(this,5);
+		ataqueConArco = new Ataque(this,15);
+	}
+	
 	public Jinete() {
 		super(10,3);
 		ataqueConEspada = new Ataque(this,5);
 		ataqueConArco = new Ataque(this,15);
 	}
+	
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
 		
@@ -80,9 +87,5 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	@Override	
 	public int distanciaACurandero(Curandero curandero) {
 		return distanciaA(curandero);
-	}
-	@Override
-	public Unidad crearUnidad() {
-		return new Jinete();
 	}
 }

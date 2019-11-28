@@ -22,16 +22,16 @@ public class ContenedorUnidades extends HBox{
 		this.jugador = jugador;
 		this.setPadding(new Insets(10));
 		
-		VistaUnidad soldado = new VistaUnidad(RUTA_SOLDADO);
+		VistaCompraUnidad soldado = new VistaCompraUnidad(RUTA_SOLDADO);
 		soldado.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
 		
-		VistaUnidad catapulta = new VistaUnidad(RUTA_CATAPULTA);
+		VistaCompraUnidad catapulta = new VistaCompraUnidad(RUTA_CATAPULTA);
 		catapulta.setOnAction(new ComprarCatapultaEventHandler (this.jugador));
 		
-		VistaUnidad jinete = new VistaUnidad(RUTA_JINETE);
+		VistaCompraUnidad jinete = new VistaCompraUnidad(RUTA_JINETE);
 		jinete.setOnAction(new ComprarJineteEventHandler (this.jugador));
 		
-		VistaUnidad soldado1 = new VistaUnidad(RUTA_SOLDADO);
+		VistaCompraUnidad soldado1 = new VistaCompraUnidad(RUTA_SOLDADO);
 		soldado1.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
 		
 		this.getChildren().add(soldado);

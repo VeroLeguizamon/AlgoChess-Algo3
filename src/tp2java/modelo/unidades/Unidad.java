@@ -4,8 +4,9 @@ import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.Jugador;
+import tp2java.modelo.Observable;
 
-public class Unidad implements IUnidad{
+public class Unidad extends Observable implements IUnidad{
 	
 	private int costo; 
 	// Costo al comprar la Unidad.
@@ -31,6 +32,12 @@ public class Unidad implements IUnidad{
 	}
 	
 	public Unidad(int vida, int costo) {
+		
+		this.vida = vida;
+		this.costo = costo;
+		
+	}
+	public Unidad(int vida, int costo, Jugador jugador) {
 		
 		this.vida = vida;
 		this.costo = costo;
@@ -124,9 +131,6 @@ public class Unidad implements IUnidad{
 	@Override
 	public boolean sePuedeUnirAlBatallon() {
 		return false;
-	}
-	public Unidad crearUnidad() {
-		return new Unidad();
 	}
 }
 	

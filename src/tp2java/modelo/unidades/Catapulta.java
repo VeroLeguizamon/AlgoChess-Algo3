@@ -18,10 +18,17 @@ public class Catapulta extends Unidad implements Atacante {
 		this.ataque = new Ataque(this,20);
 		
 	}
+	
+	public Catapulta(Jugador jugador) {
+		super(50,5,jugador);
+		this.ataque = new Ataque(this,20);
+	}
+	
 	public Catapulta() {
 		super(50,5);
 		this.ataque = new Ataque(this,20);
 	}
+	
 	
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
@@ -57,11 +64,6 @@ public class Catapulta extends Unidad implements Atacante {
 				agregarEnCadena(unidadAdyacente, unidadesAfectadas);
 			}
 		}	
-	}
-	
-	@Override
-	public Unidad crearUnidad() {
-		return new Catapulta();
 	}
 	
 }

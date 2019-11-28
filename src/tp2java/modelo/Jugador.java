@@ -1,5 +1,7 @@
 package tp2java.modelo;
 
+import java.util.ArrayList;
+
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Sector;
 import tp2java.modelo.unidades.Unidad;
@@ -57,6 +59,10 @@ public class Jugador extends Observable{
 	}
 	public int cantidadDeUnidades() {
 		return (this.equipo.cantidadUnidades());
+	}
+	
+	public ArrayList<Unidad> getUnidades(){
+		return this.equipo.getUnidades();
 	}
 
 }

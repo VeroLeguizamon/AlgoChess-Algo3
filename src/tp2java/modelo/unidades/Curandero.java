@@ -15,6 +15,13 @@ public class Curandero extends UnidadMovible implements Curable {
 		
 	}
 	
+	public Curandero(Jugador jugador) {
+		
+		super(75,2,jugador);
+		this.poderDeCuracion = 15;
+		
+	}
+	
 	public Curandero() {
 		super(75,2);
 		this.poderDeCuracion = 15;
@@ -37,9 +44,4 @@ public class Curandero extends UnidadMovible implements Curable {
 	public int distanciaACurandero(Curandero curandero) {
 		return distanciaA(curandero);
 	}
-	@Override
-	public Unidad crearUnidad() {
-		return new Curandero();
-	}
-	
 }

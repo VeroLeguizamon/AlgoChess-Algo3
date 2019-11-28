@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import tp2java.modelo.Jugador;
 
 public class Aplicacion extends Application{
 	
@@ -29,9 +30,9 @@ public class Aplicacion extends Application{
 		primaryStage.show();
 		
 	}
-	public void cambiarEscenaCompra() {
-		//Se le deben pasar jugadores 
-		ContenedorCompra compra = new ContenedorCompra(this.stage);
+	public void cambiarEscenaCompra(Jugador jugador1, Jugador jugador2) {
+		
+		ContenedorCompra compra = new ContenedorCompra(this.stage, jugador1, jugador2);
 		
 		compra.setBotonSiguiente();
 		
