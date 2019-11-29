@@ -39,5 +39,7 @@ public class Equipo {
 	public ArrayList<Unidad> getUnidades(){
 		return unidades;
 	}
-	
+	public boolean yaTiene(Unidad unidad) {
+		return this.unidades.contains(unidad);
+	}
 }

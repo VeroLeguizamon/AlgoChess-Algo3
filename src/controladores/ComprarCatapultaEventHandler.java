@@ -8,7 +8,7 @@ import tp2java.modelo.unidades.Catapulta;
 public class ComprarCatapultaEventHandler extends ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 
 	public ComprarCatapultaEventHandler(Jugador jugador) {
-		super(jugador, new Catapulta(jugador));
+		super(jugador, new Catapulta());
 	}
 
 

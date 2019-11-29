@@ -8,6 +8,6 @@ import tp2java.modelo.unidades.Jinete;
 public class ComprarJineteEventHandler extends ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 
 	public ComprarJineteEventHandler(Jugador jugador) {
-		super(jugador, new Jinete(jugador));
+		super(jugador, new Jinete());
 	}
 }

@@ -11,13 +11,13 @@ import tp2java.modelo.unidades.Catapulta;
 import tp2java.modelo.unidades.Jinete;
 import tp2java.modelo.unidades.SoldadoDeInfanteria;
 
-public class ContenedorUnidades extends HBox{
+public class ContenedorUnidadesComprar extends HBox{
 	public Jugador jugador;
 	private static String RUTA_SOLDADO = "file:src/vista/imagenes/soldado.jpg";
 	private static String RUTA_JINETE = "file:src/vista/imagenes/jinete.png";
 	private static String RUTA_CATAPULTA = "file:src/vista/imagenes/catapulta.png";
 
-	public ContenedorUnidades(Jugador jugador) {
+	public ContenedorUnidadesComprar(Jugador jugador) {
 		super(5);
 		this.jugador = jugador;
 		this.setPadding(new Insets(10));

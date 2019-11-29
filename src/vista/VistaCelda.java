@@ -2,6 +2,8 @@ package vista;
 
 import controladores.ColocarUnidadTableroHandlerEvent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Unidad;
 
@@ -9,20 +11,21 @@ public class VistaCelda extends Button {
 	private VistaUnidad vista;
 	private int x;
 	private int y;	
-	public VistaCelda(int x, int y, double anchoCelda, double altoCelda, Tablero tablero, ContenedorJuego escena) {
+	public VistaCelda(int x, int y, double anchoCelda, double altoCelda, Tablero tablero, ContenedorColocar escena) {
         this.setMinHeight(altoCelda);
         this.setMinWidth(anchoCelda);
         this.x = x;
         this.y = y;
         this.setStyle("-fx-border-style:solid;\r\n"+
-        				"-fx-border-color:#000;\r\n" +
-        				"-fx-border-size:1px;");
-      this.setOnAction(new ColocarUnidadTableroHandlerEvent(this,tablero, escena, x,y));
-      this.vista = null;
+        				"-fx-border-color:red;\r\n" +
+        				"-fx-border-size:1px; ");
+        this.setOnAction(new ColocarUnidadTableroHandlerEvent(this,tablero, escena, x,y));
+        this.vista = null;
 	}
-	public void cambiarVista(VistaUnidad view) {
+	public void colocarUnidad(VistaUnidad view) {
+		//Al descolocar se lo debe pintar de nuevo.
 		this.vista = view;
-		this.setBackground(this.vista.getBackground());
+		this.setBackground(vista.getBackground());
 	}
 	public int getX() {
 		return this.x;

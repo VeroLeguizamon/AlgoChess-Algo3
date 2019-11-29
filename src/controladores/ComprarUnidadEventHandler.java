@@ -5,6 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import tp2java.modelo.Jugador;
+import tp2java.modelo.unidades.Catapulta;
+import tp2java.modelo.unidades.Curandero;
+import tp2java.modelo.unidades.Jinete;
+import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.unidades.Unidad;
 
 public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
@@ -17,8 +21,19 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 	}
 	@Override
 	public void handle(ActionEvent event) {
-		if(jugador.noTienePuntosSuficientesParaComprar(unidad)) {
- 			// Manda una alerta
+		
+		Unidad nueva = null;
+
+		try {
+			nueva = unidad.getClass().newInstance();
+		}  catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(jugador.noTienePuntosSuficientesParaComprar(nueva)) {
  			Alert alert = new Alert(AlertType.INFORMATION);
  			alert.setTitle("Puntos insuficientes");
  			alert.setHeaderText("No puedes comprar mas unidades!");
@@ -26,7 +41,7 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 
  			alert.showAndWait();
 		} else {
-			jugador.comprarUnidad(unidad);
+			jugador.comprarUnidad(nueva);
 		}
 	}
 

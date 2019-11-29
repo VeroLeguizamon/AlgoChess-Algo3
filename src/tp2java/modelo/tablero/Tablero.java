@@ -12,7 +12,7 @@ public class Tablero{
 
 	public Tablero() {
 		this.unidades = new ArrayList<Unidad>();
-		this.limites = new Sector(0,0,19,19);
+		this.limites = new Sector(0,19);
 	}
 	
 	public boolean existeLaCelda(Coordenada coordenada) {
@@ -21,7 +21,10 @@ public class Tablero{
 	
 	public boolean laCeldaEstaLibre(Coordenada coordenada) {
 		for(Unidad unidad : this.unidades) {
-			if(unidad.tieneMismaUbicacion(coordenada)) return false;
+			if(unidad.tieneMismaUbicacion(coordenada)) {
+				return false;
+			}
+			
 		}
 		return true;
 	}
@@ -32,7 +35,6 @@ public class Tablero{
 				unidad.notifyObservers();
 				return true;
 			}
-			return false;
 		}
 		return false;
 	}

@@ -30,9 +30,7 @@ public class VistaUnidad extends Button implements Observer{
 
         this.setBackground(new Background(vistaUnidad));
         this.setMinHeight(32);
-        this.setMinWidth(32);
-//        tablero.agregarVistaAlMapa(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
-        
+        this.setMinWidth(32);      
 	}
 	
 	public String getRutaImagen() {

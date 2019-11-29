@@ -57,7 +57,7 @@ public class ContenedorCompra extends HBox{
         this.box.getChildren().add(hb);
   
         this.contenedorJugador(vistaJugador);
-        ContenedorUnidades unidades = new ContenedorUnidades(jugador1);
+        ContenedorUnidadesComprar unidades = new ContenedorUnidadesComprar(jugador1);
         
         this.box.getChildren().add(unidades);
         this.getChildren().add(box);

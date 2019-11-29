@@ -20,8 +20,8 @@ public class Coordenada {
 	        return false;
 	    }
 	    Coordenada that = (Coordenada) other;
-	    return this.coordx == that.coordx
-	        && this.coordy == that.coordy;
+	    return (this.coordx == that.coordx
+	        && this.coordy == that.coordy);
 	}
 	@Override
     public int hashCode() {

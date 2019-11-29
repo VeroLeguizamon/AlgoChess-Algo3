@@ -51,4 +51,18 @@ public class CoordenadaTest {
 		Coordenada c1 = new Coordenada(7,7);
 		assertTrue(c1.tieneCoeficientesMayoresOIgualesQue(1,1));
 	}
+	@Test
+	public void test06CoordenadasIguales() {
+		Coordenada c1 = new Coordenada(7,7);
+		Coordenada c2 = new Coordenada(7,7);
+		
+		assertTrue(c1.equals(c2));
+	}
+	@Test
+	public void test06CoordenadasNoIguales() {
+		Coordenada c1 = new Coordenada(1,4);
+		Coordenada c2 = new Coordenada(1,5);
+		
+		assertFalse(c1.equals(c2));
+	}
 }

@@ -12,7 +12,7 @@ public class Unidad extends Observable implements IUnidad{
 	// Costo al comprar la Unidad.
 	private int vida; 
 	// Puntos de vida de la Unidad.
-	private Jugador jugador;
+	private Jugador jugador = null;
 	private Coordenada ubicacion;
 	// Ubicación en el tablero.
 	private Tablero tablero;
