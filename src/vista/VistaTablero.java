@@ -25,7 +25,7 @@ public class VistaTablero extends Group {
             for (int j = 0; j < 20; j++) {
                 VistaCelda v = new VistaCelda(i,j,anchoCelda,altoCelda,tableroM, juego);
                 
-                if (i>10) {
+                if (i>9) {
                 	v.setStyle("-fx-border-style:solid; -fx-border-color:blue;-fx-border-size:1px;");                    
                 }
                 paneles[i][j] = v;                

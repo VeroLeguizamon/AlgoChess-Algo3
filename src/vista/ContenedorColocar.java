@@ -12,6 +12,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
@@ -29,7 +30,6 @@ public class ContenedorColocar extends HBox{
 	private Juego juego;
 	private VistaTablero vTablero;
 	private VistaUnidad seleccionado;
-	private VistaCelda celdaS;
 	
 	public ContenedorColocar(Stage stage, Jugador jugador1, Jugador jugador2) {
 		this.stage = stage;
@@ -42,7 +42,6 @@ public class ContenedorColocar extends HBox{
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
 	    
 	    this.seleccionado = null;
-        this.celdaS = null;
         
 	    Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
@@ -63,15 +62,11 @@ public class ContenedorColocar extends HBox{
 		ContenedorUnidadesColocar unidades = new ContenedorUnidadesColocar(this.vTablero,jugador.getUnidades(),this);
 		
 		Label label = new Label();
-		label.setText("Colocando: ");
-		label.setStyle("-fx-font-family:arial; -fx-font-size:20;");
-		label.setTextFill(Color.web("#fff"));
-	    Label labelNombre = new Label();
-	    label.setText(jugador.getNombre());
-	    label.setStyle("-fx-font-family:arial; -fx-font-size:20;");
-	    
+		label.setText("Colocando: \r\n"+jugador.getNombre());
+	    label.setStyle("-fx-font-family:arial; -fx-font-size:20px");
+	    label.setTextFill(Color.web("#fff"));
+	    label.setTextAlignment(TextAlignment.CENTER);
 	    b.getChildren().add(label);
-	    b.getChildren().add(labelNombre);
 	    this.getChildren().add(unidades);
 	    this.getChildren().add(b);
 
@@ -86,7 +81,7 @@ public class ContenedorColocar extends HBox{
 		return this.seleccionado;
 	}
 	public void resetSeleccionado() {
-		this.seleccionado.setStyle("-fx-background-color:#000;");
+		this.seleccionado.setStyle("-fx-opacity:0;");
 		this.seleccionado.setOnAction(null);
 		this.seleccionado = null;
 	}

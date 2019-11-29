@@ -20,9 +20,9 @@ public class UnidadColocarHandlerEvent implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent arg0) {
 		if(escena.hayUnidadSeleccionada()) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Oops I did it again");
-			alert.setHeaderText("I play with your heart");
-			alert.setContentText("Got lost in the game OH BABY BABY");
+			alert.setTitle("Alertaaaa!");
+			alert.setHeaderText("Ya seleccionaste una unidad");
+			alert.setContentText("Intente otra vez");
 
 			alert.showAndWait();
 		} else {
