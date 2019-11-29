@@ -3,8 +3,8 @@ package tp2java.modelo.tablero;
 public class Sector {
 	
 	private int columnaInferior;
-	private int filaSuperior;
-	private int filaInferior;
+	private int filaSuperior = 19;
+	private int filaInferior = 0;
 	private int columnaSuperior;
 	
 	
@@ -16,10 +16,10 @@ public class Sector {
 		return false;
 	}
 	
-	public Sector(int columnaInferior, int columnaSuperior) {
+	public Sector(int columnaInferior, int filaInferior, int columnaSuperior, int filaSuperior) {
 		this.columnaSuperior = columnaSuperior;
 		this.columnaInferior = columnaInferior;
-		this.filaInferior = 0;
-		this.filaSuperior = 19;
+		//this.filaInferior = filaInferior;
+		//this.filaSuperior = filaSuperior;
 	}
 }

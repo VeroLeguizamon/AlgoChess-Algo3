@@ -30,9 +30,12 @@ public class ContenedorJuego extends HBox{
 	private static final String RUTA_TABLERO="file:src/vista/imagenes/tablero.jpg";	
 	public final Stage stage;	
 	private VBox vBox = new VBox(20);
-	private HBox hBox = new HBox(20);
+	private HBox hBox = new HBox(0);
 	private Juego juego;
 	private VistaTablero vTablero;
+	private Tablero tab;
+	private VistaUnidad seleccionado;
+	private VistaCelda celdaS;
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2) {
 		//Recibe jugadores
@@ -41,18 +44,23 @@ public class ContenedorJuego extends HBox{
 		this.setSpacing(20);
 	    this.setPadding(new Insets(25));
 	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
-	    this.vTablero = new VistaTablero(RUTA_TABLERO);
 	    this.juego = new Juego(jugador1, jugador2);
-	       
-        Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
+
+	    this.tab = juego.getTablero();
+	    this.vTablero = new VistaTablero(tab,this);
+	    
+	    this.seleccionado = null;
+        this.celdaS = null;
+        
+	    Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
                 
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);
-        this.getChildren().add(hBox);     
+        //this.getChildren().add(hBox);     
         
         colocarUnidades(hBox,jugador1);
-        colocarUnidades(hBox,jugador2);
+       // colocarUnidades(hBox,jugador2);
         
         this.setBackground(new Background(mostrarFondoBienvenida));
         
@@ -60,29 +68,51 @@ public class ContenedorJuego extends HBox{
 	
 	public void colocarUnidades(HBox hBox, Jugador jugador) {
 		 
-		VBox vb = new VBox(20);
-		ArrayList<Unidad> unidades = jugador.getUnidades();
+		HBox b = new HBox(20);
+		
+		ContenedorUnidadesColocar unidades = new ContenedorUnidadesColocar(this.vTablero,jugador.getUnidades(),this);
 		
 		Label label = new Label();
-		label.setText("Colocando:");
+		label.setText("Colocando: " + jugador.getNombre());
 		label.setStyle("-fx-font-family:arial; -fx-font-size:20;");
 		label.setTextFill(Color.web("#fff"));
 	        
-	    vb.getChildren().add(label);
-	    hBox.getChildren().add(vb);
-	    
-	    int i = 1;
-	    
-	    for(Unidad unidad : unidades) {
-	    	unidad.setTablero(juego.getTablero());
-	    	unidad.setUbicacion(new Coordenada(i,i));
-	    	new VistaUnidad(vTablero,unidad);
-	    	i++;
-	    }// Buscar la manera de poder seleccionar la coordenada desde el tablero.
-        
-	    hBox.getChildren().clear();
-		    
+	    b.getChildren().add(label);
+	    this.getChildren().add(unidades);
+	    this.getChildren().add(b);
+
 	}
-        
 	
+	public void colocar(VistaCelda celda) {
+		Unidad unidad = this.getUnidadSeleccionada();
+		
+		unidad.setTablero(tab);
+		unidad.setUbicacion(new Coordenada(this.celdaS.getX(),this.celdaS.getY()));
+		
+		tab.colocarUnidad(unidad);
+		
+		System.out.println(unidad.getUbicacion().getCoordx() + unidad.getUbicacion().getCoordy());
+	}
+	
+	public boolean hayCeldaSeleccionada() {
+		return this.celdaS != null;
+	}
+	public void setCeldaSeleccionada(VistaCelda celda) {
+		this.celdaS = celda;
+	}
+	public void resetCelda() {
+		this.celdaS=null;
+	}
+	public boolean hayUnidadSeleccionada() {
+		return this.seleccionado != null;
+	}
+	public void setUnidadSeleccionada(VistaUnidad unidad) {
+		this.seleccionado = unidad;
+	}
+	public Unidad getUnidadSeleccionada() {
+		return this.seleccionado.getUnidad();
+	}
+	public void resetSeleccionado() {
+		this.seleccionado = null;
+	}
 }

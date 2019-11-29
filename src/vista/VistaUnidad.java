@@ -19,15 +19,19 @@ public class VistaUnidad extends Button implements Observer{
 	public VistaUnidad(VistaTablero tablero, Unidad unidad) {
 		
 		super();
+		this.tablero = tablero;
 		this.unidad = unidad;
 		rutaImagen = ("file:src/vista/imagenes/" + unidad.getClass().getSimpleName() + ".png");
 		Image unidadImagen = new Image(rutaImagen,32,32,false,true);
-        BackgroundImage vistaUnidad =new BackgroundImage(unidadImagen, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         
+		BackgroundImage vistaUnidad =new BackgroundImage(unidadImagen, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+       
+		this.unidad.addObserver(this);
+
         this.setBackground(new Background(vistaUnidad));
         this.setMinHeight(32);
         this.setMinWidth(32);
-        tablero.agregarVistaAlMapa(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
+//        tablero.agregarVistaAlMapa(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
         
 	}
 	
@@ -37,7 +41,9 @@ public class VistaUnidad extends Button implements Observer{
 	
 	@Override
 	public void change() {
-		 tablero.agregarVistaAlMapa(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
+		 tablero.colocarVista(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
 	}
-	
+	public Unidad getUnidad() {
+		return this.unidad;
+	}
 }

@@ -12,7 +12,7 @@ public class Tablero{
 
 	public Tablero() {
 		this.unidades = new ArrayList<Unidad>();
-		this.limites = new Sector(0,19);
+		this.limites = new Sector(0,0,19,19);
 	}
 	
 	public boolean existeLaCelda(Coordenada coordenada) {
@@ -29,6 +29,7 @@ public class Tablero{
 		if (this.existeLaCelda(unidad.getUbicacion()) && this.laCeldaEstaLibre(unidad.getUbicacion())) {
 			if(unidad.perteneceASuSector()) {
 				this.unidades.add(unidad);
+				unidad.notifyObservers();
 				return true;
 			}
 			return false;
