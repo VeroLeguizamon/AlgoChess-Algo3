@@ -40,7 +40,6 @@ public class Jugador extends Observable{
 	
 	public void comprarUnidad(Unidad unidad) {
 		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
-		if(equipo.yaTiene(unidad)) { System.out.println("Jo, ES LA MISMA MALDITA UNIDAD");}
 		this.setPuntos(unidad.restarPuntos(this.puntos));
 		unidad.setJugador(this);
 		this.equipo.agregar(unidad);
