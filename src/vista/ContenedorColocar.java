@@ -1,9 +1,17 @@
 package vista;
 
+import controladores.SiguienteJugadorColocarEventHandler;
+import controladores.SiguienteJugadorCompraEventHandler;
+import controladores.TerminarColocarEventHander;
+import controladores.TerminarCompraEventHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -16,29 +24,27 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
-import tp2java.modelo.tablero.Coordenada;
-import tp2java.modelo.tablero.Tablero;
-import tp2java.modelo.unidades.*;
 
 public class ContenedorColocar extends HBox{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
+	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
+	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
+
 	public final Stage stage;	
 	
 	private VBox vBox = new VBox(20);
 	private HBox hBox = new HBox(0);
 	
-	private Juego juego;
 	private VistaTablero vTablero;
 	private VistaUnidad seleccionado;
 	
-	public ContenedorColocar(Stage stage, Jugador jugador1, Jugador jugador2) {
+	public ContenedorColocar(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
 		
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(20);
 	    this.setPadding(new Insets(25));
 	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
-	    this.juego = new Juego(jugador1, jugador2);
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
 	    
 	    this.seleccionado = null;
@@ -49,13 +55,13 @@ public class ContenedorColocar extends HBox{
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);   
         
-        colocarUnidades(hBox,jugador1);
+        colocarUnidades(jugador1);
         
         this.setBackground(new Background(mostrarFondoBienvenida));
         
 	}
 	
-	public void colocarUnidades(HBox hBox, Jugador jugador) {
+	public void colocarUnidades(Jugador jugador) {
 		 
 		VBox b = new VBox(20);
 		
@@ -76,6 +82,9 @@ public class ContenedorColocar extends HBox{
 	}
 	public void setUnidadSeleccionada(VistaUnidad unidad) {
 		this.seleccionado = unidad;
+		this.seleccionado.setStyle("-fx-border-size:1px;"+
+				"-fx-border-color:#888;"+
+				"-fx-border-style:solid;");
 	}
 	public VistaUnidad getUnidadSeleccionada() {
 		return this.seleccionado;
@@ -84,5 +93,27 @@ public class ContenedorColocar extends HBox{
 		this.seleccionado.setStyle("-fx-opacity:0;");
 		this.seleccionado.setOnAction(null);
 		this.seleccionado = null;
+	}
+
+	public void setBotonSiguiente(Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego) {
+		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorColocarEventHandler(this.stage,jugadorSiguiente,jugadorEnEspera,juego));
+	}
+	public void setBotonTerminar(Jugador jugador1, Jugador jugador2, Juego juego) {
+		this.setBoton(RUTA_TERMINAR, new TerminarColocarEventHander(this.stage, jugador2, jugador1,juego));
+	}
+	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
+		HBox hb = new HBox();
+		
+		Button boton=new Button("");
+		boton.setOnAction(event);
+		
+		boton.setBackground(Background.EMPTY);
+		Image image=new Image(ruta,150,30,true,true);
+		boton.setGraphic(new ImageView(image));
+		
+		hb.getChildren().addAll(boton);
+		hb.setAlignment(Pos.BOTTOM_CENTER);
+		
+		this.getChildren().add(hb);
 	}
 }

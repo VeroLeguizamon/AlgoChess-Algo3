@@ -27,9 +27,7 @@ public class UnidadColocarHandlerEvent implements EventHandler<ActionEvent> {
 			alert.showAndWait();
 		} else {
 			escena.setUnidadSeleccionada(this.unidad);
-			unidad.setStyle("-fx-border-size:1px"+
-							"-fx-border-color:#fff;"+
-							"-fx-border-style:solid;");
+			
 		}
 	}
 

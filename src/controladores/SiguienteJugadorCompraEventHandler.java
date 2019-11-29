@@ -7,13 +7,13 @@ import javafx.stage.Stage;
 import tp2java.modelo.Jugador;
 import vista.ContenedorCompra;
 
-public class SiguienteJugadorEventHandler implements EventHandler<ActionEvent>{
+public class SiguienteJugadorCompraEventHandler implements EventHandler<ActionEvent>{
 	//private final Jugador jugador;
 	private final Stage stage;
 	private Jugador jugador1;
 	private Jugador jugador2;
 	
-	public SiguienteJugadorEventHandler(Stage stage, Jugador jugador1, Jugador jugador2) {
+	public SiguienteJugadorCompraEventHandler(Stage stage, Jugador jugador1, Jugador jugador2) {
 		this.stage = stage;
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;

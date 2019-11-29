@@ -1,5 +1,5 @@
 package vista;
-import controladores.SiguienteJugadorEventHandler;
+import controladores.SiguienteJugadorCompraEventHandler;
 import controladores.TerminarCompraEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -66,7 +66,7 @@ public class ContenedorCompra extends HBox{
 	}
 	
 	public void setBotonSiguiente() {
-		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorEventHandler(this.stage, jugador1, jugador2));
+		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorCompraEventHandler(this.stage, jugador1, jugador2));
 	}
 	
 	public void setBotonTerminar() {

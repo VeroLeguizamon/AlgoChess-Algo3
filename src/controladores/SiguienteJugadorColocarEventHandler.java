@@ -6,29 +6,29 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
-import vista.ContenedorCompra;
 import vista.ContenedorColocar;
 
-public class TerminarCompraEventHandler implements EventHandler<ActionEvent> {
-
-	private Stage stage;
+public class SiguienteJugadorColocarEventHandler implements EventHandler<ActionEvent> {
 	private Jugador jugador1;
 	private Jugador jugador2;
+	private Juego juego;
+	private Stage stage;
 	
-	public TerminarCompraEventHandler(Stage stage, Jugador jugador1, Jugador jugador2) {
+	public SiguienteJugadorColocarEventHandler(Stage stage, Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego){
 		super();
+		this.jugador1 = jugadorSiguiente;
+		this.jugador2 = jugadorEnEspera;
 		this.stage = stage;
-		this.jugador1 = jugador1;
-		this.jugador2 = jugador2;
+		this.juego = juego;
 	}
-
+	
 	@Override
-	public void handle(ActionEvent event) {
-		Juego juego = new Juego(jugador1, jugador2);
+	public void handle(ActionEvent arg0) {
+		
 		ContenedorColocar colocar = new ContenedorColocar(this.stage, jugador1, jugador2,juego);
-		colocar.setBotonSiguiente(jugador2, jugador1, juego);
+		colocar.setBotonTerminar(jugador1, jugador2, juego);
 		Scene escenaColocar= new Scene(colocar,1100,650);
 		this.stage.setScene(escenaColocar);
-		
 	}
+
 }
