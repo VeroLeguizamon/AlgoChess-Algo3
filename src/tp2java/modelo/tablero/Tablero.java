@@ -55,6 +55,14 @@ public class Tablero{
 		return unidades;
 	}
 	
+	public ArrayList<Unidad> getUnidades(){
+		return unidades;
+	}
+
+	public void quitarUnidad(Unidad unidad) {
+		unidades.remove(unidad);		
+	}
+	
 
 	
 }

@@ -17,7 +17,6 @@ public class Ataque {
 		
 		if(atacante.esEnemiga(unidad)) {
 			sinDistincionDeEquipoA(unidad);
-			this.atacante.getJugador().realizarAccion();
 		}
 		else {
 			throw new ObjetivoAliado();
@@ -32,7 +31,7 @@ public class Ataque {
 		if(unidad.tienePenalizador())
 			penalizador = 5;
 		unidad.perderVida(poderDeAtaque + ((penalizador * poderDeAtaque) / 100));
-	
+		this.atacante.getJugador().realizarAccion();	
 	
 	}
 }

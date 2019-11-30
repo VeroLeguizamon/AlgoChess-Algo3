@@ -1,6 +1,7 @@
 package vista;
 
 import controladores.ColocarUnidadTableroEventHandler;
+import controladores.ResolverInteraccionesEventHandler;
 import controladores.SiguienteJugadorColocarEventHandler;
 import controladores.SiguienteJugadorCompraEventHandler;
 import controladores.TerminarColocarEventHander;
@@ -27,7 +28,7 @@ import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.tablero.Tablero;
 
-public class ContenedorColocar extends HBox implements ContenedorConTablero{
+public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
@@ -40,7 +41,9 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	private VistaTablero vTablero;
 	private VistaUnidad seleccionado;
 	
-	public ContenedorColocar(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
+	private Jugador jugadorActual;
+	
+	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
 		
 		this.setAlignment(Pos.CENTER);
@@ -48,37 +51,20 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	    this.setPadding(new Insets(25));
 	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
-	    vTablero.dibujarUnidades(juego.getTablero());	    
+	    this.jugadorActual = juego.getjugadorEnTurno();
 	    
 	    this.seleccionado = null;
         
+	    vTablero.dibujarUnidades(juego.getTablero());
+	    
 	    Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
                 
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);   
         
-        colocarUnidades(jugador1);
-        
         this.setBackground(new Background(mostrarFondoBienvenida));
         
-	}
-	
-	public void colocarUnidades(Jugador jugador) {
-		 
-		VBox b = new VBox(20);
-		
-		ContenedorUnidadesColocar unidades = new ContenedorUnidadesColocar(this.vTablero,jugador.getUnidades(),this);
-		
-		Label label = new Label();
-		label.setText("Colocando: \r\n"+jugador.getNombre());
-	    label.setStyle("-fx-font-family:arial; -fx-font-size:20px");
-	    label.setTextFill(Color.web("#fff"));
-	    label.setTextAlignment(TextAlignment.CENTER);
-	    b.getChildren().add(label);
-	    this.getChildren().add(unidades);
-	    this.getChildren().add(b);
-
 	}
 	
 	@Override
@@ -105,13 +91,10 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 		this.seleccionado.setOnAction(null);
 		this.seleccionado = null;
 	}
-
-	public void setBotonSiguiente(Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego) {
-		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorColocarEventHandler(this.stage,jugadorSiguiente,jugadorEnEspera,juego));
+	public void setBotonTerminarTurno(Jugador jugador1, Jugador jugador2, Juego juego) {
+	//	this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this.stage, jugador2, jugador1,juego));
 	}
-	public void setBotonTerminar(Jugador jugador1, Jugador jugador2, Juego juego) {
-		this.setBoton(RUTA_TERMINAR, new TerminarColocarEventHander(this.stage, jugador2, jugador1,juego));
-	}
+	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
 		HBox hb = new HBox();
 		
@@ -127,11 +110,19 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 		
 		this.getChildren().add(hb);
 	}
+	
 
 	@Override
 	public void definirAccionDeCelda(VistaCelda vistaCelda, Tablero tablero, int x, int y) {
 
-		vistaCelda.setOnAction(new ColocarUnidadTableroEventHandler(vistaCelda,tablero, this, x,y));
+		vistaCelda.setOnAction(new ResolverInteraccionesEventHandler(vistaCelda,tablero, this, x,y));
+		
+	}
+
+	public void prepararMovimiento(VistaCelda vistaCelda) {
+		
+		// Mostrar flechas en las direcciones, que sean botones para realizar los movimientos.
+		// (cada una mueva en una Direccion diferente)
 		
 	}
 	
@@ -139,4 +130,5 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	public VistaTablero getVistaTablero() {
 		return vTablero;
 	}
+	
 }

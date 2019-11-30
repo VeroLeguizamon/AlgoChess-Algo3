@@ -44,9 +44,12 @@ public class Unidad extends Observable implements IUnidad{
 		
 	}
 	public void perderVida(int puntosAPerder) {
-		
 		this.vida -= puntosAPerder;
-
+		if(estaMuerta()) {
+			this.jugador.quitarUnidad(this);
+			this.tablero.quitarUnidad(this);
+		}
+		notifyObservers();
 	}
 	
 	public void setUbicacion(Coordenada coordenadas){
@@ -60,6 +63,10 @@ public class Unidad extends Observable implements IUnidad{
 	
 	public boolean tieneVida() {
 		return (vida > 0);
+	}
+	
+	public boolean estaMuerta() {
+		return !tieneVida();
 	}
 	
 	public void setVida(int vida) {
@@ -132,5 +139,18 @@ public class Unidad extends Observable implements IUnidad{
 	public boolean sePuedeUnirAlBatallon() {
 		return false;
 	}
+	
+	public boolean sePuedeMover() {
+		return false;
+	}
+
+	public void interactuar(Unidad unidad) {
+		
+	}
+
+	public boolean esCurable() {
+		return false;
+	}
+	
 }
 	

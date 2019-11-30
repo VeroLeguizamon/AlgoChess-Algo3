@@ -29,6 +29,10 @@ public class Catapulta extends Unidad implements Atacante {
 		this.ataque = new Ataque(this,20);
 	}
 	
+	@Override
+	public void interactuar(Unidad unidad) {
+		atacar(unidad);
+	}
 	
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
@@ -36,10 +40,12 @@ public class Catapulta extends Unidad implements Atacante {
 		if(esEnemiga(unidad)) {
 			if(distanciaA(unidad) > 6) {
 				ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
-				this.getJugador().realizarAccion();
 				for(Unidad unidadAfectada : unidadesAfectadas) {
 					ataque.sinDistincionDeEquipoA(unidadAfectada);
 				}
+			}
+			else {
+				System.out.print("\nMuy cerca\n");
 			}
 		}
 		else throw (new ObjetivoAliado());

@@ -28,11 +28,21 @@ public class Curandero extends UnidadMovible implements Curable {
 	}
 	// Parámetro es la unidad a curar. 
 	// Debe llamar al método recuperarVida de un Curable.
+	
+	@Override
+	public void interactuar(Unidad unidad) {
+		
+		if(unidad.esCurable()) {
+			curar((Curable)unidad);
+			this.getJugador().realizoAccion();
+		}
+		
+	}
+	
 	public void curar(Curable curable) { 
 		
 		if(curable.distanciaACurandero(this) < 3)
 			curable.recuperarVida(poderDeCuracion);
-			this.getJugador().realizoAccion();
 		
 	}
 
@@ -45,4 +55,10 @@ public class Curandero extends UnidadMovible implements Curable {
 	public int distanciaACurandero(Curandero curandero) {
 		return distanciaA(curandero);
 	}
+	
+	@Override
+	public boolean esCurable() {
+		return true;
+	}
+	
 }
