@@ -1,11 +1,13 @@
 package vista;
 
+import java.awt.event.MouseAdapter;
 import java.io.File;
 
 import controladores.ComprarCatapultaEventHandler;
 import controladores.ComprarJineteEventHandler;
 import controladores.ComprarSoldadoEventHandler;
 import controladores.ComprarUnidadEventHandler;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -17,9 +19,11 @@ import tp2java.modelo.unidades.SoldadoDeInfanteria;
 
 public class ContenedorUnidadesComprar extends HBox{
 	public Jugador jugador;
-	private static String RUTA_SOLDADO = "file:src/vista/imagenes/soldado.jpg";
-	private static String RUTA_JINETE = "file:src/vista/imagenes/jinete.png";
-	private static String RUTA_CATAPULTA = "file:src/vista/imagenes/catapulta.png";
+	private static String RUTA_SOLDADO = "file:src/vista/imagenes/SoldadoDeInfanteria.png";
+	private static String RUTA_JINETE = "file:src/vista/imagenes/Jinete.png";
+	private static String RUTA_CATAPULTA = "file:src/vista/imagenes/Catapulta.png";
+	private static String RUTA_CURANDERO = "file:src/vista/imagenes/Curandero.png";
+	
 	
 
 	public ContenedorUnidadesComprar(Jugador jugador) {
@@ -39,7 +43,7 @@ public class ContenedorUnidadesComprar extends HBox{
 		VistaCompraUnidad jinete = new VistaCompraUnidad(RUTA_JINETE);
 		jinete.setOnAction(new ComprarJineteEventHandler (this.jugador));
 		
-		VistaCompraUnidad soldado1 = new VistaCompraUnidad(RUTA_SOLDADO);
+		VistaCompraUnidad soldado1 = new VistaCompraUnidad(RUTA_CURANDERO);
 		soldado1.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
 		
 		this.getChildren().add(soldado);

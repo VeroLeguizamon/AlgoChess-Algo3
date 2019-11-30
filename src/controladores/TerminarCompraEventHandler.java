@@ -32,7 +32,7 @@ public class TerminarCompraEventHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		Juego juego = new Juego(jugador1, jugador2);
 		ContenedorColocar colocar = new ContenedorColocar(this.stage, jugador1, jugador2,juego);
-		colocar.setBotonSiguiente(jugador2, jugador1, juego);
+//		colocar.setBotonSiguiente(jugador2, jugador1, juego);
 		Scene escenaColocar= new Scene(colocar,1100,650);
 		this.stage.setScene(escenaColocar);
 		
