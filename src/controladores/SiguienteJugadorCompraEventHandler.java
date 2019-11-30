@@ -1,8 +1,12 @@
 package controladores;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import tp2java.modelo.Jugador;
 import vista.ContenedorCompra;
@@ -12,6 +16,8 @@ public class SiguienteJugadorCompraEventHandler implements EventHandler<ActionEv
 	private final Stage stage;
 	private Jugador jugador1;
 	private Jugador jugador2;
+	private static final String RUTA_PRESIONARBOTON="src/vista/sonidos/presionarBoton.mp3";
+	MediaPlayer mp;
 	
 	public SiguienteJugadorCompraEventHandler(Stage stage, Jugador jugador1, Jugador jugador2) {
 		this.stage = stage;
@@ -25,5 +31,8 @@ public class SiguienteJugadorCompraEventHandler implements EventHandler<ActionEv
 		compra.setBotonTerminar();
 		Scene escenaCompra = new Scene(compra,1100,650);
 		this.stage.setScene(escenaCompra);
+		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
+        mp=new MediaPlayer(sonyInicio);
+		mp.play();
 	}
 }

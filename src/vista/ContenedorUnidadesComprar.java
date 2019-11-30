@@ -1,11 +1,15 @@
 package vista;
 
+import java.io.File;
+
 import controladores.ComprarCatapultaEventHandler;
 import controladores.ComprarJineteEventHandler;
 import controladores.ComprarSoldadoEventHandler;
 import controladores.ComprarUnidadEventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.unidades.Catapulta;
 import tp2java.modelo.unidades.Jinete;
@@ -16,11 +20,15 @@ public class ContenedorUnidadesComprar extends HBox{
 	private static String RUTA_SOLDADO = "file:src/vista/imagenes/soldado.jpg";
 	private static String RUTA_JINETE = "file:src/vista/imagenes/jinete.png";
 	private static String RUTA_CATAPULTA = "file:src/vista/imagenes/catapulta.png";
+	
 
 	public ContenedorUnidadesComprar(Jugador jugador) {
 		super(5);
 		this.jugador = jugador;
 		this.setPadding(new Insets(10));
+		
+	
+        
 		
 		VistaCompraUnidad soldado = new VistaCompraUnidad(RUTA_SOLDADO);
 		soldado.setOnAction(new ComprarSoldadoEventHandler (this.jugador));
