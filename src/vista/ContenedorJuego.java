@@ -5,6 +5,7 @@ import controladores.ResolverInteraccionesEventHandler;
 import controladores.SiguienteJugadorCompraEventHandler;
 import controladores.TerminarColocarEventHander;
 import controladores.TerminarCompraEventHandler;
+import controladores.TerminarTurnoEventHander;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -41,6 +42,10 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private VistaUnidad seleccionado;
 	
 	private Jugador jugadorActual;
+	private Juego juego;
+	
+	private Label jugadorEnTurno;
+	private HBox hb;
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
@@ -50,6 +55,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	    this.setPadding(new Insets(25));
 	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
+	    this.juego = juego;
 	    this.jugadorActual = juego.getjugadorEnTurno();
 	    
 	    this.seleccionado = null;
@@ -58,9 +64,17 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	    
 	    Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-                
+           
+        jugadorEnTurno = new Label();
+        jugadorEnTurno.setText("Turno de \r\n"+jugadorActual.getNombre());
+        jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
+        jugadorEnTurno.setTextFill(Color.web("#fff"));
+        jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
+        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
+	    
         this.vBox.getChildren().add(vTablero);
-        this.getChildren().add(vBox);   
+        this.getChildren().add(vBox);
+        this.getChildren().add(jugadorEnTurno);
         
         this.setBackground(new Background(mostrarFondoBienvenida));
         
@@ -90,12 +104,17 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		this.seleccionado.setOnAction(null);
 		this.seleccionado = null;
 	}
-	public void setBotonTerminarTurno(Jugador jugador1, Jugador jugador2, Juego juego) {
-	//	this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this.stage, jugador2, jugador1,juego));
+	public void setBotonTerminarTurno() {
+		this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this, juego));
+	}
+	
+	public void quitarBotonTerminarTurno() {
+		this.getChildren().remove(hb);
 	}
 	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
-		HBox hb = new HBox();
+		
+		hb = new HBox();
 		
 		Button boton=new Button("");
 		boton.setOnAction(event);
@@ -128,6 +147,20 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	@Override
 	public VistaTablero getVistaTablero() {
 		return vTablero;
+	}
+	
+	public Jugador getJugadorEnTurno() {
+		return jugadorActual;
+	}
+		
+	public Juego getJuego() {
+		return juego;
+	}
+
+	public void siguienteTurno() {
+		juego.siguienteTurno();
+		this.jugadorActual = juego.getjugadorEnTurno();
+		jugadorEnTurno.setText("Turno de \r\n"+jugadorActual.getNombre());
 	}
 	
 }
