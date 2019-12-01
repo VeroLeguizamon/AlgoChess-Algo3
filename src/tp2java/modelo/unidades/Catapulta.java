@@ -44,9 +44,6 @@ public class Catapulta extends Unidad implements Atacante {
 					ataque.sinDistincionDeEquipoA(unidadAfectada);
 				}
 			}
-			else {
-				System.out.print("\nMuy cerca\n");
-			}
 		}
 		else throw (new ObjetivoAliado());
 		

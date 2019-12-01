@@ -36,7 +36,6 @@ public class VistaCelda extends Button implements Observer{
 		this.setBackground(vista.getBackground());
 		
 		this.setText(String.valueOf(vista.getUnidad().getVida()));
-		System.out.print(vista.getUnidad().getVida());
 		this.setStyle("-fx-font-family:arial; -fx-font-size:10px");
 	    this.setTextFill(Color.web("#fff"));
 	    this.setTextAlignment(TextAlignment.CENTER);
@@ -55,8 +54,8 @@ public class VistaCelda extends Button implements Observer{
 	@Override
 	public void change() {
 		this.setText(String.valueOf(vista.getUnidad().getVida()));
-		if(vista.getUnidad().estaMuerta()) {
-	       
-		}
+	}
+	public void reiniciar() {
+		this.setText("");
 	}
 }

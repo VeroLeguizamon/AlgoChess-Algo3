@@ -20,7 +20,7 @@ public class VistaTablero extends Group {
     private VistaCelda[][] paneles;
 	
 	public VistaTablero(Tablero tableroM, ContenedorConTablero juego) {
-        tablero = new GridPane();
+        this.tablero = new GridPane();
         ancho = anchoCelda * 20;
         alto = altoCelda * 20;
         this.tableroM = tableroM;
@@ -76,5 +76,19 @@ public class VistaTablero extends Group {
 		getChildren().remove(view);
 		getChildren().add(view);
     }
+
+	public void quitarVista(int coordx, int coordy) {
+		
+		tablero.getChildren().remove(paneles[coordx][coordy]);
+		VistaCelda v = new VistaCelda(coordx,coordy,anchoCelda,altoCelda,tableroM, juego);
+		if (coordx>9) {
+        	v.setStyle("-fx-border-style:solid; -fx-border-color:blue;-fx-border-size:1px;");                    
+        }
+		this.tablero.add(v, coordx, coordy);
+		this.actualizarVista(this.tablero);
+		
+	}
+
+	
     
 }
