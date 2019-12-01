@@ -2,7 +2,6 @@ package vista;
 
 import controladores.ColocarUnidadTableroEventHandler;
 import controladores.ResolverInteraccionesEventHandler;
-import controladores.SiguienteJugadorColocarEventHandler;
 import controladores.SiguienteJugadorCompraEventHandler;
 import controladores.TerminarColocarEventHander;
 import controladores.TerminarCompraEventHandler;

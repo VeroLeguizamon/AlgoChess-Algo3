@@ -1,5 +1,8 @@
 package vista;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -30,7 +33,6 @@ public class VistaUnidad extends Button implements Observer{
 		BackgroundImage vistaUnidad =new BackgroundImage(unidadImagen, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
        
 		this.unidad.addObserver(this);
-				
         this.setBackground(new Background(vistaUnidad));
         this.setMinHeight(32);
         this.setMinWidth(32);      
@@ -51,4 +53,6 @@ public class VistaUnidad extends Button implements Observer{
 	public Unidad getUnidad() {
 		return this.unidad;
 	}
+
+	
 }
