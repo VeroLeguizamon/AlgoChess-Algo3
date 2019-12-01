@@ -45,10 +45,6 @@ public class Unidad extends Observable implements IUnidad{
 	}
 	public void perderVida(int puntosAPerder) {
 		this.vida -= puntosAPerder;
-		if(estaMuerta()) {
-			this.jugador.quitarUnidad(this);
-			this.tablero.quitarUnidad(this);
-		}
 		notifyObservers();
 	}
 	

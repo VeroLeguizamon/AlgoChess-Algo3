@@ -56,7 +56,7 @@ public class VistaCelda extends Button implements Observer{
 	public void change() {
 		this.setText(String.valueOf(vista.getUnidad().getVida()));
 		if(vista.getUnidad().estaMuerta()) {
-	       this.escena.getVistaTablero().actualizarTablero(tablero);
+	       
 		}
 	}
 }

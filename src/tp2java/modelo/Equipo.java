@@ -43,8 +43,4 @@ public class Equipo {
 		return this.unidades.contains(unidad);
 	}
 	
-	public void quitarUnidad(Unidad unidad) {
-		unidades.remove(unidad);		
-	}
-	
 }

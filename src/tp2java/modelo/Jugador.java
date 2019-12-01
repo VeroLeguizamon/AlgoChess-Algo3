@@ -75,7 +75,5 @@ public class Jugador extends Observable{
 	public boolean realizoAccion() {
 		return this.accion;
 	}
-	public void quitarUnidad(Unidad unidad) {
-		equipo.quitarUnidad(unidad);		
-	}
+	
 }
