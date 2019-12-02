@@ -1,11 +1,11 @@
 package vista;
 
 import controladores.ColocarUnidadTableroEventHandler;
+import controladores.MoverUnidadEventHandler;
 import controladores.ResolverInteraccionesEventHandler;
 import controladores.SiguienteJugadorCompraEventHandler;
 import controladores.TerminarColocarEventHander;
 import controladores.TerminarCompraEventHandler;
-import controladores.TerminarTurnoEventHander;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,7 +26,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
+import tp2java.modelo.tablero.Direccion;
 import tp2java.modelo.tablero.Tablero;
+import tp2java.modelo.unidades.Unidad;
+import tp2java.modelo.unidades.UnidadMovible;
 
 public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
@@ -41,11 +44,11 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private VistaTablero vTablero;
 	private VistaUnidad seleccionado;
 	
-	private Jugador jugadorActual;
+	ContenedorMovimientos contMov;
+	
 	private Juego juego;
 	
-	private Label jugadorEnTurno;
-	private HBox hb;
+	private Jugador jugadorActual;
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
@@ -55,7 +58,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	    this.setPadding(new Insets(25));
 	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
-	    this.juego = juego;
 	    this.jugadorActual = juego.getjugadorEnTurno();
 	    
 	    this.seleccionado = null;
@@ -64,19 +66,16 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	    
 	    Image fondoBienvenida= new Image(RUTA_FONDO,1100,650,false,true);
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-           
-        jugadorEnTurno = new Label();
-        jugadorEnTurno.setText("Turno de \r\n"+jugadorActual.getNombre());
-        jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
-        jugadorEnTurno.setTextFill(Color.web("#fff"));
-        jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
-        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
-	    
+                
         this.vBox.getChildren().add(vTablero);
-        this.getChildren().add(vBox);
-        this.getChildren().add(jugadorEnTurno);
+        this.getChildren().add(vBox);   
         
         this.setBackground(new Background(mostrarFondoBienvenida));
+        
+        this.juego=juego;
+        ContenedorMovimientos botonesMov=new ContenedorMovimientos(this);
+        this.contMov=botonesMov;
+        this.getChildren().add(botonesMov);
         
 	}
 	
@@ -104,17 +103,12 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		this.seleccionado.setOnAction(null);
 		this.seleccionado = null;
 	}
-	public void setBotonTerminarTurno() {
-		this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this, juego));
-	}
-	
-	public void quitarBotonTerminarTurno() {
-		this.getChildren().remove(hb);
+	public void setBotonTerminarTurno(Jugador jugador1, Jugador jugador2, Juego juego) {
+	//	this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this.stage, jugador2, jugador1,juego));
 	}
 	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
-		
-		hb = new HBox();
+		HBox hb = new HBox();
 		
 		Button boton=new Button("");
 		boton.setOnAction(event);
@@ -137,30 +131,42 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		
 	}
 
-	public void prepararMovimiento(VistaCelda vistaCelda) {
+	public void prepararMovimiento(VistaCelda vistaCelda,Tablero tablero) {
 		
 		// Mostrar flechas en las direcciones, que sean botones para realizar los movimientos.
 		// (cada una mueva en una Direccion diferente)
+
+
+		Direccion movSeleccionado=this.contMov.movimientoSeleccionado();
+		
+		Unidad unidad=vistaCelda.getVistaUnidad().getUnidad();
+		
+		
+		
+		System.out.println(vistaCelda.getX()+","+vistaCelda.getY());
+		
+//		if(unidad.getJugador().getNombre()==this.jugadorActual.getNombre()) {//corresponde al turno
+			if((unidad.perteneceASuSector()&& tablero.sePuedeMoverUnidad(movSeleccionado.calcularCoordenada(unidad.getUbicacion())))) {
+				((UnidadMovible)unidad).mover(this.contMov.movimientoSeleccionado());
+
+				vistaCelda.limpiarCelda();
+				this.getVistaTablero().dibujarUnidades(tablero);
+				
+
+				this.resetSeleccionado();
+				
+				
+			}
+//		}
+		
+		this.juego.siguienteTurno();
+		
 		
 	}
 	
 	@Override
 	public VistaTablero getVistaTablero() {
 		return vTablero;
-	}
-	
-	public Jugador getJugadorEnTurno() {
-		return jugadorActual;
-	}
-		
-	public Juego getJuego() {
-		return juego;
-	}
-
-	public void siguienteTurno() {
-		juego.siguienteTurno();
-		this.jugadorActual = juego.getjugadorEnTurno();
-		jugadorEnTurno.setText("Turno de \r\n"+jugadorActual.getNombre());
 	}
 	
 }

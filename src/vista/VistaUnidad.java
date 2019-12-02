@@ -46,9 +46,7 @@ public class VistaUnidad extends Button implements Observer{
 	public void change() {
 		if(unidad.tieneVida()) {
 			tablero.colocarVista(this, unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
-		}
-		else {
-			tablero.quitarVista(unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
+			System.out.print("a");
 		}
 		 
 	}

@@ -87,7 +87,6 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	@Override
 	public void recuperarVida(int vidaARecuperar) {
 		setVida(this.getVida() + vidaARecuperar);
-		notifyObservers();
 	}
 	
 	@Override	
