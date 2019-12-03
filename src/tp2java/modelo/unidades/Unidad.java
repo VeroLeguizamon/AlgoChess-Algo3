@@ -45,7 +45,11 @@ public class Unidad extends Observable implements IUnidad{
 	}
 	public void perderVida(int puntosAPerder) {
 		this.vida -= puntosAPerder;
+		if(this.estaMuerta()) {
+			tablero.quitar(this);
+		}
 		notifyObservers();
+		
 	}
 	
 	public void setUbicacion(Coordenada coordenadas){

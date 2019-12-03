@@ -2,7 +2,6 @@ package tp2java.modelo.tablero;
 
 import java.util.ArrayList;
 import tp2java.modelo.tablero.Coordenada;
-import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.unidades.Unidad;
 
 
@@ -21,7 +20,7 @@ public class Tablero{
 	
 	public boolean laCeldaEstaLibre(Coordenada coordenada) {
 		for(Unidad unidad : this.unidades) {
-			if(unidad.tieneMismaUbicacion(coordenada)) {
+			if(unidad.tieneMismaUbicacion(coordenada) ) {
 				return false;
 			}
 			
@@ -58,5 +57,7 @@ public class Tablero{
 	public ArrayList<Unidad> getUnidades(){
 		return unidades;
 	}
-	
+	public void quitar(Unidad unidad) {
+		this.unidades.remove(unidad);
+	}
 }
