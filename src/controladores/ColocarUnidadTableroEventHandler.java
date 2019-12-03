@@ -7,7 +7,6 @@ import javafx.scene.control.Alert.AlertType;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Unidad;
-import vista.ContenedorColocar;
 import vista.ContenedorConTablero;
 import vista.VistaCelda;
 
@@ -30,18 +29,18 @@ public class ColocarUnidadTableroEventHandler implements EventHandler<ActionEven
 			Unidad unidad = escena.getUnidadSeleccionada().getUnidad();
 			unidad.setUbicacion(this.coordenada);
 			unidad.setTablero(tablero);
+			
 			if (tablero.laCeldaEstaLibre(coordenada) && unidad.perteneceASuSector()) {
 				tablero.colocarUnidad(unidad);
 				unidad.addObserver(celda);
 				escena.resetSeleccionado();
-			}else {
+			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Elige otra celda");
 				alert.setHeaderText("Por favor, selecciona una.");
 				alert.setContentText("Un gran poder conlleva una gran responsabilidad");
 				alert.showAndWait();
-			}	
-		
+			}
 		}else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("No seleccionaste una unidad antes :(");

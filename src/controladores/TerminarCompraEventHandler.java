@@ -5,12 +5,13 @@ import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
-import vista.ContenedorCompra;
 import vista.ContenedorColocar;
 
 public class TerminarCompraEventHandler implements EventHandler<ActionEvent> {
@@ -30,15 +31,21 @@ public class TerminarCompraEventHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		Juego juego = new Juego(jugador1, jugador2);
-		ContenedorColocar colocar = new ContenedorColocar(this.stage, jugador1, jugador2,juego);
-//		colocar.setBotonSiguiente(jugador2, jugador1, juego);
-		Scene escenaColocar= new Scene(colocar,1100,650);
-		this.stage.setScene(escenaColocar);
-		
+		if(jugador2.tieneUnidades()) {
+			Juego juego = new Juego(jugador1, jugador2);
+			ContenedorColocar colocar = new ContenedorColocar(this.stage, jugador1, jugador2,juego);
+			Scene escenaColocar= new Scene(colocar,1100,650);
+			this.stage.setScene(escenaColocar);
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+ 			alert.setTitle("No seas tacaño.");
+ 			alert.setHeaderText("Debes comprar al menos una unidad para poder jugar");
+ 			alert.setContentText("Por favor, intenta de nuevo.");
+
+ 			alert.showAndWait();
+		}
 		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
         mp=new MediaPlayer(sonyInicio);
 		mp.play();
-		
 	}
 }

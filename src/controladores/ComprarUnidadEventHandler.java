@@ -1,8 +1,6 @@
 package controladores;
 
-
 import java.io.File;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -10,10 +8,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tp2java.modelo.Jugador;
-import tp2java.modelo.unidades.Catapulta;
-import tp2java.modelo.unidades.Curandero;
-import tp2java.modelo.unidades.Jinete;
-import tp2java.modelo.unidades.SoldadoDeInfanteria;
 import tp2java.modelo.unidades.Unidad;
 
 public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
@@ -29,22 +23,16 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 		
 	}
 	@Override
-	public void handle(ActionEvent event) {
-		
-		
-        
-        
+	public void handle(ActionEvent event) {        
 		Unidad nueva = null;
-
 		try {
 			nueva = unidad.getClass().newInstance();
 		}  catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		if(jugador.noTienePuntosSuficientesParaComprar(nueva)) {
  			Alert alert = new Alert(AlertType.INFORMATION);
  			alert.setTitle("Puntos insuficientes");
@@ -55,14 +43,8 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 		} else {
 			jugador.comprarUnidad(nueva);
 		}
-		
-	
-
 		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
 		        MediaPlayer mediaplayer=new MediaPlayer(sonyInicio);
 		        mediaplayer.play();
-		
-		
 	}
-
 }

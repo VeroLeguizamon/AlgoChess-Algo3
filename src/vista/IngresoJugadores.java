@@ -13,7 +13,7 @@ public class IngresoJugadores {
 	private final TextField texto;
 	
 	public IngresoJugadores(String textomostrar) {
-		// TODO Auto-generated constructor stub
+		
 		TextField textoInicio=new TextField();
 		textoInicio.setPromptText(textomostrar);
 		textoInicio.setFont(Font.font("Arial",15));
@@ -30,13 +30,13 @@ public class IngresoJugadores {
 		
 		
 	}
-
 	public HBox gethBox() {
 		return this.hBox;
 	}
-
 	public String getNombre() {
 		return this.texto.getText();
 	}
-
+	public boolean tieneNombreVacio() {
+		return this.getNombre().isEmpty();
+	}
 }
