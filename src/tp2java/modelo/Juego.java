@@ -41,4 +41,8 @@ public class Juego {
 	public Jugador getjugadorEnTurno() {
 		return this.jugadorActual;
 	}
+
+	public boolean hayGanador() {
+		return(jugadorSiguiente.esPerdedor());
+	}
 }

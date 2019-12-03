@@ -60,7 +60,6 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
         this.getChildren().add(vBox);         
         this.colocarUnidades(jugador2);
         
-        //terminarDeColocar
         this.setBotonTerminar(jugador1, jugador2, juego);
         
         this.setBackground(new Background(mostrarFondoBienvenida));

@@ -40,6 +40,7 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	@Override
 	public void recuperarVida(int vidaARecuperar) {
 		setVida(this.getVida() + vidaARecuperar);
+		notifyObservers();
 	}
 	
 	@Override	
