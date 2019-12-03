@@ -65,4 +65,10 @@ public class VistaCelda extends Button implements Observer{
 	public void reiniciar() {
 		this.setText("");
 	}
+	public boolean estaVacia() {
+		return this.vista == null;
+	}
+	public boolean mismaUnidad(VistaUnidad seleccionado) {
+		return this.vista == seleccionado;
+	}
 }

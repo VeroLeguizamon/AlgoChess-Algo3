@@ -1,11 +1,6 @@
 package vista;
 
-import controladores.ColocarUnidadTableroEventHandler;
-import controladores.MoverUnidadEventHandler;
 import controladores.ResolverInteraccionesEventHandler;
-import controladores.SiguienteJugadorCompraEventHandler;
-import controladores.TerminarColocarEventHander;
-import controladores.TerminarCompraEventHandler;
 import controladores.TerminarTurnoEventHander;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,15 +22,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
-import tp2java.modelo.tablero.Direccion;
-import tp2java.modelo.tablero.Tablero;
-import tp2java.modelo.unidades.Unidad;
-import tp2java.modelo.unidades.UnidadMovible;
 import tp2java.modelo.tablero.Tablero;
 
 public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
-	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
 
 	public final Stage stage;	
@@ -149,7 +139,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	public void prepararMovimiento(VistaCelda vistaCelda) {
 		
 		ContenedorMovimientos botonesMov=new ContenedorMovimientos(this,vistaCelda);
-		Tablero tablero = juego.getTablero();
         this.contMov=botonesMov;
         this.getChildren().add(botonesMov);	
 		
@@ -194,5 +183,8 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 
 	public void quitarBotonesMovimiento() {
 		this.getChildren().remove(contMov);	
+	}
+	public boolean esLaMismaUnidadSeleccionada(VistaCelda vistaCelda) {
+		return vistaCelda.mismaUnidad(this.seleccionado);
 	}
 }

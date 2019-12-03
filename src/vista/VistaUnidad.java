@@ -1,18 +1,13 @@
 package vista;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import tp2java.modelo.Observer;
 import tp2java.modelo.unidades.Unidad;
 

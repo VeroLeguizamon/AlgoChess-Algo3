@@ -1,11 +1,8 @@
 package controladores;
 
 import java.util.Queue;
-import java.util.Scanner;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Direccion;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Batallon;
@@ -13,19 +10,16 @@ import tp2java.modelo.unidades.Unidad;
 import tp2java.modelo.unidades.UnidadMovible;
 import vista.ContenedorJuego;
 import vista.VistaCelda;
-import vista.VistaUnidad;
 
 public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 	
 	private VistaCelda vistaCelda;
-	private Tablero tablero;
 	private ContenedorJuego contenedorJuego;
 	private Direccion direccion;
 	
 	public MoverUnidadEventHandler(VistaCelda seleccionada, ContenedorJuego contenedorJuego, Direccion direccion) {
 		
 		this.vistaCelda = seleccionada;
-		this.tablero=tablero;
 		this.contenedorJuego=contenedorJuego;
 		this.direccion=direccion;
 		

@@ -26,11 +26,11 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 	@Override
 	public void handle(ActionEvent arg0) {
 
-		if (vistaCelda.getVistaUnidad() != null && !contenedorJuego.getJugadorEnTurno().realizoAccion()){
+		if (!vistaCelda.estaVacia() && !contenedorJuego.getJugadorEnTurno().realizoAccion()){
 			
 			Unidad unidad = vistaCelda.getVistaUnidad().getUnidad();
 			
-			if(contenedorJuego.hayUnidadSeleccionada() && (vistaCelda.getVistaUnidad() != contenedorJuego.getUnidadSeleccionada())) {
+			if(contenedorJuego.hayUnidadSeleccionada() && !contenedorJuego.esLaMismaUnidadSeleccionada(this.vistaCelda)) {
 				try {
 					contenedorJuego.getUnidadSeleccionada().getUnidad().interactuar(unidad);
 				} catch (ObjetivoAliado e) {

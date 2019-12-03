@@ -2,7 +2,6 @@ package vista;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Unidad;
@@ -43,13 +42,8 @@ public class VistaTablero extends Group {
     }
 
     public void colocarVista(VistaUnidad view, int x, int y) {
-    	
-    	try {
     		VistaCelda vista = paneles[x][y];
     		vista.colocarUnidad(view);
-    	} catch (Exception e) {
-    		//TODO: Tratar Excepcion
-    	}
     }
     
     public void dibujarUnidades(Tablero tablero) {
@@ -91,7 +85,5 @@ public class VistaTablero extends Group {
 		this.actualizarVista(this.tablero);
 		
 	}
-
-	
     
 }

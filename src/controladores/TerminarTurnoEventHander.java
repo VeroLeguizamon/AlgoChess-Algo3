@@ -1,7 +1,5 @@
 package controladores;
 
-
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -24,6 +22,7 @@ public class TerminarTurnoEventHander implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent arg0) {
 		if(juego.hayGanador()) {
+			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Felicidades!");
 			alert.setHeaderText("Ha ganado el jugador "+contJuego.getJugadorEnTurno().getNombre());
