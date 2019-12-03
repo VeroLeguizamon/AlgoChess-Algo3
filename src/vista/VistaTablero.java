@@ -2,8 +2,10 @@ package vista;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import tp2java.modelo.tablero.Tablero;
+import tp2java.modelo.unidades.Unidad;
 
 public class VistaTablero extends Group {
 	
@@ -11,14 +13,18 @@ public class VistaTablero extends Group {
     public double alto;
     private double anchoCelda = 32;
     private double altoCelda = 32;
+    private Tablero tableroM;
+    private ContenedorConTablero juego;
 
     private GridPane tablero;
     private VistaCelda[][] paneles;
 	
-	public VistaTablero(Tablero tableroM, ContenedorColocar juego) {
+	public VistaTablero(Tablero tableroM, ContenedorConTablero juego) {
         tablero = new GridPane();
         ancho = anchoCelda * 20;
         alto = altoCelda * 20;
+        this.tableroM = tableroM;
+        this.juego = juego;
         paneles = new VistaCelda[ (int)ancho][(int)alto];
         
         for (int i = 0; i < 20; i++) {
@@ -43,6 +49,31 @@ public class VistaTablero extends Group {
     	} catch (Exception e) {
     		//TODO: Tratar Excepcion
     	}
+    }
+    
+    public void dibujarUnidades(Tablero tablero) {
+    	for(Unidad unidad : tablero.getUnidades()){
+    		colocarVista(new VistaUnidad(this,unidad), unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
+    	}
+    	
+    }
+    
+    public void actualizarTablero(Tablero tablero) {
+    	
+    	for (int i = 0; i < 20; i++) {
+    		for (int j = 0; j < 20; j++) {
+    			
+//    			gridPecas.getChildren (). RemoveAll (pecasFX [i] [j])
+    			
+    			paneles[i][j].setBackground(Background.EMPTY);
+    			paneles[i][j].setText("");
+    			
+    		}
+    	}
+    	
+    	dibujarUnidades(tablero);
+    	
+    	
     }
 
     public void agregarVista(Node view) {

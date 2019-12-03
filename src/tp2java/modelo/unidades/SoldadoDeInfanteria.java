@@ -25,6 +25,11 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	}
 	
 	@Override
+	public void interactuar(Unidad unidad) {
+		atacar(unidad);
+	}
+	
+	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
 		
 		if(distanciaA(unidad) < 3)
@@ -50,4 +55,10 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	public boolean sePuedeUnirAlBatallon() {
 		return true;
 	}
+	
+	@Override
+	public boolean esCurable() {
+		return true;
+	}
+	
 }

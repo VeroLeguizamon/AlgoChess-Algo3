@@ -55,6 +55,11 @@ public class Tablero{
 		return unidades;
 	}
 	
+	public ArrayList<Unidad> getUnidades(){
+		return unidades;
+	}	
+	
+	
 
 	
 }

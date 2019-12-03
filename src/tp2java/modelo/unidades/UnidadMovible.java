@@ -30,4 +30,9 @@ public class UnidadMovible extends Unidad {
 		}
 	}
 	
+	@Override
+	public boolean sePuedeMover() {
+		return true;
+	}
+	
 }

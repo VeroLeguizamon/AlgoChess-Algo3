@@ -42,4 +42,5 @@ public class Equipo {
 	public boolean yaTiene(Unidad unidad) {
 		return this.unidades.contains(unidad);
 	}
+	
 }

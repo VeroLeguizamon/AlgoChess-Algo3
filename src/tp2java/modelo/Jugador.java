@@ -75,4 +75,5 @@ public class Jugador extends Observable{
 	public boolean realizoAccion() {
 		return this.accion;
 	}
+	
 }

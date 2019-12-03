@@ -1,5 +1,9 @@
 package vista;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -25,5 +29,8 @@ public class VistaCompraUnidad extends Button{
         this.setMinHeight(200);
         this.setMinWidth(150);
         
+        
 	}
+
+	
 }

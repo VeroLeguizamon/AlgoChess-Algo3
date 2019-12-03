@@ -7,12 +7,12 @@ import javafx.scene.control.Alert.AlertType;
 import vista.ContenedorColocar;
 import vista.VistaUnidad;
 
-public class UnidadColocarHandlerEvent implements EventHandler<ActionEvent> {
+public class UnidadColocarEventHandler implements EventHandler<ActionEvent> {
 
 	private VistaUnidad unidad;
 	private ContenedorColocar escena;
 	
-	public UnidadColocarHandlerEvent(VistaUnidad vista, ContenedorColocar juego) {
+	public UnidadColocarEventHandler(VistaUnidad vista, ContenedorColocar juego) {
 		this.unidad = vista;
 		this.escena = juego;
 	}
@@ -27,7 +27,6 @@ public class UnidadColocarHandlerEvent implements EventHandler<ActionEvent> {
 			alert.showAndWait();
 		} else {
 			escena.setUnidadSeleccionada(this.unidad);
-			
 		}
 	}
 
