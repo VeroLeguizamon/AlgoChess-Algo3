@@ -4,19 +4,15 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import tp2java.modelo.Jugador;
 
 public class Aplicacion extends Application{
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	private Stage stage;
-
+	
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		
-		this.stage = primaryStage;
 		
 		primaryStage.setTitle("TP-AlgoChess");
 		primaryStage.getIcons().add(new Image("file:src/vista/imagenes/icon.png"));
@@ -29,17 +25,6 @@ public class Aplicacion extends Application{
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		
-	}
-
-	public void cambiarEscenaCompra(Jugador jugador1, Jugador jugador2) {
-		
-		ContenedorCompra compra = new ContenedorCompra(this.stage, jugador1, jugador2);
-		compra.setBotonSiguiente();
-		
-		Scene escenaCompra = new Scene(compra,1100,650);
-		
-		this.stage.setScene(escenaCompra);
-		this.stage.show();
 	}
 
 }

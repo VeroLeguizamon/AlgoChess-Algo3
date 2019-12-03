@@ -1,7 +1,5 @@
 package vista;
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.Observer;
 

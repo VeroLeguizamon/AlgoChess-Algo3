@@ -18,7 +18,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import tp2java.modelo.Juego;
@@ -27,7 +26,6 @@ import tp2java.modelo.tablero.Tablero;
 
 public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
-	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
 
 	public final Stage stage;	
@@ -78,9 +76,7 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	    label.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
 	    label.setTextFill(Color.web("#fff"));
 	    label.setTextAlignment(TextAlignment.CENTER);
-	    
-	    System.out.println(jugador.cantidadDeUnidades());
-	    
+	    	    
 	    b.getChildren().add(label);
 	    b.getChildren().add(unidades);
 	    this.getChildren().add(b);
@@ -112,9 +108,6 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 		this.seleccionado = null;
 	}
 
-//	public void setBotonSiguiente(Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego) {
-//		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorColocarEventHandler(this.stage,jugadorSiguiente,jugadorEnEspera,juego));
-//	}
 	public void setBotonTerminar(Jugador jugador1, Jugador jugador2, Juego juego) {
 		this.setBoton(RUTA_TERMINAR, new TerminarColocarEventHander(this.stage, jugador2, jugador1,juego));
 	}
@@ -136,9 +129,7 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 
 	@Override
 	public void definirAccionDeCelda(VistaCelda vistaCelda, Tablero tablero, int x, int y) {
-
-		vistaCelda.setOnAction(new ColocarUnidadTableroEventHandler(vistaCelda,tablero, this, x,y));
-		
+		vistaCelda.setOnAction(new ColocarUnidadTableroEventHandler(vistaCelda,tablero, this, x,y));		
 	}
 	
 	@Override

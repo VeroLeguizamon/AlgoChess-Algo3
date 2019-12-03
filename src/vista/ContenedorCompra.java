@@ -30,8 +30,6 @@ public class ContenedorCompra extends HBox{
 	
 	private VBox box = new VBox(20);
 	
-	private Button boton;
-	
 	public ContenedorCompra(Stage stage, Jugador jugador1, Jugador jugador2) {
 		this.stage = stage;
 		this.jugador1 = jugador1;
@@ -93,14 +91,5 @@ public class ContenedorCompra extends HBox{
 		jugador.setContenedor(datos);
 		this.box.getChildren().add(datos);
 		
-	}
-	public void deshabilitarBoton(){
-
-		this.boton.setVisible(false);
-		this.boton.setDisable(true);
-	}
-	public void habilitarBoton() {
-		this.boton.setVisible(true);
-		this.boton.setDisable(false);
 	}
 }

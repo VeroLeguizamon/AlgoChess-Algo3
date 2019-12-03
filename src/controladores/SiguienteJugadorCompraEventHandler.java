@@ -27,6 +27,9 @@ public class SiguienteJugadorCompraEventHandler implements EventHandler<ActionEv
 	}
 	@Override
 	public void handle(ActionEvent actionEvent) {
+		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
+		mp=new MediaPlayer(sonyInicio);
+		mp.play();
 		
 		if(jugador1.tieneUnidades()) {
 			ContenedorCompra compra =new ContenedorCompra(this.stage, jugador2, jugador1);
@@ -35,14 +38,12 @@ public class SiguienteJugadorCompraEventHandler implements EventHandler<ActionEv
 			this.stage.setScene(escenaCompra);
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
- 			alert.setTitle("No seas tacaño.");
+ 			alert.setTitle("Compra algo!.");
  			alert.setHeaderText("Debes comprar al menos una unidad para poder jugar");
  			alert.setContentText("Por favor, intenta de nuevo.");
 
  			alert.showAndWait();
 		}
-		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
-		mp=new MediaPlayer(sonyInicio);
-		mp.play();
+
 	}
 }

@@ -1,9 +1,5 @@
 package vista;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -15,9 +11,7 @@ import javafx.scene.layout.BackgroundSize;
 public class VistaCompraUnidad extends Button{
 	
 	public VistaCompraUnidad(String rutaImagen) {
-		
 		super();
-		
 		String string ="-fx-border-style:solid;" + 
 				"-fx-border-color:#C89B70;" + 
 				"-fx-border-width:1px;";
@@ -27,10 +21,7 @@ public class VistaCompraUnidad extends Button{
         this.setBackground(new Background(vistaUnidad));
         this.setStyle(string);
         this.setMinHeight(200);
-        this.setMinWidth(150);
-        
-        
+        this.setMinWidth(150);   
 	}
-
 	
 }

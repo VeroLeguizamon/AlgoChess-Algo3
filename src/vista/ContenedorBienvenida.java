@@ -1,7 +1,5 @@
 package vista;
 
-
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -28,7 +26,6 @@ public class ContenedorBienvenida extends VBox{
 	private static final String RUTA_TITULO="file:src/vista/imagenes/logo1.png";
 	private static final String RUTA_JUGAR="file:src/vista/imagenes/juga.png";
 	private static final String RUTA_SALIR="file:src/vista/imagenes/salir.png";
-	
 	private static final String RUTA_SONYINICIO="src/vista/sonidos/sonidoInicio2.mp3";
 	MediaPlayer mediaplayer;
 
@@ -71,23 +68,20 @@ public class ContenedorBienvenida extends VBox{
 	
 	public void setBotonesSalirJugar(Aplicacion app) {
 		
-		JugarEventHandler jugarEvent=new JugarEventHandler(app, jugadores,this.mediaplayer);
+		JugarEventHandler jugarEvent=new JugarEventHandler(this.stage, jugadores,this.mediaplayer);
 		SalirEventHandler salirEvent=new SalirEventHandler();
 		
 		Button botonJugar=new Button("");
 		botonJugar.setOnAction(jugarEvent);
 		botonJugar.setBackground(Background.EMPTY);
-//		botonJugar.setStyle("-fx-background-color:#568c30; -fx-font-size:5px");
 		Image imagenjugar=new Image(RUTA_JUGAR,150,150,true,true);
 		botonJugar.setGraphic(new ImageView(imagenjugar));
 		
 		Button botonSalir=new Button("");
 		botonSalir.setOnAction(salirEvent);
 		botonSalir.setBackground(Background.EMPTY);
-//		botonSalir.setStyle("-fx-background-color:#568c30; -fx-font-size:5px");
 		Image imagensalir=new Image(RUTA_SALIR,150,150,true,true);
 		botonSalir.setGraphic(new ImageView(imagensalir));
-		
 		
 		this.getChildren().addAll(botonJugar,botonSalir);
 	}
