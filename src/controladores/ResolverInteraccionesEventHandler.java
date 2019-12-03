@@ -35,6 +35,7 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 					contenedorJuego.getUnidadSeleccionada().getUnidad().interactuar(unidad);
 				} catch (ObjetivoAliado e) {
 					nuevaAlerta("Unidad aliada.","Por favor, selecciona una enemiga.","Un gran poder conlleva una gran responsabilidad");
+					contenedorJuego.quitarBotonesMovimiento();
 				}
 				contenedorJuego.resetSeleccionado();
 			} else if (vistaCelda.getVistaUnidad().getUnidad().getJugador() == contenedorJuego.getJugadorEnTurno()){
@@ -44,6 +45,7 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 				}
 			} else {
 				nuevaAlerta("No es tu unidad!","Esa unidad no pertenece al jugador en turno.","Un gran poder conlleva una gran responsabilidad");
+				contenedorJuego.quitarBotonesMovimiento();
 			}
 			
 			if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {
