@@ -1,5 +1,6 @@
 package vista;
 
+import controladores.MoverUnidadEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,8 +18,8 @@ import tp2java.modelo.tablero.Direccion;
 
 public class ContenedorMovimientos extends GridPane {
 	
-	private Direccion DireccionSalida;
-	public ContenedorMovimientos(ContenedorJuego contJuego) {
+	private ContenedorJuego contJuego;
+	public ContenedorMovimientos(ContenedorJuego contJuego, VistaCelda seleccionada) {
 		
 //		this.setVgap(10);
 //		this.setHgap(10);
@@ -38,7 +39,7 @@ public class ContenedorMovimientos extends GridPane {
 		Button btnAbajoIzq=new Button("AbajoIzq");
 		Button btnArribaDere=new Button("ArribaDere");
 		Button btnAbajoDere=new Button("AbajoDere");
-		
+		this.contJuego = contJuego;
 		
 //		BackgroundImage vimgArriba =new BackgroundImage(imgArriba, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         
@@ -50,62 +51,14 @@ public class ContenedorMovimientos extends GridPane {
 //		btnIzquierda.setGraphic(new ImageView(imgIzquierda));
 //		
 		
-		btnArriba.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ABAJO;				
-			}
-		});
-		btnAbajo.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ARRIBA;				
-			}
-		});
-		btnDerecha.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.DERECHA;				
-			}
-		});
-		btnIzquierda.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.IZQUIERDA;				
-			}
-		});
-		btnArribaIzq.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ABAJO_IZQUIERDA;				
-			}
-		});
-		btnAbajoIzq.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ARRIBA_IZQUIERDA;				
-			}
-		});
-		btnArribaDere.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ABAJO_DERECHA;				
-			}
-		});
-		btnAbajoDere.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				DireccionSalida=Direccion.ARRIBA_DERECHA;				
-			}
-		});
+		btnArriba.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ABAJO));
+		btnAbajo.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ARRIBA));
+		btnDerecha.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.DERECHA));
+		btnIzquierda.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.IZQUIERDA));
+		btnArribaIzq.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ABAJO_IZQUIERDA));
+		btnAbajoIzq.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ARRIBA_IZQUIERDA));
+		btnArribaDere.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ABAJO_DERECHA));
+		btnAbajoDere.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ARRIBA_DERECHA));
 		
 		this.add(btnArriba, 1, 0);
 		this.add(btnAbajo, 1, 2);
@@ -115,12 +68,9 @@ public class ContenedorMovimientos extends GridPane {
 		this.add(btnArribaDere, 2, 0);
 		this.add(btnAbajoIzq, 0, 2);
 		this.add(btnAbajoDere, 2, 2);
-//		DireccionSalida=Direccion.ABAJO;
+		
 	}
 	
-	public Direccion movimientoSeleccionado() {
-		return this.DireccionSalida;
-	}
 	
 
 }

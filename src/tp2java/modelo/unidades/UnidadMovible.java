@@ -27,6 +27,7 @@ public class UnidadMovible extends Unidad {
 		if (this.getTablero().sePuedeMoverUnidad(nueva)) {
 			this.setUbicacion(nueva);
 			this.getJugador().realizarAccion();
+			this.notifyObservers();
 		}
 	}
 	

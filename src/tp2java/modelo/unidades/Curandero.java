@@ -34,7 +34,7 @@ public class Curandero extends UnidadMovible implements Curable {
 		
 		if(unidad.esCurable()) {
 			curar((Curable)unidad);
-			this.getJugador().realizoAccion();
+			this.getJugador().realizarAccion();
 		}
 		
 	}
@@ -49,6 +49,7 @@ public class Curandero extends UnidadMovible implements Curable {
 	@Override
 	public void recuperarVida(int vidaARecuperar) {
 		setVida(this.getVida() + vidaARecuperar);
+		notifyObservers();
 	}
 	
 	@Override	

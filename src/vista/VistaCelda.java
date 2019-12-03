@@ -12,15 +12,15 @@ import tp2java.modelo.unidades.Unidad;
 
 public class VistaCelda extends Button implements Observer{
 	
-	
 	private VistaUnidad vista;
 	private int x;
 	private int y;
 	private Tablero tablero;
 	private ContenedorConTablero escena;
+	
 	public VistaCelda(int x, int y, double anchoCelda, double altoCelda, Tablero tablero, ContenedorConTablero escena) {
-        
-		this.setMinHeight(altoCelda);
+
+        this.setMinHeight(altoCelda);
         this.setMinWidth(anchoCelda);
         this.x = x;
         this.y = y;
@@ -39,18 +39,15 @@ public class VistaCelda extends Button implements Observer{
 		this.setBackground(vista.getBackground());
 		
 		this.setText(String.valueOf(vista.getUnidad().getVida()));
-		
 		System.out.print(vista.getUnidad().getVida());
 		
 		this.setStyle("-fx-font-family:arial; -fx-font-size:10px");
 	    this.setTextFill(Color.web("#fff"));
 	    this.setTextAlignment(TextAlignment.CENTER);
-	    
 	}
 	public void limpiarCelda() {
         
-        
-//        this.setBackground(Background.EMPTY);
+        this.setBackground(Background.EMPTY);
 		this.setGraphic(null);
         this.setText(" ");
         this.setStyle("-fx-font-family:arial; -fx-font-size:10px; -fx-background-color: #FFFFFF;");
@@ -71,8 +68,9 @@ public class VistaCelda extends Button implements Observer{
 	@Override
 	public void change() {
 		this.setText(String.valueOf(vista.getUnidad().getVida()));
-		if(vista.getUnidad().estaMuerta()) {
-	       
-		}
+	}
+	
+	public void reiniciar() {
+		this.setText("");
 	}
 }

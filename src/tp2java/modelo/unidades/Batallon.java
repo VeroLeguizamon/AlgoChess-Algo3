@@ -26,7 +26,7 @@ public class Batallon {
 		if (unidadCentral.sePuedeUnirAlBatallon()) {
 			batallonAux.add(unidadCentral);
 			for(Unidad unidadAdyacente: adyacentes) {
-				if(unidadAdyacente.sePuedeUnirAlBatallon() & (batallonAux.size()<=2) ) {
+				if(unidadAdyacente.sePuedeUnirAlBatallon() && unidadAdyacente.mismoEquipo(unidadCentral) && (batallonAux.size()<=2) ) {
 					batallonAux.add(unidadAdyacente);
 				}
 			}
@@ -55,7 +55,7 @@ public class Batallon {
 		}
 	}
 	
-	private Queue<Unidad> formarPila(){
+	public Queue<Unidad> formarPila(){
 		Queue<Unidad> unidades = new LinkedList<>();
 		
 		for(Unidad unidad : this.batallon) {
@@ -72,4 +72,5 @@ public class Batallon {
 		}
 		return false;
 	}
+	
 }

@@ -45,7 +45,7 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(20);
 	    this.setPadding(new Insets(25));
-//	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
+	    this.hBox.setAlignment(Pos.CENTER_RIGHT);
 	    this.vTablero = new VistaTablero(juego.getTablero(),this);
 	    vTablero.dibujarUnidades(juego.getTablero());	    
 	    
