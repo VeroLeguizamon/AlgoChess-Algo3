@@ -34,15 +34,16 @@ public class Curandero extends UnidadMovible implements Curable {
 		
 		if(unidad.esCurable()) {
 			curar((Curable)unidad);
-			this.getJugador().realizarAccion();
 		}
 		
 	}
 	
 	public void curar(Curable curable) { 
 		
-		if(curable.distanciaACurandero(this) < 3)
+		if(curable.distanciaACurandero(this) < 3) {
 			curable.recuperarVida(poderDeCuracion);
+			this.getJugador().realizarAccion();
+		}
 		
 	}
 

@@ -43,6 +43,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	
 	private Label jugadorEnTurno;
 	private HBox hb;
+	private VBox vb;
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
@@ -67,14 +68,16 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
         jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
         jugadorEnTurno.setTextFill(Color.web("#fff"));
         jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
-//        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
+//      jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
         jugadorEnTurno.setAlignment(Pos.TOP_CENTER);
 	    
        
-        
+        this.getChildren().add(jugadorEnTurno);
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);
-        this.getChildren().add(jugadorEnTurno);
+        this.getChildren().add(vb);
+        
+        this.setBotonTerminarTurno();
         
         this.setBackground(new Background(mostrarFondoBienvenida));
         
@@ -127,7 +130,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		hb.getChildren().addAll(boton);
 		hb.setAlignment(Pos.BOTTOM_CENTER);
 		
-		this.getChildren().add(hb);
+		this.vb.getChildren().add(hb);
 	}
 	
 
@@ -143,7 +146,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		
 		ContenedorMovimientos botonesMov=new ContenedorMovimientos(this,vistaCelda);
         this.contMov=botonesMov;
-        this.getChildren().add(botonesMov);	
+        this.vb.getChildren().add(botonesMov);	
 		
 	/*	
 		if(unidad.getJugador()==this.jugadorActual) {//corresponde al turno
@@ -183,7 +186,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	}
 
 	public void quitarBotonesMovimiento() {
-		this.getChildren().remove(contMov);	
+		this.vb.getChildren().remove(contMov);	
 	}
 	public boolean esLaMismaUnidadSeleccionada(VistaCelda vistaCelda) {
 		return vistaCelda.mismaUnidad(this.seleccionado);

@@ -58,10 +58,10 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 			}
 			
 			if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {
-				contenedorJuego.quitarBotonesMovimiento();
-				contenedorJuego.setBotonTerminarTurno();
-			
+				contenedorJuego.quitarBotonesMovimiento();			
 			}
+		} else if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {
+			nuevaAlerta("Ya se realizó una acción!","Debe terminar su turno.","Un gran poder conlleva una gran responsabilidad.");
 		}
 		
 		

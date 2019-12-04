@@ -44,7 +44,6 @@ public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 
 		contenedorJuego.resetSeleccionado();
 		contenedorJuego.quitarBotonesMovimiento();
-		contenedorJuego.siguienteTurno();
 		
 		
 		}
