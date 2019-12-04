@@ -9,15 +9,23 @@ public class ContenedorMovimientos extends GridPane {
 	
 	public ContenedorMovimientos(ContenedorJuego contJuego, VistaCelda seleccionada) {
 
-		Button btnArriba=new Button("Arriba");
-		Button btnAbajo=new Button("Abajo");
-		Button btnDerecha=new Button("Derecha");
-		Button btnIzquierda=new Button("Izquierda");
-		Button btnArribaIzq=new Button("ArribaIzq");
-		Button btnAbajoIzq=new Button("AbajoIzq");
-		Button btnArribaDere=new Button("ArribaDere");
-		Button btnAbajoDere=new Button("AbajoDere");
-			
+		Button btnArriba=new Button("\u2191");
+		btnArriba.setMinSize(30, 30);
+		Button btnAbajo=new Button("\u2193");
+		btnAbajo.setMinSize(30, 30);
+		Button btnDerecha=new Button("\u2192");
+		btnDerecha.setMinSize(30, 30);
+		Button btnIzquierda=new Button("\u2190");
+		btnIzquierda.setMinSize(30, 30);
+		Button btnArribaIzq=new Button("\u2196");
+		btnArribaIzq.setMinSize(30, 30);
+		Button btnAbajoIzq=new Button("\u2199");
+		btnAbajoIzq.setMinSize(30, 30);
+		Button btnArribaDere=new Button("\u2197");
+		btnArribaDere.setMinSize(30, 30);
+		Button btnAbajoDere=new Button("\u2198");
+		btnAbajoDere.setMinSize(30, 30);
+		
 		btnArriba.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ABAJO));
 		btnAbajo.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ARRIBA));
 		btnDerecha.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.DERECHA));

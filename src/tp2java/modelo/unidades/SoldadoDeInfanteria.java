@@ -9,19 +9,22 @@ import tp2java.modelo.Jugador;
 public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Curable{
 	
 	private Ataque ataque;
+	private static int distanciaMaximaAtaque = 3;
+	private static int precio = 1;
+	private static int poderAtaque = 10;
 	
 	public SoldadoDeInfanteria(Jugador jugador, Coordenada ubicacion, Tablero tablero) {
 		
-		super(100,1,jugador,ubicacion,tablero);
-		ataque = new Ataque(this,10);
+		super(100,precio,jugador,ubicacion,tablero);
+		ataque = new Ataque(this,poderAtaque);
 	}
 	public SoldadoDeInfanteria(Jugador jugador) {
-		super(100,1,jugador);
-		ataque = new Ataque(this,10);
+		super(100,precio,jugador);
+		ataque = new Ataque(this,poderAtaque);
 	}
 	public SoldadoDeInfanteria() {
-		super(100,1);
-		ataque = new Ataque(this,10);
+		super(100,precio);
+		ataque = new Ataque(this,poderAtaque);
 	}
 	
 	@Override
@@ -30,9 +33,8 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	}
 	
 	@Override
-	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
-		
-		if(distanciaA(unidad) < 3)
+	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
+		if(distanciaA(unidad) < distanciaMaximaAtaque)
 			ataque.a(unidad);
 			
 	}

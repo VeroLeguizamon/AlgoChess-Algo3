@@ -1,6 +1,5 @@
 package controladores;
 
-import java.util.Queue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import tp2java.modelo.tablero.Direccion;

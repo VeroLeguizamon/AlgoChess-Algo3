@@ -29,8 +29,10 @@ public class TerminarTurnoEventHander implements EventHandler<ActionEvent>{
 			alert.showAndWait();
 		}
 		else {
+			if(contJuego.hayUnidadSeleccionada()) {
+				contJuego.resetSeleccionado();
+			}
 			contJuego.quitarBotonesMovimiento();
-			contJuego.resetSeleccionado();
 			contJuego.siguienteTurno();
 		}
 	}

@@ -11,21 +11,23 @@ import tp2java.modelo.Jugador;
 public class Catapulta extends Unidad implements Atacante {
 	
 	private Ataque ataque;
+	private int distanciaMinimaAtaque = 6;
+	private static int precio = 5;
+	private static int poderAtaque = 20;
 	
 	public Catapulta(Jugador jugador, Coordenada ubicacion, Tablero tablero) {
-		
-		super(50,5,jugador,ubicacion,tablero);
-		this.ataque = new Ataque(this,20);
+		super(50,precio,jugador,ubicacion,tablero);
+		this.ataque = new Ataque(this,poderAtaque);
 		
 	}
 	
 	public Catapulta(Jugador jugador) {
-		super(50,5,jugador);
-		this.ataque = new Ataque(this,20);
+		super(50,precio,jugador);
+		this.ataque = new Ataque(this,poderAtaque);
 	}
 	
 	public Catapulta() {
-		super(50,5);
+		super(50,precio);
 		this.ataque = new Ataque(this,20);
 	}
 	
@@ -35,17 +37,14 @@ public class Catapulta extends Unidad implements Atacante {
 	}
 	
 	@Override 
-	public void atacar(Unidad unidad) throws ObjetivoAliado{ // Parámetro es la unidad a atacar.	
+	public void atacar(Unidad unidad) throws ObjetivoAliado{	
 				
 		if(esEnemiga(unidad)) {
-			if(distanciaA(unidad) > 6) {
+			if(distanciaA(unidad) > this.distanciaMinimaAtaque) {
 				ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
 				for(Unidad unidadAfectada : unidadesAfectadas) {
 					ataque.sinDistincionDeEquipoA(unidadAfectada);
 				}
-			}
-			else {
-				System.out.print("\nMuy cerca\n");
 			}
 		}
 		else throw (new ObjetivoAliado());
@@ -63,10 +62,10 @@ public class Catapulta extends Unidad implements Atacante {
 	}
 	
 	private void agregarEnCadena(Unidad unidad, ArrayList<Unidad> unidadesAfectadas) {
-		
+		int distanciaAdyacente = 1;
 		if(!unidadesAfectadas.contains(unidad)) {
 			unidadesAfectadas.add(unidad);
-			ArrayList<Unidad> unidadesAdyacentes = unidad.getTablero().unidadesCercanas(unidad, 1);
+			ArrayList<Unidad> unidadesAdyacentes = unidad.getTablero().unidadesCercanas(unidad, distanciaAdyacente);
 			for(Unidad unidadAdyacente : unidadesAdyacentes) {
 				agregarEnCadena(unidadAdyacente, unidadesAfectadas);
 			}

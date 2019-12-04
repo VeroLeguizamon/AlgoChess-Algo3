@@ -12,24 +12,31 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	
 	private Ataque ataqueConEspada;
 	private Ataque ataqueConArco;
+
+	private static int distanciaMinimaArco = 2;
+	private static int distanciaMaximaArco = 6;
+	private static int distanciaMaximaEspada = 3;
+	private static int precio = 3;
+	private static int poderAtaqueEspada = 5;
+	private static int poderAtaqueArco = 15;
 	
 	public Jinete(Jugador jugador, Coordenada ubicacion, Tablero tablero) {
 		
-		super(100,3,jugador,ubicacion,tablero);
-		ataqueConEspada = new Ataque(this,5);
-		ataqueConArco = new Ataque(this,15);
+		super(100,precio,jugador,ubicacion,tablero);
+		ataqueConEspada = new Ataque(this,poderAtaqueEspada);
+		ataqueConArco = new Ataque(this,poderAtaqueArco);
 		
 	}
 	public Jinete(Jugador jugador) {
-		super(100,3,jugador);
-		ataqueConEspada = new Ataque(this,5);
-		ataqueConArco = new Ataque(this,15);
+		super(100,precio,jugador);
+		ataqueConEspada = new Ataque(this,poderAtaqueEspada);
+		ataqueConArco = new Ataque(this,poderAtaqueArco);
 	}
 	
 	public Jinete() {
-		super(100,3);
-		ataqueConEspada = new Ataque(this,5);
-		ataqueConArco = new Ataque(this,15);
+		super(100,precio);
+		ataqueConEspada = new Ataque(this,poderAtaqueEspada);
+		ataqueConArco = new Ataque(this,poderAtaqueArco);
 	}
 	
 	@Override
@@ -39,14 +46,14 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
-		
+		int distanciaCercana = 2;
 		int distancia = distanciaA(unidad);
 
-		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, 2);
+		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, distanciaCercana);
 		
-		if((distancia > 2 && distancia < 6) && (!tieneEnemigoCercano(unidadesCercanas) || tieneSoldadoAliadoCercano(unidadesCercanas)))
+		if((distancia > distanciaMinimaArco && distancia < distanciaMaximaArco) && (!tieneEnemigoCercano(unidadesCercanas) || tieneSoldadoAliadoCercano(unidadesCercanas)))
 			ataqueConArco.a(unidad);
-		else if(distancia < 3)
+		else if(distancia < distanciaMaximaEspada)
 			ataqueConEspada.a(unidad);
 		
 	}

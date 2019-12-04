@@ -23,7 +23,6 @@ public class Jugador extends Observable{
 	public Jugador(String nombreNuevo, int columnaInferior, int columnaSuperior) {
 		this.equipo = new Equipo();
 		this.nombre = nombreNuevo;
-		// Sector cuadrado.
 		this.sector = new Sector(columnaInferior, columnaSuperior);
 	}
 	public int getPuntos() {
@@ -39,10 +38,11 @@ public class Jugador extends Observable{
 	}
 	
 	public void comprarUnidad(Unidad unidad) {
-		if(this.noTienePuntosSuficientesParaComprar(unidad)) { return ;} // Como debe tratarse puntos insuficientes?
-		this.setPuntos(unidad.restarPuntos(this.puntos));
-		unidad.setJugador(this);
-		this.equipo.agregar(unidad);
+		if(this.tieneSuficientesPuntosParaComprar(unidad)) { 
+			this.setPuntos(unidad.restarPuntos(this.puntos));
+			unidad.setJugador(this);
+			this.equipo.agregar(unidad);
+		}
 	}
 	
 	public boolean esPerdedor() {
@@ -50,8 +50,8 @@ public class Jugador extends Observable{
 		return true;
 	}
 	
-	public boolean noTienePuntosSuficientesParaComprar(Unidad unidad) {
-		return (unidad.restarPuntos(this.puntos)<0);
+	public boolean tieneSuficientesPuntosParaComprar(Unidad unidad) {
+		return (unidad.restarPuntos(this.puntos)>=0);
 	}
 	public boolean perteneceAlSector(Coordenada coordenada) {
 		return (this.sector.perteneceAlSector(coordenada));

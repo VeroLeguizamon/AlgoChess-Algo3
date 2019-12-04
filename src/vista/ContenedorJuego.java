@@ -42,8 +42,8 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private Jugador jugadorActual;
 	
 	private Label jugadorEnTurno;
-	private HBox hb;
-	private VBox vb;
+	private HBox hb = new HBox();
+	private VBox vb = new VBox(20);
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
 		this.stage = stage;
@@ -68,13 +68,14 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
         jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
         jugadorEnTurno.setTextFill(Color.web("#fff"));
         jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
-//      jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
         jugadorEnTurno.setAlignment(Pos.TOP_CENTER);
 	    
        
         this.getChildren().add(jugadorEnTurno);
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);
+		this.hb.setAlignment(Pos.TOP_CENTER);
+        this.vb.getChildren().add(hb);
         this.getChildren().add(vb);
         
         this.setBotonTerminarTurno();
@@ -118,8 +119,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
 		
-		hb = new HBox();
-		
 		Button boton=new Button("");
 		boton.setOnAction(event);
 		
@@ -127,10 +126,9 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		Image image=new Image(ruta,150,30,true,true);
 		boton.setGraphic(new ImageView(image));
 		
-		hb.getChildren().addAll(boton);
-		hb.setAlignment(Pos.BOTTOM_CENTER);
+		vb.getChildren().addAll(boton);
+		vb.setAlignment(Pos.BOTTOM_CENTER);
 		
-		this.vb.getChildren().add(hb);
 	}
 	
 
@@ -146,24 +144,8 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		
 		ContenedorMovimientos botonesMov=new ContenedorMovimientos(this,vistaCelda);
         this.contMov=botonesMov;
-        this.vb.getChildren().add(botonesMov);	
-		
-	/*	
-		if(unidad.getJugador()==this.jugadorActual) {//corresponde al turno
-			if((unidad.perteneceASuSector()&& tablero.sePuedeMoverUnidad(movSeleccionado.calcularCoordenada(unidad.getUbicacion())))) {
-				((UnidadMovible)unidad).mover(this.contMov.movimientoSeleccionado());
-
-				vistaCelda.limpiarCelda();
-				this.getVistaTablero().dibujarUnidades(tablero);
-				
-
-				this.resetSeleccionado();
-				
-				
-			}
-		
-		}
-	*/
+        this.hb.getChildren().add(botonesMov);
+        
 	}
 	
 	@Override
@@ -186,7 +168,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	}
 
 	public void quitarBotonesMovimiento() {
-		this.vb.getChildren().remove(contMov);	
+		this.hb.getChildren().remove(contMov);	
 	}
 	public boolean esLaMismaUnidadSeleccionada(VistaCelda vistaCelda) {
 		return vistaCelda.mismaUnidad(this.seleccionado);
