@@ -35,12 +35,16 @@ public class Catapulta extends Unidad implements Atacante {
 	public void interactuar(Unidad unidad) {
 		atacar(unidad);
 	}
+	@Override
+	public boolean puedoInteractuar(Unidad unidad) {
+		return (distanciaA(unidad) > this.distanciaMinimaAtaque);	
+	}
 	
 	@Override 
 	public void atacar(Unidad unidad) throws ObjetivoAliado{	
 				
 		if(esEnemiga(unidad)) {
-			if(distanciaA(unidad) > this.distanciaMinimaAtaque) {
+			if(this.puedoInteractuar(unidad)) {
 				ArrayList<Unidad> unidadesAfectadas = recorrerUnidadesAfectadas(unidad);
 				for(Unidad unidadAfectada : unidadesAfectadas) {
 					ataque.sinDistincionDeEquipoA(unidadAfectada);

@@ -31,10 +31,13 @@ public class SoldadoDeInfanteria extends UnidadMovible implements Atacante, Cura
 	public void interactuar(Unidad unidad) {
 		atacar(unidad);
 	}
-	
+	@Override 
+	public boolean puedoInteractuar(Unidad unidad) {
+		return (distanciaA(unidad) < distanciaMaximaAtaque);
+	}
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
-		if(distanciaA(unidad) < distanciaMaximaAtaque)
+		if(this.puedoInteractuar(unidad))
 			ataque.a(unidad);
 			
 	}

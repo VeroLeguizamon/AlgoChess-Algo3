@@ -213,10 +213,10 @@ public class PrimeraEntregaTest {
 	@Test
 	public void test17JugadorNoPuedeTomarMasEntidadesDeLoQuesusPuntosLePermiteExitosamente() {
 
-		/*Tablero tablero = new Tablero();
-		Jinete jinete = new Jinete(1,new Coordenada(0,0),tablero);
-		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(new Coordenada(0,1),tablero);
-		Catapulta catapulta = new Catapulta(1,new Coordenada(0,2));
+		Tablero tablero = new Tablero();
+		Jinete jinete = new Jinete(jugador1,new Coordenada(0,0),tablero);
+		SoldadoDeInfanteria soldado = new SoldadoDeInfanteria(jugador1,new Coordenada(0,1),tablero);
+		Catapulta catapulta = new Catapulta(jugador1,new Coordenada(0,2),tablero);
 		
 		jugador1.comprarUnidad(jinete);//17
 		jugador1.comprarUnidad(soldado);//16
@@ -224,9 +224,8 @@ public class PrimeraEntregaTest {
 		jugador1.comprarUnidad(catapulta);//10
 		jugador1.comprarUnidad(catapulta);//5
 		jugador1.comprarUnidad(catapulta);//0
-		jugador1.comprarUnidad(jinete);*/
-		// pensar como se deben tratar los puntos insuficientes sin lanzar excepcion.
-		Assert.assertTrue(true);
+		jugador1.comprarUnidad(jinete); // 0
+		Assert.assertEquals(6,jugador1.cantidadDeUnidades());
 	}
 	@Test
 	public void test18JugadorSinEntidadesResultaSerPerdedor() {

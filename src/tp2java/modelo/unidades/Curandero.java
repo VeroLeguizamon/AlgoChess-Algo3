@@ -30,6 +30,10 @@ public class Curandero extends UnidadMovible implements Curable {
 		}
 		
 	}
+	@Override 
+	public boolean puedoInteractuar(Unidad unidad) {
+		return (unidad.esCurable() && ((Curable)unidad).distanciaACurandero(this) < distanciaMaximaCuracion);
+	}
 	
 	public void curar(Curable curable) { 
 

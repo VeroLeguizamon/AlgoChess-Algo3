@@ -64,8 +64,8 @@ public class JineteTest {
 		unidadesCercanas.add(jinete2);
 		unidadesCercanas.add(jinete3);
 		jinete1.atacar(jinete2);
+		assertTrue(jinete1.puedoInteractuar(jinete2));
 		assertEquals(jinete2.getVida(),95);
-		
 	}
 	
 	@Test(expected = ObjetivoAliado.class)
@@ -129,7 +129,8 @@ public class JineteTest {
 		unidadesCercanas.add(jinete2);
 		unidadesCercanas.add(mockSoldadoAliado);
 		jinete1.atacar(jinete3);
-		
+		assertFalse(jinete1.puedoInteractuar(jinete3));
+
 	}
 	
 	@Test

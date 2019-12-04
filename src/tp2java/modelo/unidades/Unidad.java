@@ -144,7 +144,9 @@ public class Unidad extends Observable implements IUnidad{
 	public void interactuar(Unidad unidad) {
 		
 	}
-
+	public boolean puedoInteractuar(Unidad unidad) {
+		return false;
+	}
 	public boolean esCurable() {
 		return false;
 	}

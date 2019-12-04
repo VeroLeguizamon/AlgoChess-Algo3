@@ -43,17 +43,28 @@ public class Jinete extends UnidadMovible implements Atacante, Curable {
 	public void interactuar(Unidad unidad) {
 		atacar(unidad);
 	}
+	@Override
+	public boolean puedoInteractuar(Unidad unidad) {
+		int distancia = distanciaA(unidad);
+		return (this.cumpleCondicionesParaAtaqueEspada(distancia)|| this.cumpleCondicionesParaUnAtaqueConArco(unidad, distancia));
+	}
+	
+	private boolean cumpleCondicionesParaUnAtaqueConArco(Unidad unidad, int distancia) {
+		int distanciaCercana = 2;
+		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, distanciaCercana);
+		return (distancia > distanciaMinimaArco && distancia < distanciaMaximaArco) && (!tieneEnemigoCercano(unidadesCercanas) || tieneSoldadoAliadoCercano(unidadesCercanas));
+	}
+	private boolean cumpleCondicionesParaAtaqueEspada(int distancia) {
+		return (distancia < distanciaMaximaEspada);
+	}
 	
 	@Override
 	public void atacar(Unidad unidad) throws ObjetivoAliado{ 
-		int distanciaCercana = 2;
 		int distancia = distanciaA(unidad);
-
-		ArrayList<Unidad> unidadesCercanas = getTablero().unidadesCercanas(this, distanciaCercana);
 		
-		if((distancia > distanciaMinimaArco && distancia < distanciaMaximaArco) && (!tieneEnemigoCercano(unidadesCercanas) || tieneSoldadoAliadoCercano(unidadesCercanas)))
+		if(this.cumpleCondicionesParaUnAtaqueConArco(unidad, distancia))
 			ataqueConArco.a(unidad);
-		else if(distancia < distanciaMaximaEspada)
+		else if(this.cumpleCondicionesParaAtaqueEspada(distancia))
 			ataqueConEspada.a(unidad);
 		
 	}

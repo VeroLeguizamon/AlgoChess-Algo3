@@ -72,7 +72,7 @@ public class CatapultaTest {
 		
 		catapulta1.atacar(catapulta2);
 		assertEquals(catapulta2.getVida(),30);
-		
+		assertTrue(catapulta1.puedoInteractuar(catapulta2));
 	}
 	
 	@Test

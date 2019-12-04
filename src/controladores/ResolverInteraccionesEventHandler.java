@@ -34,21 +34,21 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 			Unidad unidad = vistaCelda.getVistaUnidad().getUnidad();
 			
 			if(contenedorJuego.hayUnidadSeleccionada() && !contenedorJuego.esLaMismaUnidadSeleccionada(this.vistaCelda)) {
-				try {
-					
-					contenedorJuego.getUnidadSeleccionada().getUnidad().interactuar(unidad);
-					
-					
-				} catch (ObjetivoAliado e) {
+				if(!contenedorJuego.getUnidadSeleccionada().getUnidad().puedoInteractuar(unidad)) {
+					this.nuevaAlerta("No se puede interactuar", "Por favor, elije otra unidad.", "Un gran poder conlleva una gran responsabiliadad.");
+				} else {
+					try {	
+						contenedorJuego.getUnidadSeleccionada().getUnidad().interactuar(unidad);
+					} catch (ObjetivoAliado e) {
 					
 					nuevaAlerta("Unidad aliada.","Por favor, selecciona una enemiga.","Un gran poder conlleva una gran responsabilidad");
 //					contenedorJuego.quitarBotonesMovimiento();
+					}
 				}
 				contenedorJuego.resetSeleccionado();
 			} else if (vistaCelda.getVistaUnidad().getUnidad().getJugador() == contenedorJuego.getJugadorEnTurno()){
 				contenedorJuego.setUnidadSeleccionada(vistaCelda.getVistaUnidad());
 				if(unidad.sePuedeMover()) {
-					System.out.println("entro a se puede mover");
 					contenedorJuego.prepararMovimiento(vistaCelda);
 					
 				}

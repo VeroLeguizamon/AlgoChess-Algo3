@@ -32,9 +32,10 @@ public class SoldadoDeInfanteriaTest {
 	@Test
 	public void testSoldado1AtacaASoldado2YEsteUltimoPierdeVida() {
 		
-		soldado1.atacar(soldado2);
-		assertEquals(soldado2.getVida(),90);
 		
+		soldado1.atacar(soldado2);
+		assertTrue(soldado1.puedoInteractuar(soldado2));
+		assertEquals(soldado2.getVida(),90);
 	}
 	
 	@Test
@@ -52,7 +53,8 @@ public class SoldadoDeInfanteriaTest {
 		SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria(jugador1,new Coordenada(1,2),mockTablero);
 		soldado3.setJugador(jugador1);
 		soldado1.atacar(soldado3);
-		
+		assertFalse(soldado1.puedoInteractuar(soldado3));
+
 	}
 	
 	@Test

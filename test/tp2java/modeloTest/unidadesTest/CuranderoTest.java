@@ -8,6 +8,7 @@ import org.junit.Before;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.Jugador;
+import tp2java.modelo.unidades.Catapulta;
 import tp2java.modelo.unidades.Curandero;
 
 public class CuranderoTest {
@@ -32,7 +33,8 @@ public class CuranderoTest {
 		
 		curandero1.curar(curandero2);
 		assertEquals(curandero2.getVida(),90);
-		
+		assertTrue(curandero1.puedoInteractuar(curandero2));
+
 	}
 	
 	@Test
@@ -42,5 +44,10 @@ public class CuranderoTest {
 		assertEquals(curandero1.getVida(),90);
 		
 	}
-	
+	@Test
+	public void testCuranderoNoCuraAUnaUnidadNoCurable() {
+		Catapulta mockCatapulta = mock(Catapulta.class);
+		when(mockCatapulta.esCurable()).thenReturn(false);
+		assertFalse(curandero1.puedoInteractuar(mockCatapulta));
+	}
 }
