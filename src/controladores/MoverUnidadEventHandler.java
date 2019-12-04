@@ -24,31 +24,34 @@ public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 		this.direccion=direccion;
 		
 	}
-	
-	
-	
+		
 	@Override
 	public void handle(ActionEvent event) {
-
 		Unidad unidad=vistaCelda.getVistaUnidad().getUnidad();
 		Tablero tablero=contenedorJuego.getJuego().getTablero();
-		if(tablero.sePuedeMoverUnidad(direccion.calcularCoordenada(unidad.getUbicacion()))) {
+		Batallon batallon = new Batallon();
+		
+		if(batallon.existeBatallon(unidad)) {
+		
+			Queue<Unidad> unidades = batallon.formarPila();
+			batallon.moverAux(direccion);
 			
-			Batallon batallon = new Batallon();
-			if(batallon.existeBatallon(unidad)) {
-				Queue<Unidad> unidades = batallon.formarPila();
-				for(int i = 0; i < 3; i++) {
-					Unidad unidadDelBatallon = unidades.poll();
+			while(!unidades.isEmpty()) {
+				Unidad unidadDelBatallon = unidades.poll();
+				if(batallon.laUnidadSeMovio(unidad)) {
 					contenedorJuego.getVistaTablero().quitarVista(unidadDelBatallon.getUbicacion().getCoordx(), unidadDelBatallon.getUbicacion().getCoordy());
 				}
-				batallon.mover(direccion);
-			} else {
-				contenedorJuego.getVistaTablero().quitarVista(unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
-				((UnidadMovible)unidad).mover(direccion);	
 			}
-//			contenedorJuego.setBotonTerminarTurno();
+
+			batallon.mover(direccion);
+
+		} else {
+			if(tablero.sePuedeMoverUnidad(direccion.calcularCoordenada(unidad.getUbicacion()))) {
+				contenedorJuego.getVistaTablero().quitarVista(unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
+				((UnidadMovible)unidad).mover(direccion);
+			}
 		}
-		
+
 		contenedorJuego.resetSeleccionado();
 		contenedorJuego.quitarBotonesMovimiento();
 		contenedorJuego.siguienteTurno();

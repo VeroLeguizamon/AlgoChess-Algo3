@@ -145,8 +145,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
         this.contMov=botonesMov;
         this.getChildren().add(botonesMov);	
 		
-		
-		System.out.println(vistaCelda.getX()+","+vistaCelda.getY());
 	/*	
 		if(unidad.getJugador()==this.jugadorActual) {//corresponde al turno
 			if((unidad.perteneceASuSector()&& tablero.sePuedeMoverUnidad(movSeleccionado.calcularCoordenada(unidad.getUbicacion())))) {
