@@ -32,18 +32,8 @@ public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 		Batallon batallon = new Batallon();
 		
 		if(batallon.existeBatallon(unidad)) {
-		
-			Queue<Unidad> unidades = batallon.formarPila();
-			batallon.moverAux(direccion);
-			
-			while(!unidades.isEmpty()) {
-				Unidad unidadDelBatallon = unidades.poll();
-				if(batallon.laUnidadSeMovio(unidad)) {
-					contenedorJuego.getVistaTablero().quitarVista(unidadDelBatallon.getUbicacion().getCoordx(), unidadDelBatallon.getUbicacion().getCoordy());
-				}
-			}
-
 			batallon.mover(direccion);
+			this.contenedorJuego.getVistaTablero().actualizarTablero(tablero);
 
 		} else {
 			if(tablero.sePuedeMoverUnidad(direccion.calcularCoordenada(unidad.getUbicacion()))) {

@@ -43,13 +43,10 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		tablero.colocarUnidad(soldado3);
 		
 		if(batallon.existeBatallon(soldado2)) {
-			batallon.moverAux(Direccion.ABAJO);
 			batallon.mover(Direccion.ABAJO);		
 			
-		}	
-		//assertTrue(batallon.laUnidadSeMovio(soldado3));
-		assertTrue(batallon.laUnidadSeMovio(soldado1));
-		//assertEquals(batallon.laUnidadSeMovio(soldado2),true);
+		}
+
     	assertEquals(Direccion.ABAJO.calcularCoordenada(new Coordenada(2,2)), soldado1.getUbicacion());
 		assertEquals(Direccion.ABAJO.calcularCoordenada(new Coordenada(2,3)), soldado2.getUbicacion());
 		assertEquals(Direccion.ABAJO.calcularCoordenada(new Coordenada(2,4)), soldado3.getUbicacion());

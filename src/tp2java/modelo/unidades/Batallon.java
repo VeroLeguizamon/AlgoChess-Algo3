@@ -26,11 +26,11 @@ public class Batallon {
 
 		if (unidadCentral.sePuedeUnirAlBatallon()) {
 			batallonAux.add(unidadCentral);
-			this.seMovio.put(unidadCentral, false);
+			//this.seMovio.put(unidadCentral, false);
 			for(Unidad unidadAdyacente: adyacentes) {
 				if(unidadAdyacente.sePuedeUnirAlBatallon() && unidadAdyacente.mismoEquipo(unidadCentral) && (batallonAux.size()<=2) ) {
 					batallonAux.add(unidadAdyacente);
-					this.seMovio.put(unidadAdyacente, false);
+					//this.seMovio.put(unidadAdyacente, false);
 				}
 			}
 		}
@@ -61,26 +61,6 @@ public class Batallon {
 		}
 		
 	}
-	public void moverAux(Direccion direccion) {
-		Queue<Unidad> unidadesAMover = this.formarPila();
-		this.movidos.clear();
-		while(!unidadesAMover.isEmpty()) {
-			Unidad unidad = unidadesAMover.poll();
-			Coordenada coordenada = direccion.calcularCoordenada(unidad.getUbicacion());
-			
-			if(!this.coincideCoordenada(coordenada, movidos)) {
-				if(!this.coincideCoordenada(coordenada, batallon)) {
-					this.seMovio.replace(unidad, true);
-					this.movidos.add(unidad);
-				} else {
-					unidadesAMover.add(unidad);
-				}
-			} else {
-				this.movidos.add(unidad);
-			}
-
-		}
-	}
 
 	public Queue<Unidad> formarPila(){
 		Queue<Unidad> unidades = new LinkedList<>();
@@ -100,6 +80,6 @@ public class Batallon {
 		return false;
 	}
 	public boolean laUnidadSeMovio(Unidad unidad) {
-		return this.seMovio.get(unidad);
+		return this.seMovio.getOrDefault(unidad, false);
 	}
 }	
