@@ -67,8 +67,11 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
         jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
         jugadorEnTurno.setTextFill(Color.web("#fff"));
         jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
-        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
+//        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
+        jugadorEnTurno.setAlignment(Pos.TOP_CENTER);
 	    
+       
+        
         this.vBox.getChildren().add(vTablero);
         this.getChildren().add(vBox);
         this.getChildren().add(jugadorEnTurno);

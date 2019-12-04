@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import tp2java.excepciones.CeldaNoExisteExcepcion;
 import tp2java.excepciones.ObjetivoAliado;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Unidad;
@@ -25,34 +26,46 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 		
 	@Override
 	public void handle(ActionEvent arg0) {
-
-		if (!vistaCelda.estaVacia() && !contenedorJuego.getJugadorEnTurno().realizoAccion()){
+		
+		contenedorJuego.quitarBotonesMovimiento();
+     
+		if (!vistaCelda.estaVacia() && !contenedorJuego.getJugadorEnTurno().realizoAccion() ){
 			
 			Unidad unidad = vistaCelda.getVistaUnidad().getUnidad();
 			
 			if(contenedorJuego.hayUnidadSeleccionada() && !contenedorJuego.esLaMismaUnidadSeleccionada(this.vistaCelda)) {
 				try {
+					
 					contenedorJuego.getUnidadSeleccionada().getUnidad().interactuar(unidad);
+					
+					
 				} catch (ObjetivoAliado e) {
+					
 					nuevaAlerta("Unidad aliada.","Por favor, selecciona una enemiga.","Un gran poder conlleva una gran responsabilidad");
-					contenedorJuego.quitarBotonesMovimiento();
+//					contenedorJuego.quitarBotonesMovimiento();
 				}
 				contenedorJuego.resetSeleccionado();
 			} else if (vistaCelda.getVistaUnidad().getUnidad().getJugador() == contenedorJuego.getJugadorEnTurno()){
 				contenedorJuego.setUnidadSeleccionada(vistaCelda.getVistaUnidad());
 				if(unidad.sePuedeMover()) {
+					System.out.println("entro a se puede mover");
 					contenedorJuego.prepararMovimiento(vistaCelda);
+					
 				}
 			} else {
 				nuevaAlerta("No es tu unidad!","Esa unidad no pertenece al jugador en turno.","Un gran poder conlleva una gran responsabilidad");
-				contenedorJuego.quitarBotonesMovimiento();
+//				contenedorJuego.quitarBotonesMovimiento();
 			}
 			
 			if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {
 				contenedorJuego.quitarBotonesMovimiento();
 				contenedorJuego.setBotonTerminarTurno();
+			
 			}
 		}
+		
+		
+		
 		
 	}
 	

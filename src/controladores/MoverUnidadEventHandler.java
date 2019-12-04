@@ -26,30 +26,10 @@ public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 	}
 	
 	
-//	public Direccion movimientoEs() {
-	//	Scanner sc = new Scanner(System.in);
-	//	char tecla = sc.next().charAt(0);
-		
-	//	sc.close();
-		
-	//	System.out.println("la tecla es "+tecla);
-	//	if(tecla=='w') {return Direccion.ARRIBA;}
-	//	if(tecla=='x') {return Direccion.ABAJO;}
-	//	if(tecla=='a') {return Direccion.IZQUIERDA;}
-	//	if(tecla=='d') {return Direccion.DERECHA;}
-		
-		
-	//	return null;
-		
-//	}
 	
 	@Override
 	public void handle(ActionEvent event) {
-//		Direccion mov = null;
-//		Scanner sc =new Scanner(System.in);
-//		char tecla=sc.next().charAt(0);
 
-//		System.out.println("la tecla es "+tecla);
 		Unidad unidad=vistaCelda.getVistaUnidad().getUnidad();
 		Tablero tablero=contenedorJuego.getJuego().getTablero();
 		if(tablero.sePuedeMoverUnidad(direccion.calcularCoordenada(unidad.getUbicacion()))) {
@@ -66,11 +46,13 @@ public class MoverUnidadEventHandler implements EventHandler<ActionEvent>{
 				contenedorJuego.getVistaTablero().quitarVista(unidad.getUbicacion().getCoordx(), unidad.getUbicacion().getCoordy());
 				((UnidadMovible)unidad).mover(direccion);	
 			}
-			contenedorJuego.setBotonTerminarTurno();
+//			contenedorJuego.setBotonTerminarTurno();
 		}
 		
 		contenedorJuego.resetSeleccionado();
 		contenedorJuego.quitarBotonesMovimiento();
+		contenedorJuego.siguienteTurno();
+		
 		
 		}
 		
