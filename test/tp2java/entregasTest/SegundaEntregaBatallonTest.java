@@ -77,7 +77,6 @@ private SoldadoDeInfanteria soldado1,soldado2,soldado3,soldado4;
 		
 		assertEquals(Direccion.IZQUIERDA.calcularCoordenada(new Coordenada(2,2)), soldado1.getUbicacion());
 		assertEquals(new Coordenada(2,3), soldado2.getUbicacion());
-		assertFalse(batallon.laUnidadSeMovio(soldado2));
 		assertEquals(Direccion.IZQUIERDA.calcularCoordenada(new Coordenada(2,4)), soldado3.getUbicacion());
 		
 	}

@@ -1,7 +1,6 @@
 package tp2java.modelo.unidades;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,7 +10,6 @@ import tp2java.modelo.tablero.Direccion;
 public class Batallon {
 	private ArrayList<Unidad> batallon= new ArrayList<Unidad>();
 	private ArrayList<Unidad> movidos =new ArrayList<Unidad>();
-	private HashMap<Unidad, Boolean> seMovio = new HashMap<Unidad, Boolean>();
 	public Batallon() {
 		
 	}
@@ -26,11 +24,9 @@ public class Batallon {
 
 		if (unidadCentral.sePuedeUnirAlBatallon()) {
 			batallonAux.add(unidadCentral);
-			//this.seMovio.put(unidadCentral, false);
 			for(Unidad unidadAdyacente: adyacentes) {
 				if(unidadAdyacente.sePuedeUnirAlBatallon() && unidadAdyacente.mismoEquipo(unidadCentral) && (batallonAux.size()<=2) ) {
 					batallonAux.add(unidadAdyacente);
-					//this.seMovio.put(unidadAdyacente, false);
 				}
 			}
 		}
@@ -49,7 +45,6 @@ public class Batallon {
 			if(!this.coincideCoordenada(coordenada, movidos)) {
 				if(!this.coincideCoordenada(coordenada, batallon)) {
 					((UnidadMovible) unidad).mover(direccion);
-
 					this.movidos.add(unidad);
 				} else {
 					unidadesAMover.add(unidad);
@@ -79,7 +74,5 @@ public class Batallon {
 		}
 		return false;
 	}
-	public boolean laUnidadSeMovio(Unidad unidad) {
-		return this.seMovio.getOrDefault(unidad, false);
-	}
+
 }	

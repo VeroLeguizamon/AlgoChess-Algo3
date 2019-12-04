@@ -67,7 +67,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
         jugadorEnTurno.setStyle("-fx-font-family:arial; -fx-font-size:20px;");
         jugadorEnTurno.setTextFill(Color.web("#fff"));
         jugadorEnTurno.setTextAlignment(TextAlignment.CENTER);
-//        jugadorEnTurno.setAlignment(Pos.TOP_LEFT);
         jugadorEnTurno.setAlignment(Pos.TOP_CENTER);
 	    
        
@@ -144,23 +143,6 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 		ContenedorMovimientos botonesMov=new ContenedorMovimientos(this,vistaCelda);
         this.contMov=botonesMov;
         this.getChildren().add(botonesMov);	
-		
-	/*	
-		if(unidad.getJugador()==this.jugadorActual) {//corresponde al turno
-			if((unidad.perteneceASuSector()&& tablero.sePuedeMoverUnidad(movSeleccionado.calcularCoordenada(unidad.getUbicacion())))) {
-				((UnidadMovible)unidad).mover(this.contMov.movimientoSeleccionado());
-
-				vistaCelda.limpiarCelda();
-				this.getVistaTablero().dibujarUnidades(tablero);
-				
-
-				this.resetSeleccionado();
-				
-				
-			}
-		
-		}
-	*/
 	}
 	
 	@Override

@@ -5,29 +5,22 @@ import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.Jugador;
 
 public class Curandero extends UnidadMovible implements Curable {
-	
-	private int poderDeCuracion;
+
+	private static int distanciaMaximaCuracion = 3;
+	private static int precio = 2;
+	private static int poderDeCuracion = 15;
 	
 	public Curandero(Jugador jugador, Coordenada ubicacion, Tablero tablero) {
-		
-		super(75,2,jugador,ubicacion,tablero);
-		this.poderDeCuracion = 15;
-		
+		super(75,precio,jugador,ubicacion,tablero);
 	}
 	
 	public Curandero(Jugador jugador) {
-		
-		super(75,2,jugador);
-		this.poderDeCuracion = 15;
-		
+		super(75,precio,jugador);
 	}
 	
 	public Curandero() {
-		super(75,2);
-		this.poderDeCuracion = 15;
+		super(75,precio);
 	}
-	// Parámetro es la unidad a curar. 
-	// Debe llamar al método recuperarVida de un Curable.
 	
 	@Override
 	public void interactuar(Unidad unidad) {
@@ -41,9 +34,9 @@ public class Curandero extends UnidadMovible implements Curable {
 	
 	public void curar(Curable curable) { 
 		
-		if(curable.distanciaACurandero(this) < 3)
+		if(curable.distanciaACurandero(this) < distanciaMaximaCuracion)
 			curable.recuperarVida(poderDeCuracion);
-		
+			this.getJugador().realizarAccion();
 	}
 
 	@Override

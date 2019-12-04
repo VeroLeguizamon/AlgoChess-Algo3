@@ -32,16 +32,15 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
-		if(jugador.noTienePuntosSuficientesParaComprar(nueva)) {
- 			Alert alert = new Alert(AlertType.INFORMATION);
+		if (jugador.tieneSuficientesPuntosParaComprar(nueva)) {
+			jugador.comprarUnidad(nueva);
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
  			alert.setTitle("Puntos insuficientes");
  			alert.setHeaderText("No puedes comprar mas unidades!");
  			alert.setContentText("Por favor, presiona siguiente.");
 
  			alert.showAndWait();
-		} else {
-			jugador.comprarUnidad(nueva);
 		}
 		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
 		        MediaPlayer mediaplayer=new MediaPlayer(sonyInicio);

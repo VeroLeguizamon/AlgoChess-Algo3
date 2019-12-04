@@ -9,12 +9,9 @@ import tp2java.modelo.Observable;
 public class Unidad extends Observable implements IUnidad{
 	
 	private int costo; 
-	// Costo al comprar la Unidad.
 	private int vida; 
-	// Puntos de vida de la Unidad.
 	private Jugador jugador = null;
 	private Coordenada ubicacion;
-	// Ubicación en el tablero.
 	private Tablero tablero;
 	
 	public Unidad() {

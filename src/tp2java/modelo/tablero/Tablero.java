@@ -8,10 +8,12 @@ import tp2java.modelo.unidades.Unidad;
 public class Tablero{
 	private Sector limites;
 	private ArrayList<Unidad> unidades;
+	private static int columnaInferior = 0;
+	private static int columnaSuperior = 19;
 
 	public Tablero() {
 		this.unidades = new ArrayList<Unidad>();
-		this.limites = new Sector(0,19);
+		this.limites = new Sector(columnaInferior,columnaSuperior);
 	}
 	
 	public boolean existeLaCelda(Coordenada coordenada) {
