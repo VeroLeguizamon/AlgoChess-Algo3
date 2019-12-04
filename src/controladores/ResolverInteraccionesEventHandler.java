@@ -61,7 +61,7 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 				contenedorJuego.quitarBotonesMovimiento();			
 			}
 		} else if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {
-			nuevaAlerta("Ya se realizó una acción!","Debe terminar su turno.","Un gran poder conlleva una gran responsabilidad.");
+			nuevaAlerta("Ya se realizo una accion!","Debe terminar su turno.","Un gran poder conlleva una gran responsabilidad.");
 		}
 		
 		
