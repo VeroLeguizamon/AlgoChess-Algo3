@@ -1,12 +1,11 @@
 package tp2java.modelo.unidades;
 
-import tp2java.modelo.interfaces.IUnidad;
 import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.Observable;
 
-public class Unidad extends Observable implements IUnidad{
+public class Unidad extends Observable{
 	
 	private int costo; 
 	private int vida; 
@@ -74,12 +73,10 @@ public class Unidad extends Observable implements IUnidad{
 		return vida;
 	}
 	
-	@Override
 	public int getCosto() {		
 		return costo;
 	}
-		
-	@Override
+
 	public Jugador getJugador() {
 		return jugador;
 	}
@@ -127,12 +124,10 @@ public class Unidad extends Observable implements IUnidad{
 		return this.ubicacion.calcularDistancia(coordenada);
 	}
 
-	@Override
 	public boolean esSoldadoDeInfanteria() {
 		return false;
 	}	
-	
-	@Override
+
 	public boolean sePuedeUnirAlBatallon() {
 		return false;
 	}
