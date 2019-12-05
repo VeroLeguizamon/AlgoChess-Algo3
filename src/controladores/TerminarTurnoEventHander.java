@@ -18,7 +18,7 @@ public class TerminarTurnoEventHander implements EventHandler<ActionEvent>{
 	private Juego juego;
 	private ContenedorJuego contJuego;
 	
-	private static final String RUTA_GANADOR="src/vista/sonidos/escenaJuego.mp3";
+	private static final String RUTA_GANADOR="src/vista/sonidos/sonidoGanador.mp3";
 	private Sound sound=new Sound(RUTA_GANADOR);
 	private Sound ambiente;
 
