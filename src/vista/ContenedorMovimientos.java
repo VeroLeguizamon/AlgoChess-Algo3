@@ -1,29 +1,79 @@
 package vista;
 
+import java.io.File;
+
 import controladores.MoverUnidadEventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import tp2java.modelo.tablero.Direccion;
 
 public class ContenedorMovimientos extends GridPane {
 	
+	private static final String BTN_ARRIBA="src/vista/imagenes/arriba.png";
+	private static final String BTN_ABAJO="src/vista/imagenes/abajo.png";
+	private static final String BTN_DERECHA="src/vista/imagenes/izquierda.png";
+	private static final String BTN_IZQUIERDA="src/vista/imagenes/derecha.png";
+	
+	private static final String BTN_ARRIBA_DERECHA="src/vista/imagenes/arriba_derecho.png";
+	private static final String BTN_ABAJO_DERECHA="src/vista/imagenes/abajo_derecho.png";
+	private static final String BTN_ARRIBA_IZQUIERDA="src/vista/imagenes/arriba_Izq.png";
+	private static final String BTN__ABAJO_IZQUIERDA="src/vista/imagenes/abajo_Izq.png";
+	
+	
+	
 	public ContenedorMovimientos(ContenedorJuego contJuego, VistaCelda seleccionada) {
 
-		Button btnArriba=new Button("\u2191");
+		
+		
+		
+		Image imgArriba=new Image(new File(BTN_ARRIBA).toURI().toString(),40,40,false,true);
+		Image imgAbajo=new Image(new File(BTN_ABAJO).toURI().toString(),40,40,false,true);
+		Image imgDerecha=new Image(new File(BTN_DERECHA).toURI().toString(),40,40,false,true);
+		Image imgIzquierda=new Image(new File(BTN_IZQUIERDA).toURI().toString(),40,40,false,true);
+		
+		
+		Image imgArriba_Derecha=new Image(new File(BTN_ARRIBA_DERECHA).toURI().toString(),40,40,false,true);
+		Image imgAbajo_Derecha=new Image(new File(BTN_ABAJO_DERECHA).toURI().toString(),40,40,false,true);
+		Image imgArriba_Izq=new Image(new File(BTN_ARRIBA_IZQUIERDA).toURI().toString(),40,40,false,true);
+		Image imgAbajo_Izq=new Image(new File(BTN__ABAJO_IZQUIERDA).toURI().toString(),40,40,false,true);
+		
+		
+		ImageView imgVArriba=new ImageView(imgArriba);
+		ImageView imgVAbajo=new ImageView(imgAbajo);
+		ImageView imgVDerecha=new ImageView(imgDerecha);
+		ImageView imgVIzquierdaa=new ImageView(imgIzquierda);
+		
+		ImageView imgVArriba_Derech=new ImageView(imgArriba_Derecha);
+		ImageView imgVAbajo_Derech=new ImageView(imgAbajo_Derecha);
+		ImageView imgVArriba_Izq=new ImageView(imgArriba_Izq);
+		ImageView imgVAbajo_Izq=new ImageView(imgAbajo_Izq);
+		
+		
+//		Button btnArriba=new Button("\u2191");
+		Button btnArriba=new Button("",imgVArriba);
 		btnArriba.setMinSize(30, 30);
-		Button btnAbajo=new Button("\u2193");
+//		Button btnAbajo=new Button("\u2193");
+		Button btnAbajo=new Button("",imgVAbajo);
 		btnAbajo.setMinSize(30, 30);
-		Button btnDerecha=new Button("\u2192");
+//		Button btnDerecha=new Button("\u2192");
+		Button btnDerecha=new Button("",imgVDerecha);
 		btnDerecha.setMinSize(30, 30);
-		Button btnIzquierda=new Button("\u2190");
+//		Button btnIzquierda=new Button("\u2190");
+		Button btnIzquierda=new Button("",imgVIzquierdaa);
 		btnIzquierda.setMinSize(30, 30);
-		Button btnArribaIzq=new Button("\u2196");
+//		Button btnArribaIzq=new Button("\u2196");
+		Button btnArribaIzq=new Button("",imgVArriba_Izq);
 		btnArribaIzq.setMinSize(30, 30);
-		Button btnAbajoIzq=new Button("\u2199");
+//		Button btnAbajoIzq=new Button("\u2199");
+		Button btnAbajoIzq=new Button("",imgVAbajo_Izq);
 		btnAbajoIzq.setMinSize(30, 30);
-		Button btnArribaDere=new Button("\u2197");
+//		Button btnArribaDere=new Button("\u2197");
+		Button btnArribaDere=new Button("",imgVArriba_Derech);
 		btnArribaDere.setMinSize(30, 30);
-		Button btnAbajoDere=new Button("\u2198");
+//		Button btnAbajoDere=new Button("\u2198");
+		Button btnAbajoDere=new Button("",imgVAbajo_Derech);
 		btnAbajoDere.setMinSize(30, 30);
 		
 		btnArriba.setOnAction(new MoverUnidadEventHandler(seleccionada, contJuego, Direccion.ABAJO));

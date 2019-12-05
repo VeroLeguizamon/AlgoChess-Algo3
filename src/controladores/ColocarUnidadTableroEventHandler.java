@@ -8,6 +8,7 @@ import tp2java.modelo.tablero.Coordenada;
 import tp2java.modelo.tablero.Tablero;
 import tp2java.modelo.unidades.Unidad;
 import vista.ContenedorConTablero;
+import vista.Sound;
 import vista.VistaCelda;
 
 public class ColocarUnidadTableroEventHandler implements EventHandler<ActionEvent> {
@@ -15,6 +16,7 @@ public class ColocarUnidadTableroEventHandler implements EventHandler<ActionEven
 	private Tablero tablero;
 	private Coordenada coordenada;
 	private VistaCelda celda;
+	
 	
 	public ColocarUnidadTableroEventHandler(VistaCelda celda, Tablero tablero, ContenedorConTablero juego, int x, int y) {
 		this.escena = juego;
@@ -24,7 +26,7 @@ public class ColocarUnidadTableroEventHandler implements EventHandler<ActionEven
 	}
 	@Override
 	public void handle(ActionEvent event) {
-		 
+
 		if(escena.hayUnidadSeleccionada()) {
 			Unidad unidad = escena.getUnidadSeleccionada().getUnidad();
 			unidad.setUbicacion(this.coordenada);

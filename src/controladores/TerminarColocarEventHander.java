@@ -9,22 +9,27 @@ import javafx.stage.Stage;
 import tp2java.modelo.Juego;
 import tp2java.modelo.Jugador;
 import vista.ContenedorJuego;
+import vista.Sound;
 
 public class TerminarColocarEventHander implements EventHandler<ActionEvent>{
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private Juego juego;
 	private Stage stage;
+	private Sound sonido;
 	
-	public TerminarColocarEventHander(Stage stage, Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego){
+	public TerminarColocarEventHander(Stage stage, Jugador jugadorSiguiente, Jugador jugadorEnEspera, Juego juego, Sound sound){
 		super();
 		this.jugador1 = jugadorSiguiente;
 		this.jugador2 = jugadorEnEspera;
 		this.stage = stage;
 		this.juego = juego;
+		this.sonido=sound;
 	}
 	@Override
 	public void handle(ActionEvent arg0) {
+		
+		this.sonido.stop();
 		int unidadesCompradasPorAmbos = jugador1.cantidadDeUnidades() + jugador2.cantidadDeUnidades();
 		int unidadesColocadas = juego.getTablero().cantUnidades();
 		

@@ -1,21 +1,21 @@
 package controladores;
 
-import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import tp2java.modelo.Jugador;
 import tp2java.modelo.unidades.Unidad;
+import vista.Sound;
 
 public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 	private Unidad unidad;
 	private Jugador jugador;
 	private static final String RUTA_PRESIONARBOTON="src/vista/sonidos/presionarBoton.mp3";
-	MediaPlayer mp;
 	
+	private Sound sound=new Sound(RUTA_PRESIONARBOTON);
+	
+    
 	
 	public ComprarUnidadEventHandler(Jugador jugador, Unidad unidad){
 		this.unidad = unidad;
@@ -23,7 +23,10 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 		
 	}
 	@Override
-	public void handle(ActionEvent event) {        
+	public void handle(ActionEvent event) { 
+		this.sound.play();
+		
+		
 		Unidad nueva = null;
 		try {
 			nueva = unidad.getClass().newInstance();
@@ -42,8 +45,7 @@ public class ComprarUnidadEventHandler implements EventHandler<ActionEvent> {
 
  			alert.showAndWait();
 		}
-		Media sonyInicio=new Media(new File(RUTA_PRESIONARBOTON).toURI().toString());
-		        MediaPlayer mediaplayer=new MediaPlayer(sonyInicio);
-		        mediaplayer.play();
+
+		
 	}
 }

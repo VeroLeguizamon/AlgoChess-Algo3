@@ -42,7 +42,7 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 					} catch (ObjetivoAliado e) {
 					
 					nuevaAlerta("Unidad aliada.","Por favor, selecciona una enemiga.","Un gran poder conlleva una gran responsabilidad");
-//					contenedorJuego.quitarBotonesMovimiento();
+
 					}
 				}
 				contenedorJuego.resetSeleccionado();
@@ -54,7 +54,7 @@ public class ResolverInteraccionesEventHandler implements EventHandler<ActionEve
 				}
 			} else {
 				nuevaAlerta("No es tu unidad!","Esa unidad no pertenece al jugador en turno.","Un gran poder conlleva una gran responsabilidad");
-//				contenedorJuego.quitarBotonesMovimiento();
+
 			}
 			
 			if(contenedorJuego.getJugadorEnTurno().realizoAccion()) {

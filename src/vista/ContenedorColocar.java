@@ -27,6 +27,9 @@ import tp2java.modelo.tablero.Tablero;
 public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
+	
+	private static final String RUTA_ESCENACOLOCAR="src/vista/sonidos/escenaColocar.mp3";
+	private Sound sound=new Sound(RUTA_ESCENACOLOCAR);
 
 	public final Stage stage;	
 	
@@ -38,6 +41,7 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	private VistaUnidad seleccionado;
 	
 	public ContenedorColocar(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
+		this.sound.play();
 		this.stage = stage;
 		
 		this.setAlignment(Pos.CENTER);
@@ -109,7 +113,8 @@ public class ContenedorColocar extends HBox implements ContenedorConTablero{
 	}
 
 	public void setBotonTerminar(Jugador jugador1, Jugador jugador2, Juego juego) {
-		this.setBoton(RUTA_TERMINAR, new TerminarColocarEventHander(this.stage, jugador2, jugador1,juego));
+		
+		this.setBoton(RUTA_TERMINAR, new TerminarColocarEventHander(this.stage, jugador2, jugador1,juego,this.sound));
 	}
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
 		HBox hb = new HBox();

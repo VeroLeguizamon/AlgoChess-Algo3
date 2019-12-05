@@ -27,6 +27,10 @@ import tp2java.modelo.tablero.Tablero;
 public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private static final String RUTA_FONDO="file:src/vista/imagenes/fondoTienda.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
+	
+	private static final String RUTA_ESCENAJUEGO="src/vista/sonidos/escenaJuego.mp3";
+	private Sound sound=new Sound(RUTA_ESCENAJUEGO);
+
 
 	public final Stage stage;	
 	
@@ -46,6 +50,8 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	private VBox vb = new VBox(20);
 	
 	public ContenedorJuego(Stage stage, Jugador jugador1, Jugador jugador2,Juego juego) {
+		
+		this.sound.Nostop();
 		this.stage = stage;
 		
 		this.setAlignment(Pos.CENTER);

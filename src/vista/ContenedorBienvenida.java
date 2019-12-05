@@ -26,8 +26,11 @@ public class ContenedorBienvenida extends VBox{
 	private static final String RUTA_TITULO="file:src/vista/imagenes/logo1.png";
 	private static final String RUTA_JUGAR="file:src/vista/imagenes/juga.png";
 	private static final String RUTA_SALIR="file:src/vista/imagenes/salir.png";
+	
 	private static final String RUTA_SONYINICIO="src/vista/sonidos/sonidoInicio2.mp3";
-	MediaPlayer mediaplayer;
+
+	
+	private Sound sound=new Sound(RUTA_SONYINICIO);
 
 	Stage stage;
 	
@@ -59,16 +62,13 @@ public class ContenedorBienvenida extends VBox{
         BackgroundImage mostrarFondoBienvenida=new BackgroundImage(fondoBienvenida, BackgroundRepeat.ROUND,BackgroundRepeat.ROUND,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         this.setBackground(new Background(mostrarFondoBienvenida));
         
-        Media sonyInicio=new Media(new File(RUTA_SONYINICIO).toURI().toString());
-        this.mediaplayer=new MediaPlayer(sonyInicio);
-        this.mediaplayer.play();
-        
+        this.sound.play();
         this.getChildren().addAll(vistaTitulo,vBox);
 	}
 	
 	public void setBotonesSalirJugar(Aplicacion app) {
 		
-		JugarEventHandler jugarEvent=new JugarEventHandler(this.stage, jugadores,this.mediaplayer);
+		JugarEventHandler jugarEvent=new JugarEventHandler(this.stage, jugadores,this.sound);
 		SalirEventHandler salirEvent=new SalirEventHandler();
 		
 		Button botonJugar=new Button("");

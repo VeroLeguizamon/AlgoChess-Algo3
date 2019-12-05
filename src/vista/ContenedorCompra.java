@@ -23,6 +23,16 @@ public class ContenedorCompra extends HBox{
 	private static final String RUTA_SIGUIENTE="file:src/vista/imagenes/siguiente.png";
 	private static final String RUTA_TITULO="file:src/vista/imagenes/TiendaTitulo.png";
 	private static final String RUTA_TERMINAR="file:src/vista/imagenes/terminar.png";
+	
+	
+	private static final String RUTA_PRESIONARBOTON="src/vista/sonidos/presionarBoton.mp3";
+	
+	private Sound soundBoton=new Sound(RUTA_PRESIONARBOTON);
+	
+	
+
+	
+	
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private VistaJugador vistaJugador;
@@ -31,6 +41,8 @@ public class ContenedorCompra extends HBox{
 	private VBox box = new VBox(20);
 	
 	public ContenedorCompra(Stage stage, Jugador jugador1, Jugador jugador2) {
+
+		
 		this.stage = stage;
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
@@ -65,13 +77,20 @@ public class ContenedorCompra extends HBox{
 	
 	public void setBotonSiguiente() {
 		this.setBoton(RUTA_SIGUIENTE, new SiguienteJugadorCompraEventHandler(this.stage, jugador1, jugador2));
+		
 	}
 	
 	public void setBotonTerminar() {
+		
 		this.setBoton(RUTA_TERMINAR, new TerminarCompraEventHandler(this.stage, jugador2, jugador1));
+		
 	}
 	
 	private void setBoton(String ruta, EventHandler<ActionEvent> event) {
+		
+		this.soundBoton.play();
+
+		
 		HBox hb = new HBox();
 		
 		Button boton=new Button("");
