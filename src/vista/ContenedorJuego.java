@@ -116,7 +116,7 @@ public class ContenedorJuego extends HBox implements ContenedorConTablero{
 	}
 
 	public void setBotonTerminarTurno() {
-		this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this, juego));
+		this.setBoton(RUTA_TERMINAR, new TerminarTurnoEventHander(this, juego, sound));
 	}
 	
 	public void quitarBotonTerminarTurno() {
